@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.renderView, name='renderView'),
+    path('home.html', views.renderView, name='renderView'),
+    path('movie.html', views.renderMovieView, name='renderMovieView')
 ]

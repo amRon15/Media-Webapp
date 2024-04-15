@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block htmlhead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'movie.css'%}">
+{% endblock htmlhead %}
+{% block title %} Movie {% endblock %}
+
+{% block content%}
+<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
+<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
+<div class="hero-container">
+    <div class="hero-detail-container">
+        <div class="hero-detail-title">{{heroMovie.0.title}}</div>
+        <div class="hero-detail-genre">{{heroMovie.0.genre_ids}}</div>
+        <div class="hero-detail-rate">{{heroMovie.0.vote_average}} &starf;</div>
+        <span class="hero-detail-btn-container">
+            <button class="hero-detail-btn" id="hero-detail-trailer-btn">Trailer</button>
+            <button class="hero-detail-btn" id="hero-detail-info-btn">More Info</button>
+        </span>
+        <div class="hero-detail-description">{{heroMovie.0.overview}}</div>
+    </div>
+</div>
+<div class="content-container container ">
+    <div class="list-container">
+        <div class="list-bar" id="pop-movie-bar">
+            <span class="pop-more" id="pop-movie-more">Top 10 Popluar Movie</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    < </button>
+                        <button class="list-btn list-btn-next"> > </button>
+            </span>
+        </div>
+        <div class="card-list">
+            {% for movie in heroMovie %}
+            {% if forloop.counter > 1 and forloop.counter < 11 %} 
+            <div class="card-container">
+                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
+                <a class="card-title">{{movie.title}}</a>
+                <div class="card-detail">
+                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
+                    <div>{{movie.release_date}}</div>
+                </div>
+                <button class="card-info-btn">&#9432 More</button>
+            </div>
+        {%endif%}
+        {% endfor %}
+        </div>
+    </div>
+    <div class="list-container">
+        <div class="list-bar" id="pop-movie-bar">
+            <span class="pop-more" id="pop-movie-more">Top Rated Movie Of Year</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    < </button>
+                        <button class="list-btn list-btn-next"> > </button>
+            </span>
+        </div>
+        <div class="card-list">
+            {% for movie in topRated %}
+            <div class="card-container">
+                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
+                <a class="card-title">{{movie.title}}</a>
+                <div class="card-detail">
+                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
+                    <div>{{movie.release_date}}</div>
+                </div>
+                <button class="card-info-btn">&#9432 More</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}

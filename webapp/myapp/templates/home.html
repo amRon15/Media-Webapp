@@ -25,7 +25,6 @@
         </div>
         <div class="carousel-inner">
             {% for movie in carousel %}
-            {{movie.original_title}}
             {% if forloop.counter <= 6 %} <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}"
                 id="slide{{ forloop.counter }}">
                 <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="d-block w-100 opacity-75"
@@ -48,7 +47,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
-</div>
 </div>
 <div class="all-list-container">
     <div class="list-container">
@@ -84,4 +82,6 @@
         </div>
     </div>
 </div>
+</div>
+
 {% endblock %}
