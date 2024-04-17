@@ -69,8 +69,7 @@ def fetchTvData(url):
     for i, show in enumerate(data):
         show['vote_average'] = round(show['vote_average'],1)
         show['genre_ids'] = matchGenre(show['genre_ids'], tv_genre)
-        if i == 0:
-            show['videoKey'] = getTvYtKey(show['id'])
+        show['videoKey'] = getTvYtKey(show['id'])
     return data
 
 #return a youtube key

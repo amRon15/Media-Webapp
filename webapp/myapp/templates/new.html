@@ -3,7 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'new.css' %}">
 {% endblock htmlhead %}
-{% block title %} Login {% endblock %}
+{% block title %} What's New {% endblock %}
 
 
 {% block content %}
@@ -14,6 +14,11 @@
                 {% if forloop.counter < 7%} 
                     <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
                     <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="d-block w-100" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" class="carousel-item-poster" />
+                        <h4>{{movie.title}}</h5>
+                        <p>{{movie.genre_ids}}</p>
+                    </div>
                     </div>
                 {% endif %}
             {% endfor %}

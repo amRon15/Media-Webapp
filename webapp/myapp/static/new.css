@@ -11,6 +11,38 @@
     max-width: 50vi;
 }
 
+.carousel.slide::before{
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    width: 50vi;
+    height: 100%;
+    background-image: linear-gradient(#00000000,#00000080, #000000);
+}
+
+.carousel.slide button{
+    z-index: 2;
+}
+
+.carousel-item-poster{
+    width: 10vi;
+    height: 15vi;
+    border-radius: 5px;
+    position: absolute;
+    left: -7vi;
+    bottom: -1vi;
+    opacity: 1;
+    z-index: 100;
+}
+
+.carousel-caption{
+     z-index: 100;
+}
+
+.carousel-caption h4{
+    height: 3vi;
+}
+
 .upcoming-container{
     background: linear-gradient(to bottom,#181818 , #000000);
     padding: 0.5em 1em;
