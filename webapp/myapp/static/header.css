@@ -1,0 +1,118 @@
+.header-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+  height: 4vi;
+}
+
+#header-title{
+  text-decoration: none;
+  color: white;
+}
+
+.header-l{
+  display: flex;
+  width: 100%;
+  margin-left: 5vi;
+  align-items: center;
+}
+
+.header-l li{
+  margin-left: 2em;
+  float: left;
+}
+
+
+.header-r{
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin-right: 5vi;  
+}
+
+.header-r li{
+  margin-right: 2em;
+  float: left;
+  padding: 0.5rem 0;
+
+}
+
+
+#header-title{
+  margin-right: 2vi;
+}
+  
+ul{
+  list-style-type: none;
+  background-color: transparent;
+  margin: auto 0;
+  padding-left: 1rem;
+}
+
+  li a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  li a:hover {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  li a:active {
+    font-size: 15px;
+  }
+
+  input[type="search"] {
+    cursor: pointer;
+    width: 50px;
+    padding: 5px 20px 5px 35px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23777' d='M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z'/%3E%3C/svg%3E");
+    background-color: transparent;
+    transition: all 0.5s ease-in-out;
+    filter: brightness(170%);
+    transition: all 0.1 ease;
+  }
+  
+  input[type="search"]:focus,
+  input[type="search"]:not(:placeholder-shown) {
+    cursor: initial;
+    background-position: 5% 50%;
+    width: 250px;
+    background-color: rgb(23, 23, 23);
+    filter: brightness(100%);
+    border: rgb(23, 23, 23) solid 1px;
+    border-radius: 25px;
+  }
+ 
+.fa-heart{
+  color: #b40b14;
+  transition: all 0.3s ease-in-out;
+}
+
+.fa-heart:hover{
+  color: #cc0d17;
+}
+
+
+#header-sign{
+  background-color: #970910;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+#header-sign:hover{
+  background-color: #b40b14;
+  color: white;
+}

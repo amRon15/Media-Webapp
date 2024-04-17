@@ -2,24 +2,23 @@
 {% block htmlhead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'movie.css'%}">
-<link rel="stylesheet" href="{% static 'footer.css'%}">
 
 {% endblock htmlhead %}
-{% block title %} Movie {% endblock %}
+{% block title %} Tv {% endblock %}
 
 {% block content%}
-<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
-<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
+<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original{{popTv.0.backdrop_path}}" alt="">
+<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original{{popTv.0.backdrop_path}}" alt="">
 <div class="hero-container">
     <div class="hero-detail-container">
-        <div class="hero-detail-title">{{heroMovie.0.title}}</div>
-        <div class="hero-detail-genre">{{heroMovie.0.genre_ids}}</div>
-        <div class="hero-detail-rate">{{heroMovie.0.vote_average}} &starf;</div>
+        <div class="hero-detail-title">{{popTv.0.name}}</div>
+        <div class="hero-detail-genre">{{popTv.0.genre_ids}}</div>
+        <div class="hero-detail-rate">{{popTv.0.vote_average}} &starf;</div>
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
             <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
         </span>
-        <div class="hero-detail-description">{{heroMovie.0.overview}}</div>
+        <div class="hero-detail-description">{{popTv.0.overview}}</div>
     </div>
 </div>
 
@@ -37,7 +36,7 @@
             </span>
         </div>
         <div class="hero-video-list">
-            {% for key in heroMovie.0.videoKey %}
+            {% for key in popTv.0.videoKey %}
             <iframe src="https://www.youtube.com/embed/{{key}}" frameborder="0" allowfullscreen></iframe>
             {% endfor %}
         </div>
@@ -46,7 +45,7 @@
     </div>
     <div class="list-container">
         <div class="list-bar">
-            <span class="title-more">Top 10 Popluar Movie</span>
+            <span class="title-more">Top 10 Popluar TV</span>
             <span class="list-btn-container">
                 <button class="list-btn list-btn-prev">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -57,13 +56,13 @@
             </span>
         </div>
         <div class="card-list">
-            {% for movie in heroMovie %}
+            {% for tv in popTv %}
             {% if forloop.counter > 1 and forloop.counter < 11 %} <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
-                <a class="card-title">{{movie.title}}</a>
+                <img src="https://image.tmdb.org/t/p/w342{{tv.poster_path}}">
+                <a class="card-title">{{tv.name}}</a>
                 <div class="card-detail">
-                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
-                    <div>{{movie.release_date}}</div>
+                    <div id="card-rate">&starf;{{tv.vote_average}}</div>
+                    <div>{{tv.first_air_date}}</div>
                 </div>
                 <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
         </div>
@@ -73,7 +72,7 @@
 </div>
 <div class="list-container">
     <div class="list-bar">
-        <span class="title-more">Top Rated Movie Of Year</span>
+        <span class="title-more">Top Rated TV Serious</span>
         <span class="list-btn-container">
             <button class="list-btn list-btn-prev">
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -84,13 +83,13 @@
         </span>
     </div>
     <div class="card-list">
-        {% for movie in topRated %}
+        {% for tv in topRatedTv %}
         <div class="card-container">
-            <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
-            <a class="card-title">{{movie.title}}</a>
+            <img src="https://image.tmdb.org/t/p/w342{{tv.poster_path}}">
+            <a class="card-title">{{tv.name}}</a>
             <div class="card-detail">
-                <div id="card-rate">&starf;{{movie.vote_average}}</div>
-                <div>{{movie.release_date}}</div>
+                <div id="card-rate">&starf;{{tv.vote_average}}</div>
+                <div>{{tv.first_air_date}}</div>
             </div>
             <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
         </div>

@@ -1,115 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'footer.css' %}">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-    {% block htmlhead %}
-    {% endblock htmlhead %}
-    <title>{%block title%}{%endblock%}</title>
-    <style>
-        body {
-            background-color: black;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'footer.css' %}">
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  {% block htmlhead %}
+  {% endblock htmlhead %}
+  <title>{%block title%}{%endblock%}</title>
+  <style>
+    body {
+      background-color: black;
+    }
+  </style>
 </head>
 
 <body>
-    <header class="p-3 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <div class="col-md-3 mb-2 mb-md-0">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">IMDB</a>
-                </div>
-                <ul class="nav nav-pills nav-fill col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li class="nav-item">
-                        <a href="home.html" class="nav-link active" aria-current="page">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white">What's New</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="movie.html" class="nav-link text-white">Movie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white">TV</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white">Category</a>
-                    </li>
-                </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                        aria-label="Search">
-                </form>
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
-                </div>
-            </div>
+  <header>
+    <div class="header-container">
+      <div class="header-l">
+        <a href="home.html" id="header-title" style="font-family: 'Teko', sans-serif">Movie</a>
+        <ul class="header-nav">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="new.html">What's New</a></li>
+          <li><a href="movie.html">Movie</a></li>
+          <li><a href="tv.html">Tv</a></li>
+          <li><a href="">Category</a></li>
+        </ul>
+      </div>
+      <div class="header-r">
+        <section>
+          <form action="">
+            <input type="search" class="search-Input" id="searchInput" name="search" placeholder="Search..." />
+          </form>
+        </section>
+        <ul>
+          <li id="header-like"><a href=""><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+          <li id="header-user"><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
+          <li id="header-login"><a href="login.html">Login</a></li>
+          <li id="header-sign"><a href="">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  {%block content %}{%endblock%}
+  <footer>
+    <div class="footer">
+      <div class="footer-container">
+        <div class="footer-text-container">
+          <div>Audio Description</div>
+          <div>Investor Relations</div>
+          <div>Legal Notices</div>
+          <div>Help Center</div>
+          <div>Jobs</div>
+          <div>Cookie Preferences</div>
+          <div>Gift Cards</div>
+          <div>Terms of Use</div>
+          <div>Corporate Information</div>
+          <div>Media Center</div>
+          <div>Privacy</div>
+          <div>Contact Us</div>
         </div>
-    </header>
-    {%block content %}{%endblock%}
-    <footer>
-        <div class="footer">
-          <div class="footer-container">
-            <div class="footer-text-container">
-              <div>Audio Description</div>
-              <div>Investor Relations</div>
-              <div>Legal Notices</div>
-              <div>Help Center</div>
-              <div>Jobs</div>
-              <div>Cookie Preferences</div>
-              <div>Gift Cards</div>
-              <div>Terms of Use</div>
-              <div>Corporate Information</div>
-              <div>Media Center</div>
-              <div>Privacy</div>
-              <div>Contact Us</div>
-            </div>
-            <div class="footer-contact">
-              <div class="snsBtn">
-                <i id="igBtn" class="fa fa-instagram" aria-hidden="true"></i>
-                <i id="fbBtn" class="fa fa-facebook" aria-hidden="true"></i>
-                <i id="ytBtn" class="fa fa-youtube-play" aria-hidden="true"></i>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="4"
-                  width="4"
-                  viewBox="0 0 512 512"
-                  id="xBtn"
-                >
-                  <path
-                    fill="#ffffff"
-                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
-                  />
-                </svg>
-              </div>
-              <div class="footer-email">
-                <input
-                  id="footer-input"
-                  type="text"
-                  placeholder="Enter your e-mail address"
-                />
-                <button id="summitBtn">
-                  <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
+        <div class="footer-contact">
+          <div class="snsBtn">
+            <i id="igBtn" class="fa fa-instagram" aria-hidden="true"></i>
+            <i id="fbBtn" class="fa fa-facebook" aria-hidden="true"></i>
+            <i id="ytBtn" class="fa fa-youtube-play" aria-hidden="true"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" height="4" width="4" viewBox="0 0 512 512" id="xBtn">
+              <path fill="#ffffff"
+                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+            </svg>
           </div>
-          <div id="footerTag">1999-2023 Cmdb,Inc</div>
+          <div class="footer-email">
+            <input id="footer-input" type="text" placeholder="Enter your e-mail address" />
+            <button id="summitBtn">
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
-      </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+      </div>
+      <div id="footerTag">1999-2023 Cmdb,Inc</div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 
 </body>
 

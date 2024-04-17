@@ -1,0 +1,17 @@
+<div class="list-container">
+    <div class="list-bar">
+        <span class="title-more" id="list-{% block title-more %}{% endblock %}">
+            {% block list-title %}{% endblock %}</span>
+        <span class="list-btn-container">
+            <button class="list-btn list-btn-prev" id="{% block list-btn-prev %}{% endblock %}-list-btn-prev">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="list-btn list-btn-next" id="{% block list-btn-next %}{% endblock %}-list-btn-next">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+    <div class="card-list">
+        {% block card-list %}{% endblock %}
+    </div>
+</div>

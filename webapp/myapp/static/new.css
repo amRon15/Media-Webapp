@@ -1,0 +1,62 @@
+.hero-container{
+    margin-top: 1.5vi;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+.carousel.slide{
+    max-width: 50vi;
+}
+
+.upcoming-container{
+    background: linear-gradient(to bottom,#181818 , #000000);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+.upcoming-container-title{
+    color: gold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5em;
+}
+
+.upcoming-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+.upcoming{
+    display: inline-flex;
+    align-items: center;
+    width: 18   vi;
+    gap: 1em;
+    color: white;
+}
+
+.upcoming-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.upcoming-title{
+    color: white;
+    align-items: center;
+}
+
+.upcoming img{
+    width: 5vi;
+}
+
+.upcoming-lang{
+    background-color: #b40b14;
+    padding: 0 0.5em;
+    border-radius: 5px;
+    text-align: center;
+    width: 3rem;
+}
