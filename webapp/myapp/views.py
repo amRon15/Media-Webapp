@@ -7,6 +7,9 @@ import datetime
 trendAllUrl = "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
 trendPeopleUrl = 'https://api.themoviedb.org/3/trending/person/day?language=en-US'
 trendTvUrl = "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
+trendTvWeekUrl = "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
+trendMovieUrl = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
+trendMovieWeekUrl = "https://api.themoviedb.org/3/trending/movie/week?language=en-US"
 popMovieUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
 popTvUrl = "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1"
 nowMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
@@ -36,7 +39,7 @@ def renderTvView(request):
 
 #return view for what's new page
 def renderNewView(request):
-    return render(request, 'new.html', {'upComingMovie': upComingMovieList})
+    return render(request, 'new.html', {'upComingMovie': upComingMovieList, 'trendMovie': trendSortMovieList, 'trendMovieWeek' : trendSortMovieWeekList , 'trendTv' : trendSortTvList, 'trendTvWeek' : trendSortTvWeekList})
 
 #return view for login page
 def renderLoginView(request):
@@ -57,9 +60,14 @@ def fetchData(url):
             show['videoKey'] = getYtKey(show['id'])
     return data
 
-#sort data by date
-def sortDate(data):
+#sort movie data by date
+def sortMovieDate(data):
     data.sort(key=lambda x: x['release_date'], reverse=True)
+    return data
+
+#sort tv data by date
+def sortTvDate(data):
+    data.sort(key=lambda x: x['first_air_date'], reverse=True)
     return data
 
 #main fetch Tv api function
@@ -142,8 +150,12 @@ def checkThisYear(date):
 #movie
 popularMovieList = comparePopularity(fetchData(popMovieUrl))
 topRatedMovieList = topRatedMovie(fetchData(nowMovieUrl))
-upComingMovieList = sortDate(fetchData(upComingMovieUrl))
+upComingMovieList = sortMovieDate(fetchData(upComingMovieUrl))
+trendSortMovieList = sortMovieDate(fetchData(trendMovieUrl))
+trendSortMovieWeekList = sortMovieDate(fetchData(trendMovieWeekUrl))
 
 #tv
 popularTvList = comparePopularity(fetchTvData(trendTvUrl))
 topRatedTvList = topRatedTv(fetchTvData(topRatedTvUrl))
+trendSortTvList = sortTvDate(fetchTvData(trendTvUrl))
+trendSortTvWeekList = sortTvDate(fetchTvData(trendTvWeekUrl))
