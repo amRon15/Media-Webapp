@@ -223,3 +223,11 @@
     background-color: #b40b14;
     transition: all 0.2s ease-in-out;
 }
+
+.find-movie-filter-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.25rem;
+}
+
