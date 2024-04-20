@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block htmlhead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'detail.css'%}">
+{% endblock htmlhead %}
+{% block js %} 
+<script src="{% static 'detail.js' %}" ></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+{% endblock js %}
+{% block title %} Detail {% endblock %}
+
+{% block content%}
+    <div class="player-contatiner">
+        <div id="player"></div>
+    </div>
+    <div class="container">
+        <div class="detail-container">
+            <div class="detail-img-container">
+                <img id="detail-img" src="" alt="">
+                <button id="detail-bookmark-btn"><i class="fa fa-bookmark" aria-hidden="true"></i> Add To List</button>            
+                <button id="detail-yt-btn"><i class="fa fa-youtube-play" aria-hidden="true"></i> Youtube</button>            
+            </div>
+            <div class="detail-all-info-container">
+                <div id="detail-title"></div>
+                <div id="detail-tagline"></div>
+                <div class="detail-divider"></div>
+                <div class="detail-basic-info">
+                    <div id="detail-rating"></div>
+                    <div id="detail-runtime"></div>
+                    <div id="detail-status"></div>
+                    <div id="detail-genre"></div>
+                </div>
+                <div class="detail-divider"></div>
+                <div class="detail-content-container">
+                    <div id="detail-content-title">Details</div>
+                    <div id="detail-director"></div>
+                    <div id="detail-writer"></div>
+                    <div id="detail-country"></div>
+                    <div id="detail-lang"></div>
+                    <div id="detail-release_date"></div>
+                    <div id="detail-origin_name"></div>                    
+                </div>
+                <div class="detail-divider"></div>
+                <div id="detail-overview-title">Storyline</div>
+                <div id="detail-overview"></div>
+            </div>
+        </div>
+        <div class="hero-video-container">
+            <div class="list-bar">
+                <span class="hero-video-title">Related Videos</span>
+                <span class="list-btn-container">
+                    <button class="list-btn list-btn-prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <button class="list-btn list-btn-next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="hero-video-list">                
+            </div>
+        </div>
+        <div class="cast-container">
+            <div class="cast-list"></div>
+        </div>
+        <div class="divider"></div>
+    </div>
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from requests import post
+import json
 import requests
 from constants import movie_genre, tv_genre
 import datetime
@@ -46,13 +48,13 @@ def renderTvView(request):
 def renderNewView(request):
     return render(request, 'new.html', {'upComingMovie': upComingMovieList, 'trendMovie': trendSortMovieList, 'trendMovieWeek' : trendSortMovieWeekList , 'trendTv' : trendSortTvList, 'trendTvWeek' : trendSortTvWeekList})
 
+#return view for detail page
+def renderDetailView(request):    
+    return render(request, 'detail.html')    
+
 #return view for login page
 def renderLoginView(request):
     return render(request, 'login.html')
-
-#return view for sign up page
-def renderSignUpView(request):
-    return render(request, 'signUp.html')
 
 #main fetch movie api function
 def fetchData(url):

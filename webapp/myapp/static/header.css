@@ -5,6 +5,8 @@
   align-items: center;
   font-size: 1.2em;
   height: 4vi;
+  z-index: 100;
+  background-color: black;
 }
 
 #header-title{

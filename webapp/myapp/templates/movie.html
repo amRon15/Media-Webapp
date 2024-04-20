@@ -2,14 +2,13 @@
 {% block htmlhead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'movie.css'%}">
-<link rel="stylesheet" href="{% static 'footer.css'%}">
-{% block js %} <script src="{% static movie.js %}" ></script> {% endblock %}
 {% endblock htmlhead %}
+{% block js %} <script src="{% static 'movie.js' %}" ></script> {% endblock %}
 {% block title %} Movie {% endblock %}
 
 {% block content%}
-<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
-<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original{{heroMovie.0.backdrop_path}}" alt="">
+<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original/{{heroMovie.0.backdrop_path}}" alt="">
+<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original/{{heroMovie.0.backdrop_path}}" alt="">
 <div class="hero-container">
     <div class="hero-detail-container">
         <div class="hero-detail-title">{{heroMovie.0.title}}</div>
@@ -17,7 +16,7 @@
         <div class="hero-detail-rate">{{heroMovie.0.vote_average}} &starf;</div>
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
-            <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
+            <button class="hero-detail-btn" id="hero-detail-info-btn" onclick="sendDataToDetailTemplate('{{heroMovie.0.id}}')"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
         </span>
         <div class="hero-detail-description">{{heroMovie.0.overview}}</div>
     </div>
