@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{% static 'footer.css' %}">
   <link rel="stylesheet" href="{% static 'header.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  {% block js %}{% endblock %}
   {% block htmlhead %}
   {% endblock htmlhead %}
   <title>{%block title%}{%endblock%}</title>
@@ -29,8 +30,7 @@
           <li><a href="home.html">Home</a></li>
           <li><a href="new.html">What's New</a></li>
           <li><a href="movie.html">Movie</a></li>
-          <li><a href="tv.html">TV</a></li>
-          <li><a href="">Category</a></li>
+          <li><a href="tv.html">TV</a></li>          
         </ul>
       </div>
       <div class="header-r">
@@ -42,8 +42,7 @@
         <ul>
           <li id="header-like"><a href=""><i class="fa fa-heart" aria-hidden="true"></i></a></li>
           <li id="header-user"><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
-          <li id="header-login"><a href="login.html">Login</a></li>
-          <li id="header-sign"><a href="">Sign Up</a></li>
+          <li id="header-login"><a href="login.html">Login</a></li>          
         </ul>
       </div>
     </div>

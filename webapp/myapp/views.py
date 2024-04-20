@@ -16,6 +16,11 @@ nowMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&pag
 topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 topRatedTvUrl = "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1"
 upComingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+allMovieUrl = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
+allTvUrl = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc"
+allMovieSorting = 'release_date'
+allTvSorting = 'release_date'
+
  
 headers = {
     "accept": "application/json",
@@ -31,11 +36,11 @@ def renderView(request):
 
 # return data for movie page
 def renderMovieView(request):
-    return render(request, 'movie.html',{'heroMovie':fetchData(popMovieUrl),'topRated': topRatedMovieList, 'allTimeTop': fetchData(topRatedUrl)})
+    return render(request, 'movie.html',{'heroMovie':fetchData(popMovieUrl),'topRated': topRatedMovieList, 'allTimeTop': fetchData(topRatedUrl), 'movieGenre': movie_genre, 'allMovie' : allMovieList})
 
 #return data for tv page
 def renderTvView(request):
-    return render(request, 'tv.html',{'popTv':fetchTvData(trendTvUrl), 'topRatedTv': topRatedTvList})
+    return render(request, 'tv.html',{'popTv':fetchTvData(trendTvUrl), 'topRatedTv': topRatedTvList, 'tvGenre' : tv_genre, 'allTv' : allTvList})
 
 #return view for what's new page
 def renderNewView(request):
@@ -153,9 +158,11 @@ topRatedMovieList = topRatedMovie(fetchData(nowMovieUrl))
 upComingMovieList = sortMovieDate(fetchData(upComingMovieUrl))
 trendSortMovieList = sortMovieDate(fetchData(trendMovieUrl))
 trendSortMovieWeekList = sortMovieDate(fetchData(trendMovieWeekUrl))
+allMovieList = sortMovieDate(fetchData(allMovieUrl))
 
 #tv
 popularTvList = comparePopularity(fetchTvData(trendTvUrl))
 topRatedTvList = topRatedTv(fetchTvData(topRatedTvUrl))
 trendSortTvList = sortTvDate(fetchTvData(trendTvUrl))
-trendSortTvWeekList = sortTvDate(fetchTvData(trendTvWeekUrl))
+trendSortTvWeekList = fetchTvData(trendTvWeekUrl)
+allTvList = sortTvDate(fetchTvData(allTvUrl))

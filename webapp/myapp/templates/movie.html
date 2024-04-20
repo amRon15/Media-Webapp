@@ -3,7 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'movie.css'%}">
 <link rel="stylesheet" href="{% static 'footer.css'%}">
-
+{% block js %} <script src="{% static movie.js %}" ></script> {% endblock %}
 {% endblock htmlhead %}
 {% block title %} Movie {% endblock %}
 
@@ -101,13 +101,82 @@
     <div class="divider"></div>
     <div class="find-movie-container">
         <div class="find-movie-filter-container">
-            <div class="find-movie-genre">Genre</div>
-            <span class="find-movie-sort-container">Sort by 
-                <span class="find-movie-sort-type">Release date</span>
-                <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>
-            </span>
+            <div class="genre-dropdown dropdown">                
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Genre
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </button>            
+                <ul class="dropdown-menu">
+                    {% for genre in movieGenre.genres %}
+                    <li><p class="dropdown-item" >{{genre.name | capfirst }}</p></li>     
+                    {% endfor %}       
+                </ul>
+            </div>
+            <div class="find-movie-sort-container">Sort by 
+                <div class="dropdown">                    
+                    <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Popularity Desc
+                        <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>                
+                    </button>
+                    <ul class="dropdown-menu">                        
+                        <li><p class="dropdown-item" >Popularity Desc</p></li>
+                        <li><p class="dropdown-item" >Popularity Asc</p></li>
+                        <li><p class="dropdown-item" >Release Date Desc</p></li>
+                        <li><p class="dropdown-item" >Release Date Asc</p></li>
+                        <li><p class="dropdown-item" >Rating Desc</p></li>
+                        <li><p class="dropdown-item" >Rating Asc</p></li>   
+                        <li><p class="dropdown-item" >Name Desc</p></li>
+                        <li><p class="dropdown-item" >Name Asc</p></li>                
+                    </ul>
+                </div>                                
+            </div>
+        </div>        
+        <div class="find-movie-list"> 
+            {% for movie in allMovie %}
+            {% if forloop.counter < 5 %}
+                <div class="movie-list-item">
+                    <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" alt="">                    
+                    <div class="movie-list-item-detail">
+                        <div class="movie-list-item-title">{{movie.title}}</div>
+                        <div class="movie-list-item-date">{{movie.release_date}}</div>
+                        <div class="movie-list-item-genre">{{movie.genre_ids}}</div>
+                        <div class="movie-list-item-rate">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            {{movie.vote_average}}</div>
+                    </div>
+                    <span>
+                        <i class="fa fa-bookmark movie-list-item-bookmark" aria-hidden="true"></i>
+                        &nbsp;
+                        <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
+                    </span>                    
+                </div>
+                {% if forloop.counter < 4 %}
+                    <div class="list-item-divider"></div>
+                    {% endif %}
+                {% endif %}
+            {%  endfor %}
         </div>
-        <div class="find-movie-list"></div>
+        <nav>
+            <ul class="pagination justify-content-center" >
+              <li class="page-item">
+                <p class="page-link" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </p>
+              </li>
+              <li class="page-item"><p class="page-link">1</p></li>
+              <li class="page-item"><p class="page-link">2</p></li>
+              <li class="page-item"><p class="page-link">3</p></li>
+              <li class="page-item"><p class="page-link">4</p></li>
+              <li class="page-item"><p class="page-link">5</p></li>
+              <li class="page-item"><p class="page-link">...</p></li>
+              <li class="page-item"><p class="page-link">100</p></li>              
+              <li class="page-item">
+                <p class="page-link" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </p>
+              </li>
+            </ul>
+          </nav>
     </div>
 </div>
 {%endblock%}
