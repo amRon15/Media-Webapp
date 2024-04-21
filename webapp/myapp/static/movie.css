@@ -71,7 +71,7 @@
 }
 
 .content-container:not(footer){
-    margin-top: 13vi;
+    margin-top: 15vi;
 }
 
 .hero-video-title{
@@ -88,7 +88,9 @@
     display: flex;
     overflow: hidden;
     gap: 1.5rem;
+    margin-top: 1vi;
 }
+
 
 .hero-video-container iframe{
     width: 24vi;
@@ -102,17 +104,17 @@
     height: 1px;
     background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
     align-self: center;
-    margin-top: 4vi;
+    margin: 4vi 0;
 }
 
 .list-container{
-    color: white;
     margin-top: 4vi;
 }
 
 .title-more{
     cursor: pointer;
     transition: all 0.5s ease-in-out;
+    color: white;
 }
 
 .title-more::before{
@@ -159,75 +161,61 @@
     font-size: 1.75rem;
 }
 
-.card-list{
-    display: flex;
-    overflow: hidden;
-    gap: 1.3rem;
-}
 
 .card-container{
-    border-radius: 10px;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    background-color: rgba(28, 28, 36, 0.596);
-    padding-bottom: 0.5vi;
+    width: 10vi;
+    gap: 0.5rem;
 }
 
-.card-container img{
-    width: 12.5vi;
-    border-radius: 10px;
-    cursor: pointer;
+.card-img{
+    border-radius: 5px;
     transition: all 0.2s ease-in-out;
+    width: 10vi;
+    cursor: pointer;
 }
 
-.card-container img:hover{
-    transform: scale(1.01);
+.card-img:hover{
+    opacity: 0.8;
 }
-
 
 .card-title{
-    font-size: 1.1rem;
-    margin-top: 0.5vi;
-    white-space: pre-line;
+    text-align: left;
+    font-size: 1rem;
     text-decoration: none;
-    height: 3vi;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #009bd6;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
 }
 
 .card-title:hover{
-    color: gold;
+    text-decoration: dashed;
+    color: white;
 }
 
 .card-detail{
     display: flex;
-    justify-content: space-around;
-    font-size: 0.8vi;
-    margin: 0.5vi;
-}
-
-#card-rate{
-    color: gold;
-}
-
-.card-info-btn{
-    border: none;
-    border-radius: 5px;
-    margin: 0 2vi;
     color: white;
-    background-color:#970910 ;
-    font-size: 1.2vi;
-    transition: all 0.2s ease-in-out;
+    font-size: 1rem;
+    justify-content: space-between;
 }
 
-.card-info-btn:hover{
-    background-color: #b40b14;
-    transition: all 0.2s ease-in-out;
+.card-divider{
+    color: 	#00719c;
+}
+
+.card-list{
+    display: flex;
+    overflow-x: hidden;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1vi;
 }
 
 .find-movie-container{
-    margin-top: 4vi;
     color: white;
 }
 
@@ -244,7 +232,7 @@
 }
 
 ul.dropdown-menu.show{
-    background-color: black;
+    background-color: #00070a;
     border-color: #a5a5a5;
 }
 

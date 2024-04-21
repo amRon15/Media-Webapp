@@ -38,7 +38,7 @@ def renderView(request):
 
 # return data for movie page
 def renderMovieView(request):
-    return render(request, 'movie.html',{'heroMovie':fetchData(popMovieUrl),'topRated': topRatedMovieList, 'allTimeTop': fetchData(topRatedUrl), 'movieGenre': movie_genre, 'allMovie' : allMovieList})
+    return render(request, 'movie.html',{'movieGenre': movie_genre, 'allMovie' : allMovieList})
 
 #return data for tv page
 def renderTvView(request):

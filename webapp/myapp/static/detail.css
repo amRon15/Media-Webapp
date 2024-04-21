@@ -233,6 +233,7 @@
     display: flex;    
     margin-top: 1vi;
     overflow-x: hidden;
+    align-items: center;
     gap: 1.5rem;
 }
 
@@ -268,6 +269,7 @@
 .card-container{
     display: flex;
     flex-direction: column;
+    width: 10vi;
     gap: 0.5rem;
 }
 
@@ -282,14 +284,22 @@
     opacity: 0.8;
 }
 
+
 .card-title{
     text-align: left;
     font-size: 1rem;
     text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     color: #009bd6;
+    cursor: pointer;
 }
 
+.card-title:hover{
+    text-decoration: dashed;
+    color: white;
+}
 .card-detail{
     display: flex;
     color: white;

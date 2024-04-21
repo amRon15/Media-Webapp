@@ -3,11 +3,7 @@ jscript.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/j
 jscript.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(jscript)
 
-jscript.onload = function(){    
-    $(document).ready(function(){
-        fetchData(popMovieUrl)
-    })
-}
+
 
 const options = {
     method: 'GET',
@@ -103,33 +99,85 @@ const options = {
 let popMovieUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
 let topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 let nowMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
+let trendMovieUrl = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
 
+let heroMovie = []
 
+jscript.onload = function(){    
+    $(document).ready(function(){
+        fetchData(popMovieUrl,heroMovie)
+        fetchData(popMovieUrl,null,"pop-list")
+        fetchData(nowMovieUrl,null,"top-rated-list")
+    })
+}
 
 //return the movie List 
-function fetchData(url){
+function fetchData(url,arr,name){
+    let data = []
     fetch(url, options)
     .then(response => response.json())
     .then(response => {
         response.results.forEach(result => {
-          const {id, genre_ids, poster_path, title, release_date, original_language} = result
-          $('.related-list').append(`
-          <div class="card-container">
-            <img class='card-img' src="https://image.tmdb.org/t/p/original${poster_path}">
-            <a class="card-title">${title}</a>
-            <div class="card-detail">
-                <div class='card-genre'>${movieListGenre(genre_ids)}</div>
-                <div class='card-divider'>|</div>
-                <div class='card-year'>${justYear(release_date)}</div>
-                <div class='card-divider'>|</div>
-                <div class='card-lang'>${original_language.toUpperCase()}</div>
+          const {id, genre_ids, backdrop_path, poster_path, title, release_date, original_language, vote_average, overview} = result
+          if(arr!=undefined){arr.push(result)}
+          data.push(result)
+        });
+        if(arr!=undefined){heroView(arr[0])}
+        if(name=="pop-list"){
+            movieListView(sortByPopularity(data).slice(1,10),"pop-list")
+        }else if(name=="top-rated-list"){            
+            movieListView(sortByRating(checkYear(data)),"top-rated-list")
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+//hero view
+function heroView(data){
+    $('#hero-backdrop').attr('src',`https://image.tmdb.org/t/p/original${data.backdrop_path}`)
+    $('#hero-backdrop-border').attr('src',`https://image.tmdb.org/t/p/original${data.backdrop_path}`)
+    $('.hero-detail-title').html(data.title)
+    movieGenreList(data.genre_ids).forEach(g => {
+        $('.hero-detail-genre').append(`${g} <span style="margin: 0 1rem; color: #00719c;"> | </span>`)
+    })
+    $('.hero-detail-rate').html(roundRate(data.vote_average) +'&starf;')
+    $('.hero-detail-description').html(data.overview)
+    
+    getYtKey(data.id)
+}
+
+//list view
+function movieListView(data, listName){
+    data.forEach(m => {
+        $(`.${listName}`).append(`
+            <div class="card-container">
+                <img class='card-img' onclick="sendDataToDetailTemplate(${m.id})" src="https://image.tmdb.org/t/p/original${m.poster_path}">
+                <a class="card-title">${m.title}</a>
+                <div class="card-detail">
+                    <div class='card-genre'>${movieGenre(m.genre_ids)}</div>
+                    <div class='card-divider'>|</div>
+                    <div class='card-year'>${justYear(m.release_date)}</div>
+                    <div class='card-divider'>|</div>
+                    <div class='card-lang'>${m.original_language.toUpperCase()}</div>
+                </div>
             </div>
-        </div>`)
+        `)
+    })
+}
+
+//get yt key
+function getYtKey(id){
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+    .then(response => response.json())
+    .then(response => {
+        response.results.forEach(result => {
+            const {key} = result            
+            $('.hero-video-list').append(`<iframe src="https://www.youtube.com/embed/${key}" frameborder="0" allowfullscreen></iframe>`)
         });
     })
     .catch(err => console.error(err));
-  }
 
+}
 
 
 //calculate runtime total mins > _h_min
@@ -149,8 +197,20 @@ function calRuntime(runtime){
     return total    
 }
 
+function movieGenreList(genres){
+    let allGenre = []
+    genres.forEach(g => {
+        movie_genre.genres.forEach(mg =>{
+            if(g.id == mg.id){
+                allGenre.push(mg.name)
+            }
+        })
+    })
+    return allGenre
+}
+
 //return a genre name for recommend list
-function movieListGenre(genres){
+function movieGenre(genres){
     let genre = ""
     genres.forEach(g => {
       movie_genre.genres.forEach(mG=>{
@@ -167,9 +227,43 @@ function justYear(date){
     return date.slice(0,4)
   }
 
+//navigate to detail page
 function sendDataToDetailTemplate(id){      
     localStorage.setItem('keyId',id)          
     location.href = 'detail.html'
     console.log(id)
 }
 
+//round the rate in 2 decimal places
+function roundRate(rate){    
+    return Math.round(rate * 10) /10
+}
+
+//check year == current year
+function checkYear(data){
+    let thisYearData = []
+    let cuurentYear = new Date().getFullYear()
+    data.forEach(movie => {
+        let date = new Date(movie.release_date)
+        if(date.getFullYear()==cuurentYear){
+            thisYearData.push(movie)
+        }
+    })
+    return thisYearData
+}
+
+//sort movie list by popularity
+function sortByPopularity(data){
+    data = data.sort((a,b)=>{
+        b.popularity - a.popularity 
+    })
+    return data
+}
+
+//sort movie list by rating
+function sortByRating(data){
+    data = data.sort((a,b)=>{
+        b.vote_average - a.vote_average 
+    })
+    return data
+}

@@ -7,18 +7,18 @@
 {% block title %} Movie {% endblock %}
 
 {% block content%}
-<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original/{{heroMovie.0.backdrop_path}}" alt="">
-<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original/{{heroMovie.0.backdrop_path}}" alt="">
+<img id="hero-backdrop" src="" alt="">
+<img id="hero-backdrop-border" src="" alt="">
 <div class="hero-container">
     <div class="hero-detail-container">
-        <div class="hero-detail-title">{{heroMovie.0.title}}</div>
-        <div class="hero-detail-genre">{{heroMovie.0.genre_ids}}</div>
-        <div class="hero-detail-rate">{{heroMovie.0.vote_average}} &starf;</div>
+        <div class="hero-detail-title"></div>
+        <div class="hero-detail-genre"></div>
+        <div class="hero-detail-rate"></div>
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
             <button class="hero-detail-btn" id="hero-detail-info-btn" onclick="sendDataToDetailTemplate('{{heroMovie.0.id}}')"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
         </span>
-        <div class="hero-detail-description">{{heroMovie.0.overview}}</div>
+        <div class="hero-detail-description"></div>
     </div>
 </div>
 
@@ -36,14 +36,11 @@
             </span>
         </div>
         <div class="hero-video-list">
-            {% for key in heroMovie.0.videoKey %}
-            <iframe src="https://www.youtube.com/embed/{{key}}" frameborder="0" allowfullscreen></iframe>
-            {% endfor %}
         </div>
     </div>
     <div class="divider">
     </div>
-    <div class="list-container">
+    <div class="pop-list-container">
         <div class="list-bar">
             <span class="title-more">Top 10 Popluar Movie</span>
             <span class="list-btn-container">
@@ -55,22 +52,7 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for movie in heroMovie %}
-            {% if forloop.counter > 1 and forloop.counter < 11 %} 
-            <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
-                <a class="card-title">{{movie.title}}</a>
-                <div class="card-detail">
-                    <div class='card-genre'>${movieListGenre(genre_ids)}</div>
-                    <div class='card-divider'>|</div>
-                    <div class='card-year'>${justYear(release_date)}</div>
-                    <div class='card-divider'>|</div>
-                    <div class='card-lang'>${original_language.toUpperCase()}</div>
-                </div>
-            </div>
-            {%endif%}
-            {% endfor %}
+        <div class="pop-list card-list"> 
         </div>
     </div>
     <div class="list-container">
@@ -85,18 +67,7 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for movie in topRated %}
-            <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
-                <a class="card-title">{{movie.title}}</a>
-                <div class="card-detail">
-                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
-                    <div>{{movie.release_date}}</div>
-                </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
-            </div>
-            {% endfor %}
+        <div class="top-rated-list card-list">            
         </div>
     </div>
     <div class="divider"></div>
