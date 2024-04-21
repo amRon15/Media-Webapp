@@ -62,10 +62,12 @@
                 <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
                 <a class="card-title">{{movie.title}}</a>
                 <div class="card-detail">
-                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
-                    <div>{{movie.release_date}}</div>
+                    <div class='card-genre'>${movieListGenre(genre_ids)}</div>
+                    <div class='card-divider'>|</div>
+                    <div class='card-year'>${justYear(release_date)}</div>
+                    <div class='card-divider'>|</div>
+                    <div class='card-lang'>${original_language.toUpperCase()}</div>
                 </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
             </div>
             {%endif%}
             {% endfor %}
@@ -144,7 +146,7 @@
                             {{movie.vote_average}}</div>
                     </div>
                     <span>
-                        <i class="fa fa-bookmark movie-list-item-bookmark" aria-hidden="true"></i>
+                        <i class="fa fa-heart movie-list-item-like" aria-hidden="true"></i>
                         &nbsp;
                         <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
                     </span>                    

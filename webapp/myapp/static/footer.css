@@ -129,7 +129,7 @@ footer {
   #summitBtn {
     color: white;
     font-size: 1vi;
-    background-color: #e63c44d3;
+    background-color: #00709caf;
     border-color: transparent;
     border-radius: 5px;
     height: 1.8vi;
@@ -140,7 +140,7 @@ footer {
   }
   
   #summitBtn:hover {
-    background-color: #e50914d3;
+    background-color: #00719c;
   }
   
   #footerTag {

@@ -18,7 +18,7 @@
 }
 
 .hero-container{
-    margin-top: 10vi;
+    margin-top: 12vi;
     margin-left: 12vi;
 }
 
@@ -48,7 +48,7 @@
     border-radius: 10px;
     font-size: 1.3vi;
     padding: 5px 3vi;
-    background-color: #970910;
+    background-color: #00709cb7;
     color: white;
     border: none;
     transition: all 0.2s ease-in-out;
@@ -56,7 +56,7 @@
 }
 
 .hero-detail-btn:hover{
-    background-color: #b40b14;
+    background-color: #00719c;
     transition: all 0.2s ease-in-out;
 }
 
@@ -81,7 +81,7 @@
 
 .hero-video-title::before{
     content: "| ";
-    color:rgb(236, 233, 25) ;
+    color: #009bd6 ;
 }
 
 .hero-video-list{
@@ -93,13 +93,14 @@
 .hero-video-container iframe{
     width: 24vi;
     height: 13vi;
+    
 }
 
 .divider{
     display: flex;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, #b40b1344,#b40b14,#b40b1344);
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
     align-self: center;
     margin-top: 4vi;
 }
@@ -116,7 +117,7 @@
 
 .title-more::before{
     content: "| ";
-    color:rgb(236, 233, 25) ;
+    color:#009bd6;
 }
 
 .title-more:after{
@@ -137,7 +138,7 @@
 
 .list-btn{
     background-color: transparent;
-    color: rgb(236, 233, 25);
+    color: #009bd6;
     opacity: 0.8;
     transition: all 0.2s ease-in-out;
     border: none;
@@ -358,12 +359,12 @@ p.page-link{
 }
 
 
-.movie-list-item-bookmark{
-    color: #ffe600;
+.movie-list-item-like{
+    color: #FF0000;
     transition: all 0.2s ease-in-out;
 }
 
-.movie-list-item-bookmark:hover{
+.movie-list-item-like:hover{
     transform: scale(1.1);
 }
 

@@ -23,7 +23,7 @@
 }
 
 .container{
-    margin-top: 40vi;
+    margin-top: 33vi;
 }
 
 .detail-container{
@@ -48,13 +48,18 @@
     font-size: 1rem;
 }
 
-#detail-bookmark-btn{
-    background-color: #1e1e1e;
-    color: gold;
+#detail-like-btn{
+    background-color: transparent;
+    color: white;
+}
+
+#detail-like-btn:hover> i{
+    background-color: transparent;
+    color: #FF0000;
 }
 
 #detail-yt-btn{
-    background-color: #e00000;
+    background-color: rgba(224, 0, 0, 0.8);
     color: white;
 }
 
@@ -62,13 +67,11 @@
     background-color: #FF0000;
 }
 
-#detail-bookmark-btn:hover{
-    background-color: #222222;
+#detail-like-btn i {
+    color: white;
 }
 
-#detail-bookmark-btn i {
-    color: gold;
-}
+
 
 #detail-img{
     width: 12vi;
@@ -84,7 +87,7 @@
 .detail-divider{
     width: 100%;
     height: 1px;
-    background: #404040;
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
     margin: 1vi 0;
 }
 
@@ -94,29 +97,29 @@
 }
 
 #detail-rating {
-    color: gold;
+    color: #ECE919;
 }
 
 #detail-rating i{
-    color: gold;
+    color: #ECE919;
 }
 
 #detail-rating::after{
     margin-left: 1rem;
     content: " | ";
-    color: #424242;
+    color: #00719c;
 }
 
 #detail-runtime::after{
     margin-left: 1rem;
     content: " | ";
-    color: #424242;
+    color: #00719c;
 }
 
 #detail-status::after{
     margin-left: 1rem;
     content: " | ";
-    color: #424242;
+    color: #00719c;
 }
 
 #detail-content-title{
@@ -139,16 +142,6 @@
     line-height: 1.75rem;
 }
 
-.hero-video-title{
-    font-size: 1.75rem;
-    color: white;
-}
-
-.hero-video-title::before{
-    content: "| ";
-    color:rgb(236, 233, 25) ;
-}
-
 .hero-video-list{
     display: flex;
     overflow: hidden;
@@ -164,9 +157,44 @@
     margin-top: 2vi;
 }
 
+.fa-chevron-right::before{
+    color: #009bd6;
+}
+
+
+.fa-chevron-left::before{
+    color: #009bd6;
+}
+
+.title-more{
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.title-more::before{
+    content: "| ";
+    color:	#00719c ;
+}
+
+.title-more:after{
+    margin-left: 10px;
+    content: ' More >';
+    font-size: large;
+    position: relative;
+    left: -20px;
+    color: #ECE919;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.title-more:hover:after{
+    opacity: 1;
+    left: 0px;
+}
+
 .list-btn{
     background-color: transparent;
-    color: rgb(236, 233, 25);
+    color: 	#00719c;
     opacity: 0.8;
     transition: all 0.2s ease-in-out;
     border: none;
@@ -176,7 +204,7 @@
 .list-bar{
     display: flex;
     justify-content: space-between;
-    margin: 0px 10px;
+    margin: 0px 10px 1vi 10px;
     font-size: 1.75rem;
 }
 
@@ -189,6 +217,89 @@
 .divider{    
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, #b40b1344,#b40b14,#b40b1344);    
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
     margin-top: 4vi;
 }
+
+.detail-producer{
+    display: flex;
+}
+
+.cast-container{
+    margin-top: 2vi;
+}
+
+.cast-list{
+    display: flex;    
+    margin-top: 1vi;
+    overflow-x: hidden;
+    gap: 1.5rem;
+}
+
+.cast-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cast-img{
+    width: 7vi;
+    height: 7vi;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.cast-name{
+    color: white;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.related-container{
+    margin-top: 4vi;
+}
+
+.related-list{
+    display: flex;
+    overflow-x: hidden;
+    gap: 1.5rem;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-img{
+    width: 10vi;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.card-img:hover{
+    opacity: 0.8;
+}
+
+.card-title{
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    color: #009bd6;
+}
+
+.card-detail{
+    display: flex;
+    color: white;
+    font-size: 1rem;
+    justify-content: space-between;
+}
+
+.card-divider{
+    color: 	#00719c;
+}
+
+
+

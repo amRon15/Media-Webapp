@@ -7,6 +7,8 @@ jscript.onload = function(){
     $(document).ready(function(){
         fetchMovieData()
         ytVideo()
+        fetchCredit()
+        fetchSimilar()
     })
 }
 
@@ -22,7 +24,7 @@ const options = {
   let id = localStorage.getItem('keyId')
 
   //genre of movie & tv 
-  tv_genre = {
+  let tv_genre = {
     "genres": [
       {
         "id": 10759,
@@ -90,7 +92,7 @@ const options = {
       }
     ]
   }
-  movie_genre = {
+  let movie_genre = {
     "genres": [
       {
         "id": 28,
@@ -241,10 +243,12 @@ function fetchMovieData(){
         let rating = Math.round(vote_average * 10 ) / 10        
         $('#detail-title').html(title)
         $('#detail-tagline').html(tagline)
-        $('#detail-rating').html(`<i class="fa fa-star" aria-hidden="true"></i>${rating}`)        
+        $('#detail-rating').html(`<i class="fa fa-star" aria-hidden="true"></i> ${rating}`)        
         $('#detail-runtime').html(calRuntime(runtime))
         $('#detail-status').html(status)
-        $('#detail-genre').html(movieGenre(genres))
+        genres.forEach(genre => {
+          $('#detail-genre').append(`${genre.name}<span style="margin: 0 1rem; color: #00719c;"> | </span>`)      
+        });
         $('#detail-country').html("Country: " + origin_country[0])
         $('#detail-lang').html("Language: " + original_language.toUpperCase())
         $('#detail-release_date').html("Release Date: " + release_date)
@@ -263,7 +267,8 @@ function fetchMovieData(){
     .then(response => {
         const {cast, crew} = response
         let actors = []
-        let directors = {}
+        let directors = []
+        let producers = []
         for (let i = 0; i < cast.length; i++) {
             if(i<10){
                 const { name, profile_path } = cast[i]
@@ -273,11 +278,62 @@ function fetchMovieData(){
         }
         for (let i = 0; i < crew.length; i++) {
         const { name, job, profile_path } = crew[i]
-        const director = { name: name, job: job, profile_path: profile_path }      
-        job === "Director" ? directors = director : null
-        }    
-        $('#detail-director').html("Director: " +directors.name)
+          if(crew[i].job == 'Director'){
+            directors.push({ name: name, job: job, profile: profile_path })
+          }else if(crew[i].job == 'Producer'){
+            producers.push({ name: name, job: job, profile: profile_path })
+          }          
+        }  
+
+        //html view actors
+        actors.forEach(a => {
+          $('.cast-list').append(
+            `<div class='cast-detail'>
+              <img class='cast-img' src='https://image.tmdb.org/t/p/original/${a.profile}.jpg' />
+              <div class='cast-name'>${a.name}</div>
+            </div>`
+          )
+        })
+
+        //html view director
+        directors.forEach(d => {
+          $('#detail-director').append(d.name)  
+        });
         
+        //html view producer
+        if(producers != null){
+          for ( let i = 0; i<=producers.length;i++){
+            if(i < producers.length-1){
+              $('#detail-producer').append(producers[i].name + '<span style="margin: 0 1rem; color: #424242;" "> | </span>')
+            }else if(i==producers.length-1){
+              $('#detail-producer').append(producers[i].name)
+            }
+          }
+        }                
+    })
+    .catch(err => console.error(err));
+  }
+
+  //return the similar 
+  function fetchSimilar(){
+    fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options)
+    .then(response => response.json())
+    .then(response => {
+        response.results.forEach(result => {
+          const {id, genre_ids, poster_path, title, release_date, original_language} = result
+          $('.related-list').append(`
+          <div class="card-container">
+            <img class='card-img' src="https://image.tmdb.org/t/p/original${poster_path}">
+            <a class="card-title">${title}</a>
+            <div class="card-detail">
+                <div class='card-genre'>${movieListGenre(genre_ids)}</div>
+                <div class='card-divider'>|</div>
+                <div class='card-year'>${justYear(release_date)}</div>
+                <div class='card-divider'>|</div>
+                <div class='card-lang'>${original_language.toUpperCase()}</div>
+            </div>
+        </div>`)
+        });
     })
     .catch(err => console.error(err));
   }
@@ -299,13 +355,31 @@ function calRuntime(runtime){
     return total    
 }
 
-// return a list of genre name
+// return a list of genre name for detail
 function movieGenre(genres) {
     let allGenre = []
     genres.forEach(genre => {
-        allGenre.push(genre.name)
+      allGenre.push(genre.name)
     });
-    genres.reverse
-    let formatGenre = allGenre.join(' | ')
+    genres.reverse()
+    let formatGenre = allGenre.join('  ')
     return formatGenre
+}
+
+//return a genre name for recommend list
+function movieListGenre(genres){
+  let genre = ""
+  genres.forEach(g => {
+    movie_genre.genres.forEach(mG=>{
+      if(g==mG.id && genre == ""){
+        genre = mG.name
+      }
+    })
+  })
+  return genre
+}
+
+//return date with just year
+function justYear(date){
+  return date.slice(0,4)
 }
