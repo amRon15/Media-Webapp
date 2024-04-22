@@ -2,23 +2,23 @@
 {% block htmlhead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'movie.css'%}">
-
 {% endblock htmlhead %}
+{% block js %} <script src="{% static 'tv.js' %}" ></script> {% endblock %}
 {% block title %} TV {% endblock %}
 
 {% block content%}
-<img id="hero-backdrop" src="https://image.tmdb.org/t/p/original{{popTv.0.backdrop_path}}" alt="">
-<img id="hero-backdrop-border" src="https://image.tmdb.org/t/p/original{{popTv.0.backdrop_path}}" alt="">
+<img id="hero-backdrop" src="" alt="">
+<img id="hero-backdrop-border" src="" alt="">
 <div class="hero-container">
     <div class="hero-detail-container">
-        <div class="hero-detail-title">{{popTv.0.name}}</div>
-        <div class="hero-detail-genre">{{popTv.0.genre_ids}}</div>
-        <div class="hero-detail-rate">{{popTv.0.vote_average}} &starf;</div>
+        <div class="hero-detail-title"></div>
+        <div class="hero-detail-genre"></div>
+        <div class="hero-detail-rate"></div>
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
-            <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
+            <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> Info</button>
         </span>
-        <div class="hero-detail-description">{{popTv.0.overview}}</div>
+        <div class="hero-detail-description"></div>
     </div>
 </div>
 
@@ -35,10 +35,7 @@
                 </button>
             </span>
         </div>
-        <div class="hero-video-list">
-            {% for key in popTv.0.videoKey %}
-            <iframe src="https://www.youtube.com/embed/{{key}}" frameborder="0" allowfullscreen></iframe>
-            {% endfor %}
+        <div class="hero-video-list">            
         </div>
     </div>
     <div class="divider">
@@ -55,20 +52,8 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for tv in popTv %}
-            {% if forloop.counter > 1 and forloop.counter < 11 %} <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{tv.poster_path}}">
-                <a class="card-title">{{tv.name}}</a>
-                <div class="card-detail">
-                    <div id="card-rate">&starf;{{tv.vote_average}}</div>
-                    <div>{{tv.first_air_date}}</div>
-                </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
+        <div class="trend-list card-list">
         </div>
-        {%endif%}
-        {% endfor %}
-    </div>
     </div>
     <div class="list-container">
         <div class="list-bar">
@@ -82,18 +67,7 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for tv in topRatedTv %}
-            <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{tv.poster_path}}">
-                <a class="card-title">{{tv.name}}</a>
-                <div class="card-detail">
-                    <div id="card-rate">&starf;{{tv.vote_average}}</div>
-                    <div>{{tv.first_air_date}}</div>
-                </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
-            </div>
-            {% endfor %}
+        <div class="top-rated-list card-list">
         </div>
     </div>
     <div class="divider"></div>

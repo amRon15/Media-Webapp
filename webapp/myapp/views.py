@@ -42,11 +42,11 @@ def renderMovieView(request):
 
 #return data for tv page
 def renderTvView(request):
-    return render(request, 'tv.html',{'popTv':fetchTvData(trendTvUrl), 'topRatedTv': topRatedTvList, 'tvGenre' : tv_genre, 'allTv' : allTvList})
+    return render(request, 'tv.html',{'tvGenre' : tv_genre, 'allTv' : allTvList})
 
 #return view for what's new page
 def renderNewView(request):
-    return render(request, 'new.html', {'upComingMovie': upComingMovieList, 'trendMovie': trendSortMovieList, 'trendMovieWeek' : trendSortMovieWeekList , 'trendTv' : trendSortTvList, 'trendTvWeek' : trendSortTvWeekList})
+    return render(request, 'new.html', {'upComingMovie': upComingMovieList, 'trendMovie': trendSortMovieList, 'trendTv' : trendSortTvList})
 
 #return view for detail page
 def renderDetailView(request):    

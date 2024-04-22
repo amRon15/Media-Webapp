@@ -13,12 +13,18 @@
     <div class="hero-detail-container">
         <div class="hero-detail-title"></div>
         <div class="hero-detail-genre"></div>
-        <div class="hero-detail-rate"></div>
+        <div class="hero-detail-list">
+            <div class="hero-detail-rate"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-lang"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-date"></div>
+        </div>        
+        <div class="hero-detail-description"></div>
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
-            <button class="hero-detail-btn" id="hero-detail-info-btn" onclick="sendDataToDetailTemplate('{{heroMovie.0.id}}')"><i class="fa fa-info" aria-hidden="true"></i> More Info</button>
+            <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> Info</button>
         </span>
-        <div class="hero-detail-description"></div>
     </div>
 </div>
 

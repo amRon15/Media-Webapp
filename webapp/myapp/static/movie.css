@@ -18,8 +18,8 @@
 }
 
 .hero-container{
-    margin-top: 12vi;
-    margin-left: 12vi;
+    margin-top: 15vi;
+    margin-left: 12vi;    
 }
 
 
@@ -27,7 +27,9 @@
     width: 100%;
     align-items: start;
     color: white;
-
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .hero-detail-title{
@@ -35,24 +37,34 @@
 }
 
 .hero-detail-genre{
-    font-size: 1.2vi;
+    font-size: 1.25rem;
+}
+
+.hero-detail-list{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.hero-detail-list-divider{
+    margin: 0 1rem;
+    color: #00719c;
 }
 
 .hero-detail-rate{
     color: gold;
-    font-size: 1.2vi;
     margin: 1vi 0;
 }
 
 .hero-detail-btn{
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1.3vi;
     padding: 5px 3vi;
     background-color: #00709cb7;
     color: white;
     border: none;
     transition: all 0.2s ease-in-out;
-    margin-bottom: 1vi;
 }
 
 .hero-detail-btn:hover{
@@ -64,14 +76,22 @@
     margin-right: 1vi;
 }
 
+#hero-detail-info-btn{
+    background-color: #a5a5a5a1;
+}
+
+#hero-detail-info-btn:hover{
+    background-color: #a5a5a5d5;
+}
+
 .hero-detail-description{
-    width: 30%;
+    width: 40%;
     font-size: 1vi;
     line-height: 2rem;
 }
 
-.content-container:not(footer){
-    margin-top: 15vi;
+.content-container{
+    margin-top: 8vi;
 }
 
 .hero-video-title{
@@ -189,6 +209,7 @@
     text-overflow: ellipsis;
     color: #009bd6;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .card-title:hover{
@@ -203,6 +224,12 @@
     justify-content: space-between;
 }
 
+.card-genre{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .card-divider{
     color: 	#00719c;
 }
@@ -210,7 +237,7 @@
 .card-list{
     display: flex;
     overflow-x: hidden;
-    align-items: center;
+    align-items:end;
     gap: 1.5rem;
     margin-top: 1vi;
 }

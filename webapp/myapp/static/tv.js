@@ -3,6 +3,8 @@ jscript.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/j
 jscript.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(jscript)
 
+
+
 const options = {
     method: 'GET',
     headers: {
@@ -11,16 +13,12 @@ const options = {
     }
   };
 
-  //genre of movie
-  let movie_genre = {
+//genre of tv
+let tv_genre = {
     "genres": [
       {
-        "id": 28,
-        "name": "Action"
-      },
-      {
-        "id": 12,
-        "name": "Adventure"
+        "id": 10759,
+        "name": "Action & Adventure"
       },
       {
         "id": 16,
@@ -47,65 +45,55 @@ const options = {
         "name": "Family"
       },
       {
-        "id": 14,
-        "name": "Fantasy"
-      },
-      {
-        "id": 36,
-        "name": "History"
-      },
-      {
-        "id": 27,
-        "name": "Horror"
-      },
-      {
-        "id": 10402,
-        "name": "Music"
+        "id": 10762,
+        "name": "Kids"
       },
       {
         "id": 9648,
         "name": "Mystery"
       },
       {
-        "id": 10749,
-        "name": "Romance"
+        "id": 10763,
+        "name": "News"
       },
       {
-        "id": 878,
-        "name": "Science Fiction"
+        "id": 10764,
+        "name": "Reality"
       },
       {
-        "id": 10770,
-        "name": "TV Movie"
+        "id": 10765,
+        "name": "Sci-Fi & Fantasy"
       },
       {
-        "id": 53,
-        "name": "Thriller"
+        "id": 10766,
+        "name": "Soap"
       },
       {
-        "id": 10752,
-        "name": "War"
+        "id": 10767,
+        "name": "Talk"
+      },
+      {
+        "id": 10768,
+        "name": "War & Politics"
       },
       {
         "id": 37,
         "name": "Western"
       }
     ]
-  }
+}
+
+let heroTv = []
 
 //api url
-let popMovieUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
-let topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
-let nowMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
-let trendMovieUrl = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
-
-let heroMovie = []
+let trendTvUrl = "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
+let topRatedTvUrl = "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1"
 
 jscript.onload = function(){    
     $(document).ready(function(){
-        fetchData(popMovieUrl,heroMovie)
-        fetchData(popMovieUrl,null,"pop-list")
-        fetchData(nowMovieUrl,null,"top-rated-list")
+        fetchData(trendTvUrl,heroTv)
+        fetchData(trendTvUrl,null,'trend-list')
+        fetchData(topRatedTvUrl,null,'top-rated-list')
     })
 }
 
@@ -116,15 +104,15 @@ function fetchData(url,arr,name){
     .then(response => response.json())
     .then(response => {
         response.results.forEach(result => {
-          const {id, genre_ids, backdrop_path, poster_path, title, release_date, original_language, vote_average, overview} = result
+          const {id, genre_ids, backdrop_path, poster_path, name, first_air_date, original_language, vote_average, overview} = result
           if(arr!=undefined){arr.push(result)}
           data.push(result)
         });
         if(arr!=undefined){heroView(arr[0])}
-        if(name=="pop-list"){
-            movieListView(sortByPopularity(data).slice(1,10),"pop-list")
+        if(name=="trend-list"){
+            movieListView(data.slice(1,10),name)
         }else if(name=="top-rated-list"){            
-            movieListView(sortByRating(checkYear(data)),"top-rated-list")
+            movieListView(sortByDate(data),name)
         }
     })
     .catch(err => console.error(err));
@@ -134,7 +122,7 @@ function fetchData(url,arr,name){
 function heroView(data){
     $('#hero-backdrop').attr('src',`https://image.tmdb.org/t/p/original${data.backdrop_path}`)
     $('#hero-backdrop-border').attr('src',`https://image.tmdb.org/t/p/original${data.backdrop_path}`)
-    $('.hero-detail-title').html(data.title)       
+    $('.hero-detail-title').html(data.name)       
     movieGenreList(data.genre_ids).forEach((g, index) => {
       if(index < data.genre_ids.length-1){
         $('.hero-detail-genre').append(`${g} <span style="margin: 0 1rem; color: #00719c;"> | </span>`)
@@ -144,50 +132,34 @@ function heroView(data){
     })
     $('.hero-detail-rate').html('&starf; ' + roundRate(data.vote_average))
     $('.hero-detail-lang').html(data.original_language.toUpperCase())
-    $('.hero-detail-date').html(data.release_date)
+    $('.hero-detail-date').html(data.first_air_date)
     $('.hero-detail-description').html(data.overview)    
-    getYtKey(data.id)
-    $('#hero-detail-info-btn').on('click',()=>{
-      sendDataToDetailTemplate(data.id)
-    })
+    getYtKey(data.id)   
 }
 
 //list view
 function movieListView(data, listName){
-    data.forEach(m => {
+    data.forEach(tv => {
         $(`.${listName}`).append(`
             <div class="card-container">
-                <img class='card-img' id='${m.id}' src="https://image.tmdb.org/t/p/original${m.poster_path}">
-                <a class="card-title" id='${m.id}'>${m.title}</a>
+                <img class='card-img' id='${tv.id}' src="https://image.tmdb.org/t/p/original${tv.poster_path}">
+                <a class="card-title" id='${tv.id}'>${tv.name}</a>
                 <div class="card-detail">
-                    <div class='card-genre'>${movieGenre(m.genre_ids)}</div>
+                    <div class='card-genre'>${tvGenre(tv.genre_ids)}</div>
                     <div class='card-divider'>|</div>
-                    <div class='card-year'>${justYear(m.release_date)}</div>
+                    <div class='card-year'>${justYear(tv.first_air_date)}</div>
                     <div class='card-divider'>|</div>
-                    <div class='card-lang'>${m.original_language.toUpperCase()}</div>
+                    <div class='card-lang'>${tv.original_language.toUpperCase()}</div>
                 </div>
             </div>
         `)        
     })    
-  
-  //handle element on click
-    $('.card-img').each( (_,element) => {
-      $(element).on('click',()=>{
-        sendDataToDetailTemplate(element.id)
-      })
-    })
-
-    $('.card-title').each((_,element) => {
-      $(element).on('click', ()=>{
-        sendDataToDetailTemplate(element.id)
-      })
-    })
 }
 
 
 //get yt key
 function getYtKey(id){
-    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+    fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`, options)
     .then(response => response.json())
     .then(response => {
         response.results.forEach(result => {
@@ -196,7 +168,6 @@ function getYtKey(id){
         });
     })
     .catch(err => console.error(err));
-
 }
 
 
@@ -217,12 +188,14 @@ function calRuntime(runtime){
     return total    
 }
 
+
+//return a list of genre name
 function movieGenreList(genres){
     let allGenre = []
     genres.forEach(g => {
-        movie_genre.genres.forEach(mg =>{
-            if(g == mg.id){
-                allGenre.push(mg.name)
+        tv_genre.genres.forEach(tg =>{
+            if(g == tg.id){
+                allGenre.push(tg.name)
             }
         })
     })
@@ -230,12 +203,12 @@ function movieGenreList(genres){
 }
 
 //return a genre name for recommend list
-function movieGenre(genres){
+function tvGenre(genres){
     let genre = ""
     genres.forEach(g => {
-      movie_genre.genres.forEach(mG=>{
-        if(g==mG.id && genre == ""){
-          genre = mG.name
+      tv_genre.genres.forEach(tG=>{
+        if(g==tG.id && genre == ""){
+          genre = tG.name
         }
       })
     })
@@ -264,7 +237,7 @@ function checkYear(data){
     let thisYearData = []
     let cuurentYear = new Date().getFullYear()
     data.forEach(movie => {
-        let date = new Date(movie.release_date)
+        let date = new Date(movie.first_air_date)
         if(date.getFullYear()==cuurentYear){
             thisYearData.push(movie)
         }
@@ -274,30 +247,30 @@ function checkYear(data){
 
 //sort movie list by data
 function sortByDate(data){
-  data = data.sort((a,b)=>{
-     if(a.release_date > b.release_date) return -1
-     if(a.release_date < b.release_date) return 1
-     return 0
-  })
-  return data
+    data = data.sort((a,b)=>{
+       if(a.first_air_date > b.first_air_date) return -1
+       if(a.first_air_date < b.first_air_date) return 1
+       return 0
+    })
+    return data
 }
 
 //sort movie list by popularity
 function sortByPopularity(data){
-  data = data.sort((a,b)=>{
-      if(a.popularity > b.popularity) return -1
-      if(a.popularity < b.popularity) return 1
-      return 0
-   })
-   return data
+    data = data.sort((a,b)=>{
+        if(a.popularity > b.popularity) return -1
+        if(a.popularity < b.popularity) return 1
+        return 0
+     })
+     return data
 }
 
 //sort movie list by rating
 function sortByRating(data){
-  data = data.sort((a,b)=>{
-      if(a.vote_average > b.vote_average) return -1
-      if(a.vote_average < b.vote_average) return 1
-      return 0 
-  })
-  return data
+    data = data.sort((a,b)=>{
+        if(a.vote_average > b.vote_average) return -1
+        if(a.vote_average < b.vote_average) return 1
+        return 0 
+    })
+    return data
 }

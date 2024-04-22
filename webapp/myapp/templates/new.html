@@ -3,6 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'new.css' %}">
 {% endblock htmlhead %}
+{% block js %} <script src="{% static 'new.js' %}" ></script> {% endblock %}
 {% block title %} What's New {% endblock %}
 
 
@@ -87,19 +88,8 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for movie in trendMovieWeek %}
-            {% if forloop.counter > 1 and forloop.counter < 11 %} <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}">
-                <a class="card-title">{{movie.title}}</a>
-                <div class="card-detail">
-                    <div id="card-rate">&starf;{{movie.vote_average}}</div>
-                    <div>{{movie.release_date}}</div>
-                </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
+        <div class="weekly-movie-list card-list">
         </div>
-        {%endif%}
-        {% endfor %}
     </div>
     <div class="list-container">
         <div class="list-bar">
@@ -113,19 +103,8 @@
                 </button>
             </span>
         </div>
-        <div class="card-list">
-            {% for tv in trendTvWeek %}
-            {% if forloop.counter > 1 and forloop.counter < 11 %} <div class="card-container">
-                <img src="https://image.tmdb.org/t/p/w342{{tv.poster_path}}">
-                <a class="card-title">{{tv.name}}</a>
-                <div class="card-detail">
-                    <div id="card-rate">&starf;{{tv.vote_average}}</div>
-                    <div>{{tv.first_air_date}}</div>
-                </div>
-                <button class="card-info-btn"><i class="fa fa-info" aria-hidden="true"></i> More</button>
+        <div class="weekly-tv-list card-list">    
         </div>
-        {%endif%}
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
