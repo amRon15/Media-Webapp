@@ -150,6 +150,70 @@ function heroView(data){
     $('#hero-detail-info-btn').on('click',()=>{
       sendDataToDetailTemplate(data.id)
     })
+
+    const heroTitle = document.getElementById('hero-detail-title')
+    switch (movieGenre(data.genre_ids)) {
+      case "Action":
+        heroTitle.style.fontFamily = "Bangers, cursive";
+        break;
+      case "Adventure":
+        heroTitle.style.fontFamily = "Cinzel, serif";
+        break;
+      case "Animation":
+        heroTitle.style.fontFamily = "Luckiest Guy, cursive";
+        break;
+      case "Comedy":
+        heroTitle.style.fontFamily = "Indie Flower, cursive";
+        break;
+      case "Crime":
+        heroTitle.style.fontFamily = "Playfair Display, serif";
+        break;
+      case "Documentary":
+        heroTitle.style.fontFamily = "Lato, sans-serif";
+        break;
+      case "Drama":
+        heroTitle.style.fontFamily = "Merriweather, serif";
+        break;
+      case "Family":
+        heroTitle.style.fontFamily = "Pacifico, cursive";
+        break;
+      case "Fantasy":
+        heroTitle.style.fontFamily = "Abril Fatface, cursive";
+        break;
+      case "History":
+        heroTitle.style.fontFamily = "Old Standard TT, serif";
+        break;
+      case "Horror":
+        heroTitle.style.fontFamily = "Creepster, cursive";
+        break;
+      case "Music":
+        heroTitle.style.fontFamily = "Archivo Black, sans-serif";
+        break;
+      case "Mystery":
+        heroTitle.style.fontFamily = "Special Elite, cursive";
+        break;
+      case "Romance":
+        heroTitle.style.fontFamily = "Great Vibes, cursive";
+        break;
+      case "Sci-Fi":
+        heroTitle.style.fontFamily = "Exo, sans-serif";
+        break;
+      case "TV Movie":
+        heroTitle.style.fontFamily = "Montserrat, sans-serif";
+        break;
+      case "Thriller":
+        heroTitle.style.fontFamily = "Metal Mania, cursive";
+        break;
+      case "War":
+        heroTitle.style.fontFamily = "Bebas Neu, cursive";
+        break;
+      case "Western":
+        heroTitle.style.fontFamily = "Slabo 27px, serif";
+        break;
+      default:
+        heroTitle.style.fontFamily = "Bitter, serif";
+        break;
+    }
 }
 
 //list view

@@ -246,8 +246,13 @@ function fetchMovieData(){
         $('#detail-rating').html(`<i class="fa fa-star" aria-hidden="true"></i> ${rating}`)        
         $('#detail-runtime').html(calRuntime(runtime))
         $('#detail-status').html(status)
-        genres.forEach(genre => {
-          $('#detail-genre').append(`${genre.name}<span style="margin: 0 1rem; color: #00719c;"> | </span>`)      
+        genres.forEach((genre,index) => {
+          if(index < genres.length-1){
+            $('#detail-genre').append(`${genre.name}<span style="margin: 0 1rem; color: #00719c;"> | </span>`)
+          }      
+          else{
+            $('#detail-genre').append(`${genre.name}`)
+          }
         });
         $('#detail-country').html("Country: " + origin_country[0])
         $('#detail-lang').html("Language: " + original_language.toUpperCase())
@@ -255,7 +260,69 @@ function fetchMovieData(){
         $('#detail-origin_name').html("Original Title: " + original_title)        
         $('#detail-overview').html(overview)
         $('#detail-img').attr('src',"https://image.tmdb.org/t/p/original/"+poster_path)
-        
+        const heroTitle = document.getElementById('detail-title')
+        switch (genres[0].name) {
+          case "Action":
+            heroTitle.style.fontFamily = "Bangers, cursive";
+            break;
+          case "Adventure":
+            heroTitle.style.fontFamily = "Cinzel, serif";
+            break;
+          case "Animation":
+            heroTitle.style.fontFamily = "Luckiest Guy, cursive";
+            break;
+          case "Comedy":
+            heroTitle.style.fontFamily = "Indie Flower, cursive";
+            break;
+          case "Crime":
+            heroTitle.style.fontFamily = "Playfair Display, serif";
+            break;
+          case "Documentary":
+            heroTitle.style.fontFamily = "Lato, sans-serif";
+            break;
+          case "Drama":
+            heroTitle.style.fontFamily = "Merriweather, serif";
+            break;
+          case "Family":
+            heroTitle.style.fontFamily = "Pacifico, cursive";
+            break;
+          case "Fantasy":
+            heroTitle.style.fontFamily = "Abril Fatface, cursive";
+            break;
+          case "History":
+            heroTitle.style.fontFamily = "Old Standard TT, serif";
+            break;
+          case "Horror":
+            heroTitle.style.fontFamily = "Creepster, cursive";
+            break;
+          case "Music":
+            heroTitle.style.fontFamily = "Archivo Black, sans-serif";
+            break;
+          case "Mystery":
+            heroTitle.style.fontFamily = "Special Elite, cursive";
+            break;
+          case "Romance":
+            heroTitle.style.fontFamily = "Great Vibes, cursive";
+            break;
+          case "Sci-Fi":
+            heroTitle.style.fontFamily = "Exo, sans-serif";
+            break;
+          case "TV Movie":
+            heroTitle.style.fontFamily = "Montserrat, sans-serif";
+            break;
+          case "Thriller":
+            heroTitle.style.fontFamily = "Metal Mania, cursive";
+            break;
+          case "War":
+            heroTitle.style.fontFamily = "Bebas Neu, cursive";
+            break;
+          case "Western":
+            heroTitle.style.fontFamily = "Slabo 27px, serif";
+            break;
+          default:
+            heroTitle.style.fontFamily = "Bitter, serif";
+            break;
+        }
     })
     .catch(err => console.error(err));
   }

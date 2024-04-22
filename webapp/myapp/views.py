@@ -34,7 +34,7 @@ headers = {
 
 # return data for home page
 def renderView(request):
-    return render(request, 'home.html',{'carousel':fetchData(trendAllUrl), 'popMovie': fetchData(popMovieUrl), 'popTv':fetchData(popTvUrl)})
+    return render(request, 'home.html',{'carousel':fetchData(trendAllUrl)})
 
 # return data for movie page
 def renderMovieView(request):

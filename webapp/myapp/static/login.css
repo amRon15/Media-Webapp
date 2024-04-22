@@ -11,7 +11,7 @@
 
 .container{
     margin-top: 4vi;
-    background-color: #202020;
+    background-color: #454545;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -40,7 +40,7 @@
 }
 
 .container button{
-    background-color: #970910;
+    background-color: #00709cd8;
     color: white;
     font-size: 12px;
     padding: 10px 45px;
@@ -56,7 +56,7 @@
 
 
 .container button:hover{
-    background-color: #b40b14;
+    background-color: #00709c;
 }
 
 
@@ -67,11 +67,11 @@
 }
 
 .container button.hidden:hover{
-    background-color: #b40b14;
+    background-color: #00719c;
 }
 
 .container form{
-    background-color: #202020;
+    background-color: #454545;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,7 +169,7 @@
 .toggle{
     background-color: #ffffff;
     height: 100%;
-    background: #970910;
+    background: #00415a;
     color: #ffffff;
     position: relative;
     left: -100%;

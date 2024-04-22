@@ -231,9 +231,9 @@
 
 .cast-list{
     display: flex;    
-    margin-top: 1vi;
     overflow-x: hidden;
-    align-items: center;
+    align-items: start;
+    margin-top: 1vi;
     gap: 1.5rem;
 }
 
@@ -248,12 +248,24 @@
     height: 7vi;
     object-fit: cover;
     border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
+.cast-img:hover{
+    opacity: 0.8;
+}
+    
 .cast-name{
-    color: white;
+    color: #009bd6;
     flex-wrap: wrap;
     text-align: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.cast-name:hover{
+    color: white;
 }
 
 .related-container{
