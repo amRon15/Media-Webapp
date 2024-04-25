@@ -135,6 +135,10 @@ function heroView(data){
     $('.hero-detail-date').html(data.first_air_date)
     $('.hero-detail-description').html(data.overview)    
     getYtKey(data.id)   
+    $('#hero-detail-info-btn').on('click',()=>{
+      sendDataToDetailTemplate(data.id)
+      console.log(data.id)
+    })
 }
 
 //list view
@@ -154,6 +158,19 @@ function movieListView(data, listName){
             </div>
         `)        
     })    
+    //handle element on click
+    $('.card-img').each( (_,element) => {
+      $(element).on('click',()=>{
+        console.log(element.id)
+        sendDataToDetailTemplate(element.id)
+      })
+    })
+
+    $('.card-title').each((_,element) => {
+      $(element).on('click', ()=>{
+        sendDataToDetailTemplate(element.id)
+      })
+    })
 }
 
 
@@ -222,9 +239,9 @@ function justYear(date){
 
 //navigate to detail page
 function sendDataToDetailTemplate(id){      
-    localStorage.setItem('keyId',id)          
-    location.href = 'detail.html'
-    console.log(id)
+    localStorage.setItem('keyId',id)   
+    localStorage.setItem('type','tv')       
+    location.href = 'detail.html'    
 }
 
 //round the rate in 2 decimal places

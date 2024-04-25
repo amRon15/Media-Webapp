@@ -20,8 +20,10 @@ const options = {
     }
   };
   
-  //get the id pass from other html (tv or movie id)
-  let id = localStorage.getItem('keyId')
+//get the id pass from other html (tv or movie id)
+let id = localStorage.getItem('keyId')
+//get the type pass from other html (tv or movie)
+let type = localStorage.getItem('type')
 
   //genre of movie & tv 
   let tv_genre = {
@@ -180,7 +182,7 @@ const options = {
   function ytVideo(){
     var key = "";
     fetch(
-    "https://api.themoviedb.org/3/movie/" + id + "/videos?language=en-US",
+    type=='movie' ? `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US` : `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`,
     options
     )
     .then((response) => response.json())
@@ -222,46 +224,32 @@ const options = {
 
   //return the html view to movieDetail.html
 function fetchMovieData(){
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+    fetch(type=='movie' ? `https://api.themoviedb.org/3/movie/${id}?language=en-US` : `https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
     .then(response => response.json())
     .then(response => {
-        const {
-            poster_path,
-            adult,
-            genres,
-            origin_country,
-            original_language,
-            original_title,
-            overview,
-            release_date,
-            runtime,
-            status,
-            tagline,
-            title,
-            vote_average,
-        } = response
-        let rating = Math.round(vote_average * 10 ) / 10        
-        $('#detail-title').html(title)
-        $('#detail-tagline').html(tagline)
+        const data = response
+        let rating = Math.round(data.vote_average * 10 ) / 10        
+        $('#detail-title').html(data.title!=null ? data.title : data.name)
+        $('#detail-tagline').html(data.tagline)
         $('#detail-rating').html(`<i class="fa fa-star" aria-hidden="true"></i> ${rating}`)        
-        $('#detail-runtime').html(calRuntime(runtime))
-        $('#detail-status').html(status)
-        genres.forEach((genre,index) => {
-          if(index < genres.length-1){
+        $('#detail-runtime').html(data.runtime!=null ? calRuntime(data.runtime) : 'Episodes: ' + data.number_of_episodes)
+        $('#detail-status').html(data.status)
+        data.genres.forEach((genre,index) => {
+          if(index < data.genres.length-1){
             $('#detail-genre').append(`${genre.name}<span style="margin: 0 1rem; color: #00719c;"> | </span>`)
           }      
           else{
             $('#detail-genre').append(`${genre.name}`)
           }
         });
-        $('#detail-country').html("Country: " + origin_country[0])
-        $('#detail-lang').html("Language: " + original_language.toUpperCase())
-        $('#detail-release_date').html("Release Date: " + release_date)
-        $('#detail-origin_name').html("Original Title: " + original_title)        
-        $('#detail-overview').html(overview)
-        $('#detail-img').attr('src',"https://image.tmdb.org/t/p/original/"+poster_path)
+        $('#detail-country').html("Country: " + data.origin_country[0])
+        $('#detail-lang').html("Language: " + data.original_language.toUpperCase())
+        $('#detail-release_date').html("Release Date: " + data.release_date!=null ? data.release_date : data.first_air_date)
+        $('#detail-origin_name').html("Original Title: " + data.original_title!=null ? data.original_title : data.original_name)        
+        $('#detail-overview').html(data.overview)
+        $('#detail-img').attr('src',"https://image.tmdb.org/t/p/original/"+data.poster_path)
         const heroTitle = document.getElementById('detail-title')
-        switch (genres[0].name) {
+        switch (data.genres[0].name) {
           case "Action":
             heroTitle.style.fontFamily = "Bangers, cursive";
             break;
@@ -329,7 +317,7 @@ function fetchMovieData(){
 
   //return the credit 
   function fetchCredit(){
-    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options)
+    fetch(type=='movie'?`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`:`https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`, options)
     .then(response => response.json())
     .then(response => {
         const {cast, crew} = response
@@ -383,21 +371,21 @@ function fetchMovieData(){
 
   //return the similar 
   function fetchSimilar(){
-    fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options)
+    fetch(type=='movie'?`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`:`https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`, options)
     .then(response => response.json())
     .then(response => {
         response.results.forEach(result => {
-          const {id, genre_ids, poster_path, title, release_date, original_language} = result
+          const data = result
           $('.related-list').append(`
           <div class="card-container">
-            <img class='card-img' src="https://image.tmdb.org/t/p/original${poster_path}">
-            <a class="card-title">${title}</a>
+            <img class='card-img' src="https://image.tmdb.org/t/p/original${data.poster_path}">
+            <a class="card-title">${data.title!=null?data.title:data.name}</a>
             <div class="card-detail">
-                <div class='card-genre'>${movieListGenre(genre_ids)}</div>
+                <div class='card-genre'>${movieListGenre(data.genre_ids)}</div>
                 <div class='card-divider'>|</div>
-                <div class='card-year'>${justYear(release_date)}</div>
+                <div class='card-year'>${justYear(data.release_date!=null?data.release_date:data.first_air_date)}</div>
                 <div class='card-divider'>|</div>
-                <div class='card-lang'>${original_language.toUpperCase()}</div>
+                <div class='card-lang'>${data.original_language.toUpperCase()}</div>
             </div>
         </div>`)
         });
@@ -441,8 +429,13 @@ function movieListGenre(genres){
       if(g==mG.id && genre == ""){
         genre = mG.name
       }
+    })    
+    tv_genre.genres.forEach(tG => {
+      if(g==tG.id && genre ==""){
+        genre = tG.name
+      }
     })
-  })
+  })  
   return genre
 }
 

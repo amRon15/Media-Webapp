@@ -52,6 +52,10 @@ def renderNewView(request):
 def renderDetailView(request):    
     return render(request, 'detail.html')    
 
+#return view for more page
+def renderMoreView(request):
+    return render(request,'more.html')
+
 #return view for login page
 def renderLoginView(request):
     return render(request, 'login.html')

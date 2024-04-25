@@ -235,6 +235,7 @@
     align-items: start;
     margin-top: 1vi;
     gap: 1.5rem;
+    text-align: center;
 }
 
 .cast-detail{

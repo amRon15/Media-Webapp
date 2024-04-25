@@ -11,8 +11,8 @@ const options = {
     }
   };
 
-  //genre of movie & tv 
-  let tv_genre = {
+//genre of movie & tv 
+let tv_genre = {
     "genres": [
       {
         "id": 10759,
@@ -79,8 +79,8 @@ const options = {
         "name": "Western"
       }
     ]
-  }
-  let movie_genre = {
+}
+let movie_genre = {
     "genres": [
       {
         "id": 28,
@@ -159,7 +159,7 @@ const options = {
         "name": "Western"
       }
     ]
-  }
+}
 
 let popMovieUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1'
 let popTvUrl = "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1"
@@ -171,7 +171,18 @@ jscript.onload = function(){
         fetchData(popMovieUrl,'movie')
         fetchData(trendTvUrl,'tv')
         peopleListView(popPeopleUrl)
+        handleClick()
     })
+}
+
+function handleClick(){
+  $('#pop-movie-more').on('click',()=>{
+    navToMorePage(popMovieUrl,'movie')    
+  })
+  
+  $('#pop-tv-more').on('click',()=>{
+    navToMorePage(trendTvUrl,'tv')
+  })
 }
 
 //return the movie List 
@@ -210,8 +221,7 @@ function peopleListView(url){
     .then(response => response.json())
     .then(response => {
         response.results.forEach(result => {
-            const {id, popularity, name, known_for_department, profile_path, know_for} = result
-            console.log(result)
+            const {id, popularity, name, known_for_department, profile_path, know_for} = result            
             $('.pop-people-list').append(`
                 <div class='cast-detail'>
                     <img class='cast-img' src='https://image.tmdb.org/t/p/original/${profile_path}.jpg' />
@@ -309,4 +319,11 @@ function sortByDate(data){
         return 0 
     })
     return data
+  }
+
+  //nav to more
+  function navToMorePage(url,type){
+    localStorage.setItem('url',url)
+    localStorage.setItem('type',type)
+    location.href = 'more.html'    
   }

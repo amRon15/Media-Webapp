@@ -9,4 +9,5 @@ urlpatterns = [
     path('tv.html', views.renderTvView, name='tv'),
     path('login.html', views.renderLoginView, name='login'),
     path('detail.html', views.renderDetailView, name='detail'),
+    path('more.html', views.renderMoreView, name='more')
 ]

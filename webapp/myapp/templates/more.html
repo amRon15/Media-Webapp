@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block htmlhead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'more.css'%}">
+{% endblock htmlhead %}
+{% block js %} 
+<script src="{% static 'more.js' %}" ></script>
+{% endblock js %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="filter-container">
+        <div class="genre-dropdown dropdown">   
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Genre
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">                
+            </ul>                         
+        </div>
+    </div>
+    <div class="list-container"></div>    
+    <nav>
+        <ul class="pagination justify-content-center" >
+          <li class="page-item">
+            <p class="page-link" id="page-pre" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </p>
+          </li>
+          <li class="page-item" ><p class="page-link" id="page-index">1</p></li>                        
+          <li class="page-item">
+            <p class="page-link" id="page-next" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </p>
+          </li>
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}

@@ -140,7 +140,7 @@ function heroView(data){
         $('.hero-detail-genre').append(`${g} <span style="margin: 0 1rem; color: #00719c;"> | </span>`)
       }else{
         $('.hero-detail-genre').append(`${g}`)        
-      }
+      } 
     })
     $('.hero-detail-rate').html('&starf; ' + roundRate(data.vote_average))
     $('.hero-detail-lang').html(data.original_language.toUpperCase())
@@ -233,7 +233,7 @@ function movieListView(data, listName){
             </div>
         `)        
     })    
-  
+    
   //handle element on click
     $('.card-img').each( (_,element) => {
       $(element).on('click',()=>{
@@ -313,9 +313,9 @@ function justYear(date){
 
 //navigate to detail page
 function sendDataToDetailTemplate(id){      
-    localStorage.setItem('keyId',id)          
-    location.href = 'detail.html'
-    console.log(id)
+    localStorage.setItem('keyId',id)      
+    localStorage.setItem('type','movie')    
+    location.href = 'detail.html'    
 }
 
 //round the rate in 2 decimal places
