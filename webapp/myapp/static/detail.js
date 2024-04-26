@@ -244,8 +244,8 @@ function fetchMovieData(){
         });
         $('#detail-country').html("Country: " + data.origin_country[0])
         $('#detail-lang').html("Language: " + data.original_language.toUpperCase())
-        $('#detail-release_date').html("Release Date: " + data.release_date!=null ? data.release_date : data.first_air_date)
-        $('#detail-origin_name').html("Original Title: " + data.original_title!=null ? data.original_title : data.original_name)        
+        $('#detail-release_date').html(data.release_date!=null ? "Release Date: " + data.release_date : "First Air Date: " + data.first_air_date)
+        $('#detail-origin_name').html(data.original_title!=null ? "Original Title: " + data.original_title : "Original Title: " +data.original_name)        
         $('#detail-overview').html(data.overview)
         $('#detail-img').attr('src',"https://image.tmdb.org/t/p/original/"+data.poster_path)
         const heroTitle = document.getElementById('detail-title')
@@ -332,10 +332,10 @@ function fetchMovieData(){
             }
         }
         for (let i = 0; i < crew.length; i++) {
-        const { name, job, profile_path } = crew[i]
-          if(crew[i].job == 'Director'){
+          const { name, job, profile_path } = crew[i]
+          if((crew[i].job == 'Director' || crew[i].job == 'Animation Director') && directors.length<5){
             directors.push({ name: name, job: job, profile: profile_path })
-          }else if(crew[i].job == 'Producer'){
+          }else if((crew[i].job == 'Producer' || crew[i].job =='Executive Producer') && producers.length<5){
             producers.push({ name: name, job: job, profile: profile_path })
           }          
         }  
@@ -350,15 +350,18 @@ function fetchMovieData(){
           )
         })
 
+        if(directors.length!=0){
         //html view director
         directors.forEach(d => {
-          $('#detail-director').append(d.name)  
-        });
+            $('#detail-director').append(d.name)          
+        })}else{
+          $('#detail-director').append('N/A')
+        }
         
         //html view producer
         if(producers != null){
           for ( let i = 0; i<=producers.length;i++){
-            if(i < producers.length-1){
+            if(i < producers.length-1 ){
               $('#detail-producer').append(producers[i].name + '<span style="margin: 0 1rem; color: #424242;" "> | </span>')
             }else if(i==producers.length-1){
               $('#detail-producer').append(producers[i].name)

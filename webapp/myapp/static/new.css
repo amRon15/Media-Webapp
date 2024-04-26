@@ -33,6 +33,12 @@
     bottom: -1vi;
     opacity: 1;
     z-index: 100;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.carousel-item-poster:hover{
+    opacity: 0.8;
 }
 
 .carousel-caption{
@@ -47,6 +53,10 @@
     background: linear-gradient(to bottom,#181818 , #000000);
     padding: 0.5em 1em;
     border-radius: 5px;
+    width: 20rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .upcoming-container-title{
@@ -83,10 +93,16 @@
 
 .upcoming img{
     width: 5vi;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.upcoming img:hover{
+    opacity: 0.8;
 }
 
 .upcoming-lang{
-    background-color: #b40b14;
+    background-color: #00719c;
     padding: 0 0.5em;
     border-radius: 5px;
     text-align: center;
@@ -112,6 +128,7 @@
 .feature-title{
     font-size: 2rem;
     color: gold;
+    cursor: default;
 }
 
 .feature-movie img{
@@ -129,12 +146,24 @@
 }
 
 .feature-description{
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.feature-description:hover{
     color: white;
 }
 
 .feature-img-list{
     display: flex;
     gap: 0.5em;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.feature-img-list:hover{
+    opacity: 0.8;
 }
 
 .divider{
@@ -149,7 +178,7 @@
 }
 
 .title-more{
-    cursor: pointer;
+    cursor: default;
     transition: all 0.5s ease-in-out;
 }
 
@@ -157,7 +186,7 @@
     content: "| ";
     color:#009bd6;
 }
-
+/* 
 .title-more:after{
     margin-left: 10px;
     content: ' More >';
@@ -167,12 +196,12 @@
     color: rgb(236, 233, 25);
     transition: all 0.5s ease-in-out;
     opacity: 0;
-}
-
+} */
+/* 
 .title-more:hover:after{
     opacity: 1;
     left: 0px;
-}
+} */
 
 .list-btn{
     background-color: transparent;

@@ -27,19 +27,7 @@
                 aria-label="Slide 6"></button>
         </div>
         <div class="carousel-inner">
-            {% for movie in carousel %}
-            {% if forloop.counter <= 6 %} <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}"
-                id="slide{{ forloop.counter }}">
-                <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="d-block w-100 opacity-75"
-                    alt="GameCover">
-                <div class="carousel-caption d-none d-md-block">
-                    <h1>{{movie.title}}</h5>
-                        <p>{{movie.genre_ids}}</p>
-                </div>
         </div>
-        {% endif %}
-        {% endfor %}
-    </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
         data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

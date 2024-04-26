@@ -46,7 +46,7 @@ def renderTvView(request):
 
 #return view for what's new page
 def renderNewView(request):
-    return render(request, 'new.html', {'upComingMovie': upComingMovieList, 'trendMovie': trendSortMovieList, 'trendTv' : trendSortTvList})
+    return render(request, 'new.html')
 
 #return view for detail page
 def renderDetailView(request):    

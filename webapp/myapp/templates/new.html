@@ -11,17 +11,6 @@
 <div class="hero-container">
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            {% for movie in upComingMovie %}
-            {% if forloop.counter < 7%} <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-                <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="d-block w-100" />
-                <div class="carousel-caption d-none d-md-block">
-                    <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" class="carousel-item-poster" />
-                    <h4>{{movie.title}}</h5>
-                        <p>{{movie.genre_ids}}</p>
-                </div>
-        </div>
-        {% endif %}
-        {% endfor %}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
         data-bs-slide="prev">
@@ -35,19 +24,8 @@
     </button>
 </div>
 <div class="upcoming-container">
-    <div class="upcoming-container-title">Up Coming</div>
+    <div class="upcoming-container-title">Coming Up</div>
     <div class="upcoming-list">
-        {% for movie in upComingMovie %}
-        {% if forloop.counter > 6 and forloop.counter < 10%} <span class="upcoming">
-            <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" />
-            <div class="upcoming-info">
-                <div class="upcoming-title">{{movie.title}}</div>
-                <div class="upcoming-date">{{movie.release_date}}</div>
-                <div class="upcoming-lang">{{movie.original_language | capfirst}}</div>
-            </div>
-            </span>
-            {% endif %}
-            {% endfor %}
     </div>
 </div>
 </div>
@@ -55,22 +33,12 @@
     <div class="feature-title">New Trending</div>
     <div class="feature-container">
         <div class="feature-movie">
-            <div class="feature-img-list">
-                {% for movie in trendMovie %}
-                {% if forloop.counter > 3 and forloop.counter < 7 %}
-                    <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" />
-                {% endif %}
-                {% endfor %}
+            <div class="feature-img-list feature-movie-img">
             </div>
             <div class="feature-description">Trending Movie of the Day</div>
         </div>
         <div class="feature-tv">
-            <div class="feature-img-list">
-                {% for tv in trendTv %}
-                {% if forloop.counter > 3 and forloop.counter < 7 %} 
-                    <img src="https://image.tmdb.org/t/p/original{{tv.poster_path}}" alt="">
-                {% endif %}
-                {% endfor %}
+            <div class="feature-img-list feature-tv-img">
             </div>
             <div class="feature-description">Trending TV serious</div>
         </div>
@@ -78,7 +46,7 @@
     <div class="divider"></div>
     <div class="list-container">
         <div class="list-bar">
-            <span class="title-more">Weekly Trending New Movie</span>
+            <span class="title-more" id="new-movie-list">Weekly Trending New Movie</span>
             <span class="list-btn-container">
                 <button class="list-btn list-btn-prev">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -93,7 +61,7 @@
     </div>
     <div class="list-container">
         <div class="list-bar">
-            <span class="title-more">Weekly Trending New TV Series</span>
+            <span class="title-more" id="new-tv-list">Weekly Trending New TV Series</span>
             <span class="list-btn-container">
                 <button class="list-btn list-btn-prev">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>

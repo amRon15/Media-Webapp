@@ -324,5 +324,11 @@
     color: 	#00719c;
 }
 
+.card-genre{
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 

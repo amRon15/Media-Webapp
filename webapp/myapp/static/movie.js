@@ -98,14 +98,19 @@ let popMovieUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&pag
 let topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
 let nowMovieUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
 let trendMovieUrl = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
+let allMovieUrl = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
 
 let heroMovie = []
+
+let page = 1
+let sortType = 'popularity.desc'
 
 jscript.onload = function(){    
     $(document).ready(function(){
         fetchData(popMovieUrl,heroMovie)
         fetchData(popMovieUrl,null,"pop-list")
         fetchData(nowMovieUrl,null,"top-rated-list")
+        allMovieView(page,sortType,null)
     })
 }
 
@@ -248,6 +253,73 @@ function movieListView(data, listName){
     })
 }
 
+//all movie view
+function allMovieView(page,sortType,genre){
+  fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sortType}${genre!=null?'&with_genres='+genre:''}`
+  , options)
+  .then(response => response.json())
+  .then(response => {
+    const data = response.results
+    $('.find-movie-list').html('')
+    data.forEach((d,i)=>{
+      $('.find-movie-list').append(`
+      <div class="movie-list-item">
+        <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/original${d.poster_path}">                    
+        <div class="movie-list-item-detail">
+            <div class="movie-list-item-title">${d.title}</div>
+            <div class="movie-list-item-date">${d.release_date}</div>
+            <div class="movie-list-item-genre">${movieGenreList(d.genre_ids)}</div>
+            <div class="movie-list-item-rate">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                ${roundRate(d.vote_average)}</div>
+        </div>
+        <span>
+            <i class="fa fa-heart movie-list-item-like" aria-hidden="true"></i>
+            &nbsp;
+            <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
+        </span>                    
+      </div>
+      ${i<data.length-1 ? '<div class="list-item-divider"></div>' : ''}
+    `)
+    })
+  })
+  .catch(err => console.error(err));
+}
+
+//handle find movie view on click 
+function handleOnClick() {
+  $('.dropdown-item').each((_,e)=>{
+    $(e).on('click',()=>{
+      switch(e.id){
+        case 'popularity.desc':
+          allMovieView(page,e.id,null)
+          break
+        case 'popularity.asc':
+          allMovieView(page,e.id,null)
+          break
+        case 'primary_release_date.desc':
+          allMovieView(page,e.id,null)
+          break
+        case 'primary_release_date.asc':
+          allMovieView(page,e.id,null)
+          break
+        case 'vote_average.desc':
+          allMovieView(page,e.id,null)
+          break
+        case 'vote_average.asc':
+          allMovieView(page,e.id,null)
+          break
+        case 'title.desc':
+          allMovieView(page,e.id,null)
+          break
+        case 'title.asc':
+          allMovieView(page,e.id,null)
+          break  
+      }
+    })      
+  })
+
+}
 
 //get yt key
 function getYtKey(id){

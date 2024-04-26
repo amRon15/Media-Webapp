@@ -159,42 +159,128 @@ let movie_genre = {
             "name": "Western"
           }
         ]
-}
-    
+}    
 
 let trendMovieWeekUrl = "https://api.themoviedb.org/3/trending/movie/week?language=en-US"
 let trendTvWeekUrl = "https://api.themoviedb.org/3/trending/tv/week?language=en-US"
+let trendMovieUrl = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
+let trendTvUrl = "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
+let upComingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+
 
 jscript.onload = function(){
     $(document).ready(function(){
         fetchWeeklyData(trendMovieWeekUrl,'movie')
         fetchWeeklyData(trendTvWeekUrl, 'tv')
+        fecthDayData(trendMovieUrl)
+        fecthDayData(trendTvUrl)
+        carouselView()
     })
 }
 
+//weekly movie / tv data
 function fetchWeeklyData(url,type){
     fetch(url, options)
     .then(response => response.json())
     .then(response => {
         if(type=='movie'){
             response.results.forEach(result => {
-                const {id, genre_ids, backdrop_path, poster_path, title, release_date, original_language, vote_average, overview} = result
-                movieListView(result)
+                const data = result
+                movieListView(data)
             });
         }else if(type=='tv'){
             response.results.forEach(result => {
-                const {id, genre_ids, backdrop_path, poster_path, name, first_air_date, original_language, vote_average, overview} = result
-                tvListView(result)
+                const data = result
+                tvListView(data)
             })
         }
     })
     .catch(err => console.error(err));
 }
 
+//day movie / tv data
+function fecthDayData(url){
+  fetch(url, options)
+    .then(response => response.json())
+    .then(response => {
+        const data = response.results
+        if(data[0].title!=null){featureView(sortByDate(data),'movie',url)}
+        else{featureView(sortByDate(data),'tv',url)}
+    })
+    .catch(err => console.error(err));
+}
+
+//carousel view
+function carouselView(){
+  fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
+  .then(response => response.json())
+  .then(response => {
+    const data = response.results
+    data.forEach((d,i)=>{
+      if(i<8){
+        $('.carousel-inner').append(`
+          <div class="carousel-item ${i==1 ? 'active' : ''}">
+          <img src='https://image.tmdb.org/t/p/original${d.backdrop_path}' class="d-block w-100" />
+          <div class="carousel-caption d-none d-md-block">
+              <img src="https://image.tmdb.org/t/p/original${d.poster_path}" id='${d.id}' class="carousel-item-poster" />
+              <h4>${d.title}</h5>
+              <p>${genre(d.genre_ids)}</p>
+          </div>
+          </div>
+        `)
+      }
+      if(i>7 && i<11){
+        $('.upcoming-list').append(`
+          <span class="upcoming">
+          <img src="https://image.tmdb.org/t/p/original${d.poster_path}" id='${d.id}' class='upcoming-img'/>
+          <div class="upcoming-info">
+              <div class="upcoming-title">${d.title}</div>
+              <div class="upcoming-date">${d.release_date}</div>
+              <div class="upcoming-lang">${d.original_language.toUpperCase()}</div>
+          </div>
+          </span>
+        `)
+      }
+    })
+    $('.carousel-item-poster').each((_,e)=>{
+      $(e).on('click',()=>{
+        sendDataToDetailTemplate(e.id,'movie')
+      })
+    })
+    $('.upcoming-img').each((_,e)=>{
+      $(e).on('click',()=>{
+        sendDataToDetailTemplate(e.id,'movie')
+      })
+    })
+  })
+  .catch(err => console.error(err)); 
+}
+
+//feature view
+function featureView(data,type,url) {
+  data.forEach((d,i)=>{
+    if(i>3 && i<7 && type=='movie'){
+    $('.feature-movie-img').append(`
+        <img src="https://image.tmdb.org/t/p/original${d.poster_path}" />
+    `)}else if(i>3 && i<7 && type=='tv'){
+      $('.feature-tv-img').append(`
+        <img src="https://image.tmdb.org/t/p/original${d.poster_path}" />
+      `)  
+    }
+  })
+  $('.feature-movie').on('click',()=>{
+    navToMorePage(url,'movie')
+  })
+  $('.feature-tv').on('click',()=>{
+    navToMorePage(url,'tv')
+  })
+}
+
+//trending movie list view
 function movieListView(data){
     $(`.weekly-movie-list`).append(`
             <div class="card-container">
-                <img class='card-img' onclick="sendDataToDetailTemplate(${data.id})" src="https://image.tmdb.org/t/p/original${data.poster_path}">
+                <img class='card-img movie-card' id='${data.id}' src="https://image.tmdb.org/t/p/original${data.poster_path}">
                 <a class="card-title">${data.title}</a>
                 <div class="card-detail">
                     <div class='card-genre'>${movieGenre(data.genre_ids)}</div>
@@ -205,12 +291,18 @@ function movieListView(data){
                 </div>
             </div>
     `)
+    $('.movie-card').each((_,e)=>{
+      $(e).on('click',()=>{
+        sendDataToDetailTemplate(e.id,'movie')
+      })
+    })
 }
 
+//trending tv list view
 function tvListView(data){
     $(`.weekly-tv-list`).append(`
         <div class="card-container">
-            <img class='card-img' src="https://image.tmdb.org/t/p/original${data.poster_path}">
+            <img class='card-img tv-card' id='${data.id}' src="https://image.tmdb.org/t/p/original${data.poster_path}">
             <a class="card-title">${data.name}</a>
             <div class="card-detail">
                 <div class='card-genre'>${tvGenre(data.genre_ids)}</div>
@@ -220,7 +312,33 @@ function tvListView(data){
                 <div class='card-lang'>${data.original_language.toUpperCase()}</div>
             </div>
         </div>
-`)
+    `)
+    $('.tv-card').each((_,e)=>{
+      $(e).on('click',()=>{
+        sendDataToDetailTemplate(e.id,'tv')
+      })
+    }) 
+}
+
+
+//return a genre name for recommend list
+function genre(genres) {
+  let genre = "";
+  genres.forEach((g) => {
+    movie_genre.genres.forEach((mG) => {
+      if (g == mG.id && genre == "") {
+        genre = mG.name;
+      }
+    });
+  });
+  genres.forEach((g) => {
+    tv_genre.genres.forEach((tG) => {
+      if (g == tG.id && genre == "") {
+        genre = tG.name;
+      }
+    });
+  });
+  return genre;
 }
 
 //return a tv genre name
@@ -252,4 +370,29 @@ function movieGenre(genres){
 //return date with just year
 function justYear(date){
     return date.slice(0,4)
+}
+
+//nav to more
+function navToMorePage(url,type){
+  localStorage.setItem('url',url)
+  localStorage.setItem('type',type)
+  localStorage.setItem('isNextPage',false)
+  location.href = 'more.html'    
+}
+
+//navigate to detail page
+function sendDataToDetailTemplate(id,type){      
+  localStorage.setItem('keyId',id)      
+  localStorage.setItem('type',type)    
+  location.href = 'detail.html'    
+}
+
+//sort movie list by data
+function sortByDate(data){
+  data = data.sort((a,b)=>{
+     if(a.release_date > b.release_date) return -1
+     if(a.release_date < b.release_date) return 1
+     return 0
+  })
+  return data
 }

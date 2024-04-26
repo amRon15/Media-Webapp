@@ -164,14 +164,18 @@ let url
 let type
 let page = 1 
 let data
+let isNextPage = true
 
 jscript.onload = function(){
     $(document).ready(function(){
         url = localStorage.getItem('url')
         type = localStorage.getItem('type')
+        isNextPage = localStorage.getItem('isNextPage')
         fetchData(url,type)
         genreFilter(type)
-        handlePageChange()
+        if(isNextPage==true){
+          handlePageChange()
+        }
     })
 }
 
@@ -220,7 +224,7 @@ function listView(data){
     });    
     $('.list-item-img').each((_, e)=>{
         $(e).on('click',()=>{            
-            sendDataToDetailTemplate(e.id)
+            sendDataToDetailTemplate(e.id,type)
         })
     });
 }
@@ -228,9 +232,14 @@ function listView(data){
 //handle change page
 function handlePageChange(){    
     $('#page-pre').on('click',()=>{
+      let newUrl
         if(page!=1){
             page -= 1
-            let newUrl = url.slice(0,url.length-1)         
+            if(page<10){
+              newUrl = url.slice(0,url.length-1)
+            }else{
+              newUrl = url.slice(0,url.length-2)
+            }         
             newUrl += page            
             $('.list-container').html(' ')
             $('#page-index').html(`${page}`)
@@ -239,13 +248,16 @@ function handlePageChange(){
     })
     $('#page-next').on('click',()=>{
         page += 1 
-        let newUrl = url.slice(0,url.length-1)         
+        if(page<10){
+          newUrl = url.slice(0,url.length-1)
+        }else{
+          newUrl = url.slice(0,url.length-2)
+        }        
         newUrl += page            
         $('.list-container').html(' ')
         $('#page-index').html(page)
         fetchData(newUrl,type)
     })
-    
 }
 
 //return genre for filter
@@ -272,19 +284,20 @@ function genreFilter(type){
 function genreList(genres){
     let allGenre = []
     genres.forEach(g => {
+      if(type=='movie'){
         movie_genre.genres.forEach(mg =>{
             if(g == mg.id){
                 allGenre.push(mg.name)
             }
-        })        
-    })    
-    if(allGenre == null){
-        tv_genre.genres.forEach(tg => {
-            if(g== tg.id){
-                allGenre.push(tg.name)
-            }
         })
-    }        
+      }else{
+        tv_genre.genres.forEach(tg => {
+          if(g== tg.id){
+              allGenre.push(tg.name)
+          }
+      })
+      }    
+    })               
     return allGenre
 }
 
