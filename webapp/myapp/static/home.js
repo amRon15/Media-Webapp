@@ -300,15 +300,59 @@ function peopleListView(url) {
   fetch(url, options)
     .then((response) => response.json())
     .then((response) => {
-      response.results.forEach((result) => {
-        const { id, popularity, name, known_for_department, profile_path, know_for } = result;
+      response.results.forEach((result,i) => {
+        const { id, popularity, name, known_for_department, known_for, profile_path, original_name,gender } = result;
         $(".pop-people-list").append(`
-                <div class='cast-detail'>
-                    <img class='cast-img' src='https://image.tmdb.org/t/p/original/${profile_path}.jpg' />
+                <div class='cast-detail'  data-bs-toggle="collapse" data-bs-target="#multiCollapseExample${i}" aria-expanded="false" aria-controls="multiCollapseExample${i}" >
+                    <img class='cast-img' src='https://image.tmdb.org/t/p/original/${profile_path}.jpg'/>
                     <div class='cast-name'>${name}</div>
                 </div>
             `);
+        $('.collapse-list').append(`
+            <div class="collapse multi-collapse" id="multiCollapseExample${i}" data-bs-parent="#collapse-list">
+              <div class="card card-body">
+                <div class='card-body-container' id='${known_for[0].media_type}'>                  
+                  <img class='card-body-img' id='${known_for[0].id}' src='https://image.tmdb.org/t/p/original/${known_for[0].poster_path}.jpg'  >
+                  <div class='card-body-detail'>
+                    <div class='card-body-known'>Known For</div>
+                    <div class='card-body-title'>Title: <span>${known_for[0].title !=null ? known_for[0].title : known_for[0].name }</span></div>
+                    <div class='card-body-rate'>Rating: <span>&starf; ${Math.round(known_for[0].vote_average * 10) / 10}</span></div>
+                    <div class='card-body-genre'>Genre: ${movieGenreList(known_for[0].genre_ids).map((g,i)=>{
+                      if(i < 3) {
+                        if(i < known_for[0].genre_ids.length -1 || i < 2 ){return g+' <span style="margin: 0 1rem; color: #00719c;"> | </span>'}
+                        else{return g} }}).join('')
+                      }
+                    </div>
+                    <div class='card-body-lang'>Original Language: ${known_for[0].original_language.toUpperCase()}</div>                    
+                    <div class='card-body-date'>Release Date: ${known_for[0].release_date != null ? known_for[0].release_date : known_for[0].first_air_date}</div>
+                    <div class='card-body-oTitle'>Original Title: ${known_for[0].original_title != null ? known_for[0].original_title : known_for[0].original_name}</div>
+                  </div>
+                  <div class='divider-vertical'></div>
+                  <div class='card-body-actor-detail'>
+                    <div class='card-body-info'>Information</div>
+                    <div class='card-body-actor-name'>Name: ${name} </div>
+                    <div class='card-body-actor-oName'>Original Name: ${original_name} </div>
+                    <div class='card-body-dept'>Known For: ${known_for_department} </div>
+                    <div class='card-body-actor-gender'>Gender: ${gender==1 ? 'Female' : 'Male'} </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `)                
       });
+      $('.card-body-img').each((_,e)=>{
+        $(e).on('click',()=>{
+          const type = $(e).parent().attr('id')
+          sendDataToDetailTemplate(e.id,type)
+        })
+      })
+      $('.card-body-title').each((_,e)=>{
+        $(e).on('click',()=>{
+          const type = $(e).parent().parent().attr('id')
+          const eId = $(e).parent().parent().find('img').attr('id')
+          sendDataToDetailTemplate(eId,type)
+        })
+      })
     })
     .catch((err) => console.error(err));
 }
@@ -352,6 +396,13 @@ function movieGenreList(genres) {
         allGenre.push(mg.name);
       }
     });
+    if(allGenre==null){
+      tv_genre.genres.forEach((tG)=>{
+        if(g == tG.id){
+          allGenre.push(tg.name)
+        }
+      })
+    }
   });
   return allGenre;
 }

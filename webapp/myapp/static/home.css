@@ -179,3 +179,82 @@
 .cast-name:hover{
     color: white;
 }
+
+.card{
+    --bs-card-bg: transparent;
+}
+
+.card-body-actor-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card-body-container{
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    font-size: 1.25rem;
+    color: white;
+    cursor: default;
+    gap: 1rem;
+}
+
+
+.card-body-img{
+    width: 10vi;
+    margin: 0 1vi 0 1vi;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-body-img:hover{
+    opacity: 0.8;
+}
+
+.card-body-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.card-body-title span{
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-body-title span:hover{
+    color: white;
+}
+
+.card-body-known,.card-body-info{
+    font-size: 1.5rem;
+}
+
+.card-body-known::before{
+    content: '| ';
+    color: #009bd6;
+}
+
+.card-body-rate span{
+    color: gold;
+}
+
+.card-body-info::before{
+    content: '| ';
+    color: #009bd6;
+}
+
+.divider-vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1px;
+    height: 300px;
+    background: linear-gradient(to bottom, #101010,#202020,#101010);  
+    margin: 0 2vi;  
+}
