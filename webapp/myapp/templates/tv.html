@@ -13,7 +13,13 @@
     <div class="hero-detail-container">
         <div class="hero-detail-title"></div>
         <div class="hero-detail-genre"></div>
-        <div class="hero-detail-rate"></div>
+        <div class="hero-detail-list">
+            <div class="hero-detail-rate"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-lang"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-date"></div>
+        </div>   
         <span class="hero-detail-btn-container">
             <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
             <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> Info</button>
@@ -35,12 +41,12 @@
                 </button>
             </span>
         </div>
-        <div class="hero-video-list">            
+        <div class="hero-video-list" id="hero-video-list">            
         </div>
     </div>
     <div class="divider">
     </div>
-    <div class="list-container">
+    <div class="trend-list-container list-container">
         <div class="list-bar">
             <span class="title-more">Top 10 Trending TV Show</span>
             <span class="list-btn-container">
@@ -52,10 +58,10 @@
                 </button>
             </span>
         </div>
-        <div class="trend-list card-list">
+        <div class="trend-list card-list" id="trend-list">
         </div>
     </div>
-    <div class="list-container">
+    <div class="top-rated-list-container list-container">
         <div class="list-bar">
             <span class="title-more">Top Rated TV Show</span>
             <span class="list-btn-container">
@@ -67,66 +73,41 @@
                 </button>
             </span>
         </div>
-        <div class="top-rated-list card-list">
+        <div class="top-rated-list card-list" id="top-rated-list">
         </div>
     </div>
     <div class="divider"></div>
     <div class="find-movie-container">
         <div class="find-movie-filter-container">
             <div class="genre-dropdown dropdown">                
-                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-warning dropdown-toggle" id="genre-filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Genre
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </button>            
-                <ul class="dropdown-menu">
-                    {% for genre in tvGenre.genres %}
-                    <li><p class="dropdown-item" >{{genre.name | capfirst }}</p></li>     
-                    {% endfor %}       
+                <ul class="dropdown-menu dropdown-menu-genre">    
                 </ul>
             </div>
             <div class="find-movie-sort-container">Sort by 
                 <div class="dropdown">                    
-                    <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Popluarity Asc
+                    <button class="btn btn-warning dropdown-toggle" id="sort-type-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Popluarity Desc
                         <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>                
                     </button>
-                    <ul class="dropdown-menu">                        
-                        <li><p class="dropdown-item" >Popularity Desc</p></li>
-                        <li><p class="dropdown-item" >Popularity Asc</p></li>
-                        <li><p class="dropdown-item" >Release Date Desc</p></li>
-                        <li><p class="dropdown-item" >Release Date Asc</p></li>
-                        <li><p class="dropdown-item" >Rating Desc</p></li>
-                        <li><p class="dropdown-item" >Rating Asc</p></li>
-                        <li><p class="dropdown-item" >Name Desc</p></li>
-                        <li><p class="dropdown-item" >Name Asc</p></li>                   
+                    <ul class="dropdown-menu dropdown-menu-sort">                        
+                        <li><p class="dropdown-item sort-type" id='popularity.desc' >Popularity Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='popularity.asc'>Popularity Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='first_air_date.desc'>First Air Date Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='first_air_date.asc'>First Air Date Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.desc'>Rating Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.asc'>Rating Asc</p></li>   
+                        <li><p class="dropdown-item sort-type" id='name.desc'>Name Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='name.asc'>Name Asc</p></li>                
+                    </ul>                  
                     </ul>
                 </div>                                
             </div>
         </div>        
         <div class="find-movie-list"> 
-            {% for tv in allTv %}
-            {% if forloop.counter < 5 %}
-                <div class="movie-list-item">
-                    <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/original{{tv.poster_path}}" alt="">                    
-                    <div class="movie-list-item-detail">
-                        <div class="movie-list-item-title">{{tv.title}}</div>
-                        <div class="movie-list-item-date">{{tv.first_air_date}}</div>
-                        <div class="movie-list-item-genre">{{tv.genre_ids}}</div>
-                        <div class="movie-list-item-rate">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            {{tv.vote_average}}</div>
-                    </div>
-                    <span>
-                        <i class="fa fa-bookmark movie-list-item-bookmark" aria-hidden="true"></i>
-                        &nbsp;
-                        <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
-                    </span>                    
-                </div>
-                {% if forloop.counter < 4 %}
-                    <div class="list-item-divider"></div>
-                    {% endif %}
-                {% endif %}
-            {%  endfor %}
         </div>
         <nav>
             <ul class="pagination justify-content-center" >

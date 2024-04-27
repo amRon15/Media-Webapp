@@ -38,11 +38,11 @@ def renderView(request):
 
 # return data for movie page
 def renderMovieView(request):
-    return render(request, 'movie.html',{'movieGenre': movie_genre, 'allMovie' : allMovieList})
+    return render(request, 'movie.html')
 
 #return data for tv page
 def renderTvView(request):
-    return render(request, 'tv.html',{'tvGenre' : tv_genre, 'allTv' : allTvList})
+    return render(request, 'tv.html')
 
 #return view for what's new page
 def renderNewView(request):
@@ -59,6 +59,10 @@ def renderMoreView(request):
 #return view for login page
 def renderLoginView(request):
     return render(request, 'login.html')
+
+#return view for search page
+def renderSearchView(request):
+    return render(request, 'search.html')
 
 #main fetch movie api function
 def fetchData(url):

@@ -14,7 +14,7 @@
     right: 0;
     margin: auto;
     border-radius: 20px;
-    margin-top: 2vi;
+    margin-top: 1vi;
 }
 
 .hero-container{
@@ -91,12 +91,13 @@
 }
 
 .content-container{
-    margin-top: 8vi;
+    margin-top: 12vi;
 }
 
 .hero-video-title{
     font-size: 1.75rem;
     color: white;
+    cursor: default;
 }
 
 .hero-video-title::before{
@@ -132,7 +133,7 @@
 }
 
 .title-more{
-    cursor: pointer;
+    cursor: default;
     transition: all 0.5s ease-in-out;
     color: white;
 }
@@ -142,16 +143,6 @@
     color:#009bd6;
 }
 
-.title-more:after{
-    margin-left: 10px;
-    content: ' More >';
-    font-size: large;
-    position: relative;
-    left: -20px;
-    color: rgb(236, 233, 25);
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
-}
 
 .title-more:hover:after{
     opacity: 1;
@@ -344,6 +335,18 @@ p.page-link:hover{
 
 .movie-list-item-img:hover{
     opacity: 0.8;
+}
+
+.movie-list-item-title{
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.movie-list-item-title:hover{
+    text-decoration: dashed;
+    color: white;
 }
 
 .movie-list-item-detail{

@@ -1,17 +1,3 @@
-let jscript = document.createElement("script");
-jscript.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js");
-jscript.type = "text/javascript";
-document.getElementsByTagName("head")[0].appendChild(jscript);
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYjMxZTZkYjM3NTdkMTI3YWU0NjE2ODMyYzkwMjc2MCIsInN1YiI6IjYyOGM4MmViZWQyYWMyNTQ2OTllODkwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OMw-6etv7U0d0qIkPC_30V2RPWo9s_9lelEwFbF-l7c",
-  },
-};
-
 //genre of movie & tv
 let tv_genre = {
   genres: [
@@ -162,28 +148,101 @@ let movie_genre = {
   ],
 };
 
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYjMxZTZkYjM3NTdkMTI3YWU0NjE2ODMyYzkwMjc2MCIsInN1YiI6IjYyOGM4MmViZWQyYWMyNTQ2OTllODkwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OMw-6etv7U0d0qIkPC_30V2RPWo9s_9lelEwFbF-l7c",
+  },
+};
+
 let popMovieUrl = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 let popTvUrl = "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1";
 let trendTvUrl = "https://api.themoviedb.org/3/trending/tv/day?language=en-US";
 let popPeopleUrl = "https://api.themoviedb.org/3/trending/person/day?language=en-US";
 
-jscript.onload = function () {
+window.onload = function () {
   $(document).ready(function () {
     fetchData(popMovieUrl, "movie");
     fetchData(trendTvUrl, "tv");
     peopleListView(popPeopleUrl);
     handleClick();
-    carouselView()
+    carouselView();
   });
 };
 
 function handleClick() {
   $("#pop-movie-more").on("click", () => {
-    navToMorePage(popMovieUrl, "movie");
+    navToMorePage(popMovieUrl, "movie", "Popular Movie");
   });
 
   $("#pop-tv-more").on("click", () => {
-    navToMorePage(trendTvUrl, "tv");
+    navToMorePage(trendTvUrl, "tv", "Popular TV Series");
+  });
+
+  //pop list btn
+  $(".pop-movie-list-container .list-btn-next").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-movie-list").animate(
+        {
+          scrollLeft: $("#pop-movie-list").scrollLeft() + 1296,
+        },
+        600
+      );
+    });
+  });
+  $(".pop-movie-list-container .list-btn-prev").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-movie-list").animate(
+        {
+          scrollLeft: $("#pop-movie-list").scrollLeft() - 1296,
+        },
+        600
+      );
+    });
+  });
+  $(".pop-tv-list-container .list-btn-next").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-tv-list").animate(
+        {
+          scrollLeft: $("#pop-tv-list").scrollLeft() + 1296,
+        },
+        600
+      );
+    });
+  });
+  $(".pop-tv-list-container .list-btn-prev").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-tv-list").animate(
+        {
+          scrollLeft: $("#pop-tv-list").scrollLeft() - 1296,
+        },
+        600
+      );
+    });
+  });
+
+  //cast list btn
+  $(".pop-cast-list-container .list-btn-next").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-people-list").animate(
+        {
+          scrollLeft: $("#pop-people-list").scrollLeft() + 1296,
+        },
+        600
+      );
+    });
+  });
+  $(".pop-cast-list-container .list-btn-prev").each((_, e) => {
+    $(e).on("click", () => {
+      $("#pop-people-list").animate(
+        {
+          scrollLeft: $("#pop-people-list").scrollLeft() - 1296,
+        },
+        600
+      );
+    });
   });
 }
 
@@ -215,25 +274,25 @@ function fetchData(url, type) {
 
 //return view for carousel
 function carouselView() {
-  fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
-  .then(response => response.json())
-  .then(response => {
-    const data = response.results
-    data.forEach((d,i)=>{
-      if((d.media_type=='movie' || d.media_type=='tv') && i<=5){ 
-        $('.carousel-inner').append(`
-          <div class="carousel-item ${i==0 ? 'active' : ''}" id="slide${i}">
+  fetch("https://api.themoviedb.org/3/trending/all/day?language=en-US", options)
+    .then((response) => response.json())
+    .then((response) => {
+      const data = response.results;
+      data.forEach((d, i) => {
+        if ((d.media_type == "movie" || d.media_type == "tv") && i <= 5) {
+          $(".carousel-inner").append(`
+          <div class="carousel-item ${i == 0 ? "active" : ""}" id="slide${i}">
             <img src="https://image.tmdb.org/t/p/original${d.backdrop_path}" class="d-block w-100 opacity-75" id='${d.id}'>
             <div class="carousel-caption d-none d-md-block">
-              <h1>${d.title!=null ? d.title : d.name}</h5>
+              <h1>${d.title != null ? d.title : d.name}</h5>
               <p>${genre(d.genre_ids)}</p>
             </div>
           </div>
-        `)
-      }
+        `);
+        }
+      });
     })
-  })
-  .catch(err => console.error(err));
+    .catch((err) => console.error(err));
 }
 
 //return popular people
@@ -256,9 +315,9 @@ function peopleListView(url) {
 
 //return movie list
 function listView(data, name) {
-  data.forEach((m) => {  
+  data.forEach((m) => {
     $(`.${name}`).append(`
-            <div class="card-container" id=${m.title!=null ? 'movie' : 'tv'}>
+            <div class="card-container" id=${m.title != null ? "movie" : "tv"}>
                 <img class='card-img' id='${m.id}' src="https://image.tmdb.org/t/p/original${m.poster_path}">
                 <a class="card-title" id='${m.id}'>${m.title != null ? m.title : m.name}</a>
                 <div class="card-detail">
@@ -273,16 +332,16 @@ function listView(data, name) {
   });
   $(".card-img").each((_, e) => {
     $(e).on("click", () => {
-      let type = $(e).parent().attr('id')      
-      sendDataToDetailTemplate(e.id,type);
+      let type = $(e).parent().attr("id");
+      sendDataToDetailTemplate(e.id, type);
     });
   });
-  $('.card-title').each((_,e)=>{
-    $(e).on('click',()=>{
-      let type = $(e).parent().attr('id')
-      sendDataToDetailTemplate(e.id,type)
-    })
-  })
+  $(".card-title").each((_, e) => {
+    $(e).on("click", () => {
+      let type = $(e).parent().attr("id");
+      sendDataToDetailTemplate(e.id, type);
+    });
+  });
 }
 
 function movieGenreList(genres) {
@@ -353,14 +412,15 @@ function sortByRating(data) {
 }
 
 //nav to more
-function navToMorePage(url, type) {
+function navToMorePage(url, type, title) {
   localStorage.setItem("url", url);
   localStorage.setItem("type", type);
+  localStorage.setItem("title", title);
   location.href = "more.html";
 }
 
 //navigate to detail page
-function sendDataToDetailTemplate(id,type) {
+function sendDataToDetailTemplate(id, type) {
   localStorage.setItem("keyId", id);
   localStorage.setItem("type", type);
   location.href = "detail.html";

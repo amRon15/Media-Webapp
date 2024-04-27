@@ -41,12 +41,12 @@
                 </button>
             </span>
         </div>
-        <div class="hero-video-list">
+        <div class="hero-video-list" id="hero-video-list">
         </div>
     </div>
     <div class="divider">
     </div>
-    <div class="pop-list-container">
+    <div class="pop-list-container list-container">
         <div class="list-bar">
             <span class="title-more">Top 10 Popluar Movie</span>
             <span class="list-btn-container">
@@ -58,10 +58,10 @@
                 </button>
             </span>
         </div>
-        <div class="pop-list card-list"> 
+        <div class="pop-list card-list" id="pop-list"> 
         </div>
     </div>
-    <div class="list-container">
+    <div class="top-rated-list-container list-container">
         <div class="list-bar">
             <span class="title-more">Top Rated Movie Of Year</span>
             <span class="list-btn-container">
@@ -73,38 +73,35 @@
                 </button>
             </span>
         </div>
-        <div class="top-rated-list card-list">            
+        <div class="top-rated-list card-list" id="top-rated-list">            
         </div>
     </div>
     <div class="divider"></div>
     <div class="find-movie-container">
         <div class="find-movie-filter-container">
             <div class="genre-dropdown dropdown">                
-                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-warning dropdown-toggle" id="genre-filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Genre
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </button>            
-                <ul class="dropdown-menu">
-                    {% for genre in movieGenre.genres %}
-                    <li><p class="dropdown-item" >{{genre.name | capfirst }}</p></li>     
-                    {% endfor %}       
+                <ul class="dropdown-menu dropdown-menu-genre">     
                 </ul>
             </div>
             <div class="find-movie-sort-container">Sort by 
                 <div class="dropdown">                    
-                    <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-warning dropdown-toggle" id="sort-type-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Popularity Desc
                         <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>                
                     </button>
-                    <ul class="dropdown-menu">                        
-                        <li><p class="dropdown-item" id='popularity.desc' >Popularity Desc</p></li>
-                        <li><p class="dropdown-item" id='popularity.asc'>Popularity Asc</p></li>
-                        <li><p class="dropdown-item" id='primary_release_date.desc'>Release Date Desc</p></li>
-                        <li><p class="dropdown-item" id='primary_release_date.asc'>Release Date Asc</p></li>
-                        <li><p class="dropdown-item" id='vote_average.desc'>Rating Desc</p></li>
-                        <li><p class="dropdown-item" id='vote_average.asc'>Rating Asc</p></li>   
-                        <li><p class="dropdown-item" id='title.desc'>Name Desc</p></li>
-                        <li><p class="dropdown-item" id='title.asc'>Name Asc</p></li>                
+                    <ul class="dropdown-menu dropdown-menu-sort">                        
+                        <li><p class="dropdown-item sort-type" id='popularity.desc' >Popularity Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='popularity.asc'>Popularity Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='primary_release_date.desc'>Release Date Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='primary_release_date.asc'>Release Date Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.desc'>Rating Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.asc'>Rating Asc</p></li>   
+                        <li><p class="dropdown-item sort-type" id='title.desc'>Name Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='title.asc'>Name Asc</p></li>                
                     </ul>
                 </div>                                
             </div>

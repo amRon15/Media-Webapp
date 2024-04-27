@@ -1,3 +1,9 @@
+#title{
+    font-size: 2rem;
+    color: #009bd6;
+    margin: 1vi 0 1vi 1vi;
+}
+
 .list-container{
     display: block;
     padding: 1vi 5vi;
@@ -25,6 +31,17 @@
 
 .list-item-img:hover{
     opacity: 0.8;
+}
+
+.list-item-title{
+    color: #009bd6;
+    font-size: 1.75rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.list-item-title:hover{
+    color: white;
 }
 
 .list-item-detail{

@@ -1,3 +1,6 @@
+let inputText;
+let page = 1;
+let totalPages = 1;
 //genre of movie & tv
 let tv_genre = {
   genres: [
@@ -148,13 +151,6 @@ let movie_genre = {
   ],
 };
 
-let url;
-let type;
-let page = 1;
-let data;
-let isNextPage = true;
-let listTitle;
-
 const options = {
   method: "GET",
   headers: {
@@ -164,43 +160,39 @@ const options = {
   },
 };
 
+
 window.onload = function () {
   $(document).ready(function () {
-    url = localStorage.getItem("url");
-    type = localStorage.getItem("type");
-    isNextPage = localStorage.getItem("isNextPage");
-    listTitle = localStorage.getItem("title");
-    fetchData(url, type);
-    // genreFilter(type)
-    if (isNextPage == true) {
-      handlePageChange();
-    }
+    inputText = localStorage.getItem("inputText");
+    searchData(inputText);
   });
 };
 
-//fetch data from local storage key
-function fetchData(url, type) {
-  fetch(url, options)
+//get search data
+function searchData(text) {
+  fetch(`https://api.themoviedb.org/3/search/multi?query=${text}&include_adult=false&language=en-US&page=${page}`, options)
     .then((response) => response.json())
     .then((response) => {
-      data = response.results;
-      listView(data, type);
+      const data = response;
+      totalPages = data.total_pages;
+      searchView(data.results);
+      $("#title").html(`Search Results: ${data.total_results}`);
+      handlePageChange();
     })
     .catch((err) => console.error(err));
 }
 
-//return the list view
-function listView(data) {
-  $("#title").html(listTitle);
+//search list view
+function searchView(data) {
   data.forEach((e, i) => {
     $(".list-container").append(`
-        <div class="list-item">
+        <div class="list-item" id=${e.media_type}>
             <img class="list-item-img" src="https://image.tmdb.org/t/p/original${e.poster_path}" id='${e.id}' alt="">                    
             <div class="list-item-detail">
                 <div class="list-item-title">${e.title != null ? e.title : e.name}</div>
                 <div class="list-item-date">${e.release_date != null ? e.release_date : e.first_air_date}</div>                
                 <div class='list-item-genre'>   
-                ${genreList(e.genre_ids)
+                ${genreList(e.genre_ids, e.media_type)
                   .map((g, i) => {
                     if (i < e.genre_ids.length - 1) {
                       return `${g} <span style="margin: 0 1rem; color: #00719c;"> | </span>`;
@@ -226,7 +218,15 @@ function listView(data) {
   });
   $(".list-item-img").each((_, e) => {
     $(e).on("click", () => {
+      let type = $(e).parent().attr("id");
       sendDataToDetailTemplate(e.id, type);
+    });
+  });
+  $(".list-item-title").each((_, e) => {
+    $(e).on("click", () => {
+      let type = $(e).parent().parent().attr("id");
+      let eId = $(e).parent().parent().find("img").attr("id");
+      sendDataToDetailTemplate(eId, type);
     });
   });
 }
@@ -234,86 +234,48 @@ function listView(data) {
 //handle change page
 function handlePageChange() {
   $("#page-pre").on("click", () => {
-    let newUrl;
     if (page != 1) {
       page -= 1;
-      if (page < 10) {
-        newUrl = url.slice(0, url.length - 1);
-      } else {
-        newUrl = url.slice(0, url.length - 2);
-      }
-      newUrl += page;
       $(".list-container").html(" ");
       $("#page-index").html(`${page}`);
-      fetchData(newUrl, type);
+      searchData(inputText);
     }
   });
   $("#page-next").on("click", () => {
-    page += 1;
-    if (page < 10) {
-      newUrl = url.slice(0, url.length - 1);
-    } else {
-      newUrl = url.slice(0, url.length - 2);
+    if (page < totalPages) {
+      page += 1;
+      $(".list-container").html(" ");
+      $("#page-index").html(page);
+      searchData(inputText);
     }
-    newUrl += page;
-    $(".list-container").html(" ");
-    $("#page-index").html(page);
-    fetchData(newUrl, type);
   });
-}
-
-//return genre for filter
-function genreFilter(type) {
-  if (type == "movie") {
-    movie_genre.genres.forEach((g) => {
-      $(".dropdown-menu").append(`
-            <li><p class="dropdown-item" >${g.name}</p></li>
-        `);
-      $(".dropdown-item").on("click", () => {});
-    });
-  } else {
-    tv_genre.genres.forEach((g) => {
-      $(".dropdown-menu").append(`
-            <li><p class="dropdown-item" >${g.name}</p></li>
-        `);
-    });
-  }
 }
 
 //return genre name list
-function genreList(genres) {
+function genreList(genres, type) {
   let allGenre = [];
-  genres.forEach((g) => {
-    if (type == "movie") {
-      movie_genre.genres.forEach((mg) => {
-        if (g == mg.id) {
-          allGenre.push(mg.name);
-        }
-      });
-    } else {
-      tv_genre.genres.forEach((tg) => {
-        if (g == tg.id) {
-          allGenre.push(tg.name);
-        }
-      });
-    }
-  });
+  if (genres != null) {
+    genres.forEach((g) => {
+      if (type == "movie") {
+        movie_genre.genres.forEach((mg) => {
+          if (g == mg.id) {
+            allGenre.push(mg.name);
+          }
+        });
+      } else {
+        tv_genre.genres.forEach((tg) => {
+          if (g == tg.id) {
+            allGenre.push(tg.name);
+          }
+        });
+      }
+    });
+  }
   return allGenre;
 }
 
-//return genre name
-function genre(genre) {
-  let name = "";
-  movie_genre.genres.forEach((mg) => {
-    if (genre == mg.id) {
-      name = mg.name;
-    }
-  });
-  return name;
-}
-
 //navigate to detail page
-function sendDataToDetailTemplate(id) {
+function sendDataToDetailTemplate(id, type) {
   localStorage.setItem("keyId", id);
   localStorage.setItem("type", type);
   location.href = "detail.html";
