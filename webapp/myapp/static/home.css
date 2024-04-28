@@ -258,3 +258,35 @@
     background: linear-gradient(to bottom, #101010,#202020,#101010);  
     margin: 0 2vi;  
 }
+
+.card-body-title span:hover{
+    color: white;
+}
+
+.card-body-known,.card-body-info{
+    font-size: 1.5rem;
+}
+
+.card-body-known::before{
+    content: '| ';
+    color: #009bd6;
+}
+
+.card-body-rate span{
+    color: gold;
+}
+
+.card-body-info::before{
+    content: '| ';
+    color: #009bd6;
+}
+
+.divider-vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1px;
+    height: 300px;
+    background: linear-gradient(to bottom, #101010,#202020,#101010);  
+    margin: 0 2vi;  
+}
