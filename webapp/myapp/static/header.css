@@ -9,6 +9,10 @@
   background-color: #00070a;
 }
 
+.navbar{
+  display: none;
+}
+
 #header-title{
   text-decoration: none;
   color: white;
@@ -113,4 +117,14 @@ ul{
 #header-sign:hover{
   background-color: #b40b14;
   color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .header-container{
+    display: none;
+  }
+
+  .navbar{
+    display: flex;
+  }
 }
