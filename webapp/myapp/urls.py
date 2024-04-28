@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.urls import path
 from myapp.views import login_signup_view
 from . import views

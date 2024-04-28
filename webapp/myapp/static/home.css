@@ -24,6 +24,10 @@
     color: white;
 }
 
+#pop-cast-more{
+    cursor: default;
+}
+
 .title-more::before{
     content: "| ";
     color:#009bd6;
@@ -40,7 +44,7 @@
     opacity: 0;
 }
 
-.title-more:hover:after{
+.title-more:not(#pop-cast-more):hover:after{
     opacity: 1;
     left: 0px;
 }
