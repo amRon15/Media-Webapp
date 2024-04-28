@@ -267,13 +267,7 @@ function featureView(data, type, url) {
         <img src="https://image.tmdb.org/t/p/original${d.poster_path}" />
       `);
     }
-  });
-  $(".feature-movie").on("click", () => {
-    navToMorePage(url, "movie", "Trending Movie Of The Day");
-  });
-  $(".feature-tv").on("click", () => {
-    navToMorePage(url, "tv", "Trending TV Series");
-  });
+  });  
 }
 
 //trending movie list view
@@ -376,6 +370,14 @@ function handleOnClick() {
         600
       );
     });
+  });
+
+  //nav to more page
+  $(".feature-movie").on("click", () => {
+    navToMorePage(trendMovieUrl, 'movie', "Trending Movie Of The Day");
+  });
+  $(".feature-tv").on("click", () => {
+    navToMorePage(trendTvUrl, 'tv', "Trending TV Series");
   });
 }
 

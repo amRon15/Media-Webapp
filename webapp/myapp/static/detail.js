@@ -358,8 +358,8 @@ function fetchCredit() {
       let producers = [];
       for (let i = 0; i < cast.length; i++) {
         if (i < 10) {
-          const { name, profile_path } = cast[i];
-          const actor = { name: name, profile: profile_path };
+          const { name, profile_path, id,known_for_department,gender,original_name } = cast[i];
+          const actor = { name: name, profile: profile_path, id: id, dept: known_for_department, gender: gender, oName: original_name };
           actors.push(actor);
         }
       }
@@ -373,13 +373,14 @@ function fetchCredit() {
       }
 
       //html view actors
-      actors.forEach((a) => {
+      actors.forEach((a,i) => {        
         $(".cast-list").append(
-          `<div class='cast-detail'>
+          `<div class='cast-detail' data-bs-toggle="collapse" data-bs-target="#multiCollapseExample${i}" aria-expanded="false" aria-controls="multiCollapseExample${i}">
               <img class='cast-img' src='https://image.tmdb.org/t/p/original/${a.profile}.jpg' />
               <div class='cast-name'>${a.name}</div>
             </div>`
         );
+        castCollapseView(a,i)
       });
 
       if (directors.length != 0) {
@@ -407,6 +408,60 @@ function fetchCredit() {
       }
     })
     .catch((err) => console.error(err));
+}
+
+//cast collapse view
+function castCollapseView(actor,index){
+  fetch(`https://api.themoviedb.org/3/person/${actor.id}/combined_credits?language=en-US`, options)
+  .then(response => response.json())
+  .then(response => {
+    const data = response.cast[0]
+    $('.collapse-list').append(`
+    <div class="collapse multi-collapse" id="multiCollapseExample${index}" data-bs-parent="#collapse-list">
+      <div class="card card-body">
+        <div class='card-body-container' id='${data.media_type}'>                  
+          <img class='card-body-img' id='${data.id}' src='https://image.tmdb.org/t/p/original/${data.poster_path}.jpg'  >
+          <div class='card-body-detail'>
+            <div class='card-body-known'>Known For</div>
+            <div class='card-body-title'>Title: <span>${data.title !=null ? data.title : data.name }</span></div>
+            <div class='card-body-rate'>Rating: <span>&starf; ${Math.round(data.vote_average * 10) / 10}</span></div>
+            <div class='card-body-genre'>Genre: ${genreList(data.genre_ids).map((g,i)=>{
+              if(i < 3) {
+                if(i < data.genre_ids.length -1 || i < 2 ){return g+' <span style="margin: 0 1rem; color: #00719c;"> | </span>'}
+                else{return g} }}).join('')
+              }
+            </div>
+            <div class='card-body-lang'>Original Language: ${data.original_language.toUpperCase()}</div>                    
+            <div class='card-body-date'>Release Date: ${data.release_date != null ? data.release_date : data.first_air_date}</div>
+            <div class='card-body-oTitle'>Original Title: ${data.original_title != null ? data.original_title : data.original_name}</div>
+          </div>
+          <div class='divider-vertical'></div>
+          <div class='card-body-actor-detail'>
+            <div class='card-body-info'>Information</div>
+            <div class='card-body-actor-name'>Name: ${actor.name} </div>
+            <div class='card-body-actor-oName'>Original Name: ${actor.oName} </div>
+            <div class='card-body-dept'>Known For: ${actor.dept} </div>
+            <div class='card-body-actor-gender'>Gender: ${actor.gender==1 ? 'Female' : 'Male'} </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `)
+    $('.card-body-img').each((_,e)=>{
+      $(e).on('click',()=>{
+        const type = $(e).parent().attr('id')
+        sendDataToDetailTemplate(e.id,type)
+      })
+    })
+    $('.card-body-title').each((_,e)=>{
+      $(e).on('click',()=>{
+        const type = $(e).parent().parent().attr('id')
+        const eId = $(e).parent().parent().find('img').attr('id')
+        sendDataToDetailTemplate(eId,type)
+      })
+    })
+  })
+  .catch(err => console.error(err));
 }
 
 //return the similar
@@ -562,6 +617,26 @@ function movieListGenre(genres) {
     });
   });
   return genre;
+}
+
+//return a genre list
+function genreList(genres){
+  let allGenre = []
+  genres.forEach(g=>{
+    movie_genre.genres.forEach(mg=>{
+      if(g == mg.id){
+        allGenre.push(mg.name)
+      }
+    })
+    if(allGenre==null){
+      tv_genre.genres.forEach(tg=>{
+        if(g == tg.id){
+          allGenre.push(tg.name)
+        }
+      })
+    }
+  })
+  return allGenre
 }
 
 //return date with just year

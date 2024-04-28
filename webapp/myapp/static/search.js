@@ -208,7 +208,7 @@ function searchView(data) {
                 </div>
             </div>
             <span>
-                <i class="fa fa-heart movie-list-item-like" aria-hidden="true"></i>
+                <i class="fa fa-bookmark movie-list-item-bookmark" aria-hidden="true"></i>
                 &nbsp;
                 <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
             </span>                    

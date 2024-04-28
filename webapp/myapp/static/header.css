@@ -96,13 +96,9 @@ ul{
     border-radius: 25px;
   }
  
-.fa-heart{
-  color: #b40b14;
+.fa-bookmark{
+  color: #ffe600;
   transition: all 0.3s ease-in-out;
-}
-
-.fa-heart:hover{
-  color: #cc0d17;
 }
 
 

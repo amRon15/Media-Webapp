@@ -57,12 +57,12 @@
     cursor: pointer;        
 }
 
-.list-item-like{
-    color: #FF0000;
+.list-item-bookmark{
+    color: #ffe600;
     transition: all 0.2s ease-in-out;
 }
 
-.list-item-like:hover{
+.list-item-bookmark:hover{
     transform: scale(1.1);
 }
 
