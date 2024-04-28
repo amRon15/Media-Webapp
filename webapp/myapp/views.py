@@ -6,7 +6,6 @@ from django.contrib import messages
 from .forms_cc import CustomUserCreationForm
 from .models import User, Movie
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
 from requests import post
 
 # Create your views here.
@@ -94,14 +93,6 @@ def user_detail_view(request):
     return render(request, 'user_list.html', {'all_users': all_users})
 
 def store_movie(request):
-    all_movies = Movie.objects.all()
-    movieIDs = [Movie.movieID for Movie in all_movies]
-    return render(request, 'movie_id.html', {'movieIDs': movieIDs})
+    all_movies = Movie.objects.all().values_list('movieID')
+    return render(request, 'movie_id.html', {'movieIDs': all_movies})
 
-#save movie id
-def saveMovieID(reqest):
-    if reqest.method == 'POST':
-        movieID = reqest.POST['movieID']        
-        new_movieID = Movie(movieID)
-        new_movieID.save()
-        return HttpResponse('Save Successfully')

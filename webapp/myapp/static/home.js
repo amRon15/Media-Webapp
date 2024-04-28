@@ -169,8 +169,14 @@ window.onload = function () {
     peopleListView(popPeopleUrl);
     handleClick();
     carouselView();
+    getUser()
   });
 };
+
+function getUser(){
+  const user = $("input[name='user']").val()
+  console.log(user)
+}
 
 function handleClick() {
   $("#pop-movie-more").on("click", () => {

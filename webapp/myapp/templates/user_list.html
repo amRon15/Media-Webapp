@@ -11,7 +11,10 @@
         <li>
             <strong>Username:</strong> {{ user.username }}<br>
             <strong>Email:</strong> {{ user.email }}<br>
-            <strong>Movie ID:</strong> {{ user.movieID }}
+            <strong>Movie ID:</strong> 
+            {% for movie in user.movieIDs.all %}
+            <p>{{movie.movieID}},</p>
+            {% endfor %}
         </li>
         {% endfor %}
     </ul>

@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.exceptions import ValidationError
 
 class Movie(models.Model):
-    movieID = models.CharField(max_length=20,unique=False)
+    movieID = models.CharField(max_length=20,unique=True,null=True,blank=True)
 
 class User(AbstractUser):
     username = models.CharField(
@@ -16,7 +16,7 @@ class User(AbstractUser):
         Movie,
         related_name='users',
         blank=True,
-        null=True
+        null=True,                
     )
     
     groups = models.ManyToManyField(

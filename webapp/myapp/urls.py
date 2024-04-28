@@ -2,6 +2,7 @@ from django.urls import path
 from myapp.views import login_signup_view
 from . import views
 from .views import user_detail_view
+from . import data
 
 urlpatterns = [
     path('', views.renderView, name=''),
@@ -16,6 +17,6 @@ urlpatterns = [
     path('user_list/', views.user_detail_view, name='user_list'),
     path('login.html', views.renderLoginView, name='login'),
     path('user_list.html',views.user_detail_view, name='user_list'),
-    path('movie_id/',views.store_movie, name='movie_id'),
-    path('saveMovieID',views.saveMovieID,name='saveMovieID')
+    path('movie_id/', views.store_movie, name='movie_id'),
+    path('saveMovieID', data.saveMovieID ,name='saveMovieID')
 ]

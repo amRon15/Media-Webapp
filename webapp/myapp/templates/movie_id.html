@@ -4,6 +4,11 @@
     <title>Movie ID</title>
 </head>
 <body>
-    <h1>Movie ID: {{ movieIDs }}</h1>
-</body>
+    {% if movieIDs %}
+    <ul>
+        {% for m in movieIDs %}
+            <li>{{m}}</li>
+        {%  endfor %}
+    </ul>
+    {% endif %}
 </html>
