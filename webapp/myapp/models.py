@@ -1,13 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.core.exceptions import ValidationError
+
+class Movie(models.Model):
+    movieID = models.CharField(max_length=20,unique=False)
 
 class User(AbstractUser):
     username = models.CharField(
         max_length=10,
         unique=True,
-        default='guest')
+        default='guest'
+    )
     email = models.EmailField()
-    movieID = models.CharField(max_length=50, blank=True, null=True)
+    movieIDs = models.ManyToManyField(
+        Movie,
+        related_name='users',
+        blank=True,
+        null=True
+    )
     
     groups = models.ManyToManyField(
         Group,
@@ -28,6 +38,12 @@ class User(AbstractUser):
         help_text='Specific permissions for this user.',
         verbose_name='user permissions',
     )
+    
+    def clean(self):
+        super().clean()
+        for movie in self.movieIDs.all():
+            if movie.movieID != self.movieID:
+                raise ValidationError("The selected movieID must match the movieID in the Movie model.")
 
 class UserGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -5,7 +5,15 @@
 </head>
 <body>
     <h1>User List</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
+
+    <ul>
+        {% for user in all_users %}
+        <li>
+            <strong>Username:</strong> {{ user.username }}<br>
+            <strong>Email:</strong> {{ user.email }}<br>
+            <strong>Movie ID:</strong> {{ user.movieID }}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms_cc import CustomUserCreationForm
-from .models import User
+from .models import User, Movie
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from requests import post
 
 # Create your views here.
@@ -39,7 +39,7 @@ def renderMoreView(request):
 def renderLoginView(request):
     return render(request, 'login.html')
 
-#return view for search page
+# #return view for search page
 def renderSearchView(request):
     return render(request, 'search.html')
 
@@ -90,10 +90,18 @@ def login_signup_view(request):
 
 #using for database test
 def user_detail_view(request):
-    username = "matt12" 
-    user_exists = User.objects.filter(username=username).exists()
-    if user_exists:
-        user = get_object_or_404(User, username=username)
-        return render(request, 'user_list.html', {'user': user})
-    else:
-        return render(request, 'user_not_found.html')
+    all_users = User.objects.all()
+    return render(request, 'user_list.html', {'all_users': all_users})
+
+def store_movie(request):
+    all_movies = Movie.objects.all()
+    movieIDs = [Movie.movieID for Movie in all_movies]
+    return render(request, 'movie_id.html', {'movieIDs': movieIDs})
+
+#save movie id
+def saveMovieID(reqest):
+    if reqest.method == 'POST':
+        movieID = reqest.POST['movieID']        
+        new_movieID = Movie(movieID)
+        new_movieID.save()
+        return HttpResponse('Save Successfully')

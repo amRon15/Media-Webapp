@@ -10,7 +10,7 @@ jscript.onload = function () {
 };
 
 function search() {
-  $("form").on("submit", (e) => {
+  $("input[type='search']").on("submit", (e) => {
     const inputText = $("#searchInput").val();
     navToSearchPage(inputText);
     e.preventDefault();

@@ -229,6 +229,23 @@ function listView(data) {
       sendDataToDetailTemplate(e.id, type);
     });
   });
+
+  $('.movie-list-item-bookmark').each((_,e)=>{
+    $(e).on('click',()=>{
+      const eId = $(e).parent().parent().find('img').attr('id')
+      $.ajax({
+        type: "post",
+        url: "/saveMovieID",
+        data: {
+          movieID :eId,
+          'csrfmiddlewaretoken':$("input[name='csrf']").val(),
+        },
+        success: function (response) {
+          alert('successful!')
+        }
+      });
+    })
+  })
 }
 
 //handle change page
