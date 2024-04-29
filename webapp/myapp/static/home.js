@@ -168,15 +168,9 @@ window.onload = function () {
     fetchData(trendTvUrl, "tv");
     peopleListView(popPeopleUrl);
     handleClick();
-    carouselView();
-    getUser()
+    carouselView();    
   });
 };
-
-function getUser(){
-  const user = $("input[name='user']").val()
-  console.log(user)
-}
 
 function handleClick() {
   $("#pop-movie-more").on("click", () => {

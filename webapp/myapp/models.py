@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 class Movie(models.Model):
     movieID = models.CharField(max_length=20,unique=True,null=True,blank=True)
+    type = models.CharField(max_length=5, null=True)
 
 class User(AbstractUser):
     username = models.CharField(

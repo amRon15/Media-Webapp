@@ -18,5 +18,7 @@ urlpatterns = [
     path('login.html', views.renderLoginView, name='login'),
     path('user_list.html',views.user_detail_view, name='user_list'),
     path('movie_id/', views.store_movie, name='movie_id'),
-    path('saveMovieID', data.saveMovieID ,name='saveMovieID')
+    path('saveMovieID', data.saveMovieID ,name='saveMovieID'),
+    path('getUserMovieID', data.getUserMovieID, name='getUserMovieID'),
+    path('bookmark.html', views.bookmarkView ,name='bookmark')
 ]

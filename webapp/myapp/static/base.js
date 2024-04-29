@@ -5,16 +5,29 @@ document.getElementsByTagName("head")[0].appendChild(jscript);
 
 jscript.onload = function () {
   $(document).ready(function () {
+    getUser();
     search();
   });
 };
 
+function getUser() {
+  const user = $("input[name='user']").val();
+  if (user == "") {
+  } else {
+    $("#header-login").css("display", "none");
+    $("#header-user").css("display", "inline-block");
+    $("#header-bookmark").css("display", "inline-block");
+  }
+}
+
 function search() {
-  $("input[type='search']").on("submit", (e) => {
-    const inputText = $("#searchInput").val();
-    navToSearchPage(inputText);
-    e.preventDefault();
-  });
+  $("input[name='search']").keypress(function (e){
+    if(e.which===13){
+      e.preventDefault();
+      const inputText = $("#searchInput").val();
+      navToSearchPage(inputText);
+    }
+  })
 }
 
 //nav to search page

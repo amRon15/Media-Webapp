@@ -36,6 +36,7 @@
 <body>
   {% include 'nav.html' %}  
   <input type="hidden" name="user" value="{{user.username}}">
+  <input type="hidden" name="csrf" value="{{ csrf_token }}">
   <header>    
     <div class="header-container">
       <div class="header-l">
@@ -54,8 +55,13 @@
           </form>
         </section>
         <ul>
-          <li id="header-bookmark"><a href=""><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
-          <li id="header-user"><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
+          <li id="header-bookmark"><a href="bookmark.html"><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" type="button">Logout</a></li>
+            </ul>        
           <li id="header-login"><a href="login_signup.html">Login</a></li>          
         </ul>
       </div>

@@ -237,11 +237,12 @@ function listView(data) {
         type: "post",
         url: "/saveMovieID",
         data: {
-          movieID :eId,
+          id :eId,
+          type : type,
           'csrfmiddlewaretoken':$("input[name='csrf']").val(),
         },
         success: function (response) {
-          alert('successful!')
+          console.log('successful!')
         }
       });
     })

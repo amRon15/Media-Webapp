@@ -506,6 +506,21 @@ function fetchSimilar() {
 
 //handle on click to scroll
 function handleOnClick() {
+  // bookmark
+  $('#detail-bookmark-btn').on('click',()=>[
+    $.ajax({
+      type: "post",
+      url: "/saveMovieID",
+      data: {
+        id :id,
+        type : type,
+        'csrfmiddlewaretoken':$("input[name='csrf']").val(),
+      },
+      success: function (response) {
+        console.log('successful!')
+      }
+    })
+  ])
   //video list
   $(".hero-video-container .list-btn-next").each((_, e) => {
     $(e).on("click", () => {

@@ -42,10 +42,15 @@ def renderLoginView(request):
 def renderSearchView(request):
     return render(request, 'search.html')
 
+# #return view for search page
+def bookmarkView(request):
+    return render(request, 'bookmark.html')
+
 #pathing login page
 @login_required(login_url='myapp:login_signup')
 def render_login_view(request):
     return render(request, 'login_signup.html')
+
 
 #user login and signup function
 def login_signup_view(request):
@@ -90,7 +95,9 @@ def login_signup_view(request):
 #using for database test
 def user_detail_view(request):
     all_users = User.objects.all()
-    return render(request, 'user_list.html', {'all_users': all_users})
+    user = User.objects.get(username=request.user)
+    movieid = user.movieIDs.all()
+    return render(request, 'user_list.html', {'all_users': all_users,'movie':movieid})
 
 def store_movie(request):
     all_movies = Movie.objects.all().values_list('movieID')

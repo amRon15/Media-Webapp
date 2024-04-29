@@ -1,0 +1,74 @@
+.bookmark-container{
+    margin-top: 2vi;
+}
+
+.bookmark-title{
+    font-size: 2rem;
+    color: #ffe600;
+    word-spacing: 1rem;
+}
+
+.divider{
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
+    margin: 1vi 0 2vi 0;
+}
+
+.bookmark-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 10vi;
+    gap: 0.5rem;
+}
+
+.card-img{
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    width: 10vi;
+    cursor: pointer;
+}
+
+.card-img:hover{
+    opacity: 0.8;
+}
+
+.card-title{
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-title:hover{
+    text-decoration: dashed;
+    color: white;
+}
+
+.card-detail{
+    display: flex;
+    color: white;
+    font-size: 1rem;
+    justify-content: space-between;
+}
+
+.card-genre{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-divider{
+    color: 	#00719c;
+}
