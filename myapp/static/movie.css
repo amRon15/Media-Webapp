@@ -1,0 +1,403 @@
+#hero-backdrop{
+    width: 100%;
+    opacity: 0.2;
+    position: absolute;
+    z-index: -2;
+}
+
+#hero-backdrop-border{
+    width: 80%;
+    opacity: 0.6;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 1vi;
+}
+
+.hero-container{
+    margin-top: 15vi;
+    margin-left: 12vi;    
+}
+
+
+.hero-detail-container{
+    width: 100%;
+    align-items: start;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hero-detail-title{
+    font-size: 3vi;
+}
+
+.hero-detail-genre{
+    font-size: 1.25rem;
+}
+
+.hero-detail-list{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.hero-detail-list-divider{
+    margin: 0 1rem;
+    color: #00719c;
+}
+
+.hero-detail-rate{
+    color: gold;
+    margin: 1vi 0;
+}
+
+.hero-detail-btn{
+    border-radius: 5px;
+    font-size: 1.3vi;
+    padding: 5px 3vi;
+    background-color: #00709cb7;
+    color: white;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.hero-detail-btn:hover{
+    background-color: #00719c;
+    transition: all 0.2s ease-in-out;
+}
+
+#hero-detail-trailer-btn{
+    margin-right: 1vi;
+}
+
+#hero-detail-info-btn{
+    background-color: #a5a5a5a1;
+}
+
+#hero-detail-info-btn:hover{
+    background-color: #a5a5a5d5;
+}
+
+.hero-detail-description{
+    width: 40%;
+    font-size: 1vi;
+    line-height: 2rem;
+}
+
+.content-container{
+    margin-top: 12vi;
+}
+
+.hero-video-title{
+    font-size: 1.75rem;
+    color: white;
+    cursor: default;
+}
+
+.hero-video-title::before{
+    content: "| ";
+    color: #009bd6 ;
+}
+
+.hero-video-list{
+    display: flex;
+    overflow: hidden;
+    gap: 1.5rem;
+    margin-top: 1vi;
+}
+
+
+.hero-video-container iframe{
+    width: 24vi;
+    height: 13vi;
+    
+}
+
+.divider{
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
+    align-self: center;
+    margin: 4vi 0;
+}
+
+.list-container{
+    margin-top: 4vi;
+}
+
+.title-more{
+    cursor: default;
+    transition: all 0.5s ease-in-out;
+    color: white;
+}
+
+.title-more::before{
+    content: "| ";
+    color:#009bd6;
+}
+
+
+.title-more:hover:after{
+    opacity: 1;
+    left: 0px;
+}
+
+.list-btn{
+    background-color: transparent;
+    color: #009bd6;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    font-size: 1em;
+}
+
+
+.list-btn:hover{
+    transform: scale(1.1);
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-bar{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+    font-size: 1.75rem;
+}
+
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 10vi;
+    gap: 0.5rem;
+}
+
+.card-img{
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    width: 10vi;
+    cursor: pointer;
+}
+
+.card-img:hover{
+    opacity: 0.8;
+}
+
+.card-title{
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-title:hover{
+    text-decoration: dashed;
+    color: white;
+}
+
+.card-detail{
+    display: flex;
+    color: white;
+    font-size: 1rem;
+    justify-content: space-between;
+}
+
+.card-genre{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-divider{
+    color: 	#00719c;
+}
+
+.card-list{
+    display: flex;
+    overflow-x: hidden;
+    align-items:end;
+    gap: 1.5rem;
+    margin-top: 1vi;
+}
+
+.find-movie-container{
+    color: white;
+}
+
+.find-movie-filter-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;   
+    margin: 4vi 4vi 1vi 4vi; 
+}
+
+.dropdown-menu p {
+    cursor: pointer !important; 
+}
+
+ul.dropdown-menu.show{
+    background-color: #00070a;
+    border-color: #a5a5a5;
+}
+
+p.dropdown-item{
+    color: white;
+}
+
+.dropdown-toggle{
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.25rem;
+}
+
+.dropdown button:focus:not(:focus-visible){
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+    transform: scale(1.05);
+    
+}
+
+.btn-warning:hover{
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+.genre-dropdown > .dropdown-menu{
+    width: 30vi;
+    column-count: 3;    
+}
+
+.find-movie-sort-container{
+    color: white;
+}
+
+.dropdown-toggle:after{
+    display: none;
+}
+
+.find-movie-sort-container{
+    display: flex;
+    align-items: center;
+}
+
+.find-movie-list{
+    display: block;
+    padding: 1vi 5vi;
+    border-radius: 5px;
+    border: 1px solid #454545;
+    font-size: 1.25rem;
+}
+
+.movie-list-item{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1vi 0;
+}
+
+.movie-list-item-img{
+    width: 8vi;
+    margin-right: 1vi;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+p.page-link:hover{
+    color: black;
+}
+
+.movie-list-item-img:hover{
+    opacity: 0.8;
+}
+
+.movie-list-item-title{
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.movie-list-item-title:hover{
+    text-decoration: dashed;
+    color: white;
+}
+
+.movie-list-item-detail{
+    margin-right: auto;
+}
+
+.pagination{
+    margin-top: 1vi;
+}
+
+.pagination > li{
+    cursor: pointer;    
+}
+
+p.page-link{
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+.movie-list-item-rate{
+    color: gold;
+}
+
+.movie-list-item span{
+    font-size: 1.5rem;    
+    cursor: pointer;    
+}
+
+
+.movie-list-item-like{
+    color: #ffe600;
+    transition: all 0.2s ease-in-out;
+}
+
+.movie-list-item-like:hover{
+    transform: scale(1.1);
+}
+
+
+.movie-list-item-info{
+    transition: all 0.2s ease-in-out;
+}
+
+.movie-list-item-info:hover{
+    transform: scale(1.1);
+}
+
+.list-item-divider{
+    width: 100%;
+    height: 1px;
+    display: flex;
+    background: #454545;    
+}

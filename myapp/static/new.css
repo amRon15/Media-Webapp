@@ -1,0 +1,288 @@
+.hero-container{
+    margin-top: 1.5vi;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+.carousel.slide{
+    max-width: 50vi;
+}
+
+.carousel.slide::before{
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    width: 50vi;
+    height: 100%;
+    background-image: linear-gradient(#00000000,#00000080, #000000);
+}
+
+.carousel.slide button{
+    z-index: 2;
+}
+
+.carousel-item-poster{
+    width: 10vi;
+    height: 15vi;
+    border-radius: 5px;
+    position: absolute;
+    left: -7vi;
+    bottom: -1vi;
+    opacity: 1;
+    z-index: 100;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.carousel-item-poster:hover{
+    opacity: 0.8;
+}
+
+.carousel-caption{
+     z-index: 100;
+}
+
+.carousel-caption h4{
+    height: 3vi;
+}
+
+.upcoming-container{
+    background: linear-gradient(to bottom,#181818 , #000000);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    width: 20rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.upcoming-container-title{
+    color: gold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5em;
+}
+
+.upcoming-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+.upcoming{
+    display: inline-flex;
+    align-items: center;
+    width: 18   vi;
+    gap: 1em;
+    color: white;
+}
+
+.upcoming-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.upcoming-title{
+    color: white;
+    align-items: center;
+}
+
+.upcoming img{
+    width: 5vi;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.upcoming img:hover{
+    opacity: 0.8;
+}
+
+.upcoming-lang{
+    background-color: #00719c;
+    padding: 0 0.5em;
+    border-radius: 5px;
+    text-align: center;
+    width: 3rem;
+}
+
+.container{
+    margin-top: 3vi;
+}
+
+.feature-container{
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 3vi;
+}
+
+.feature-movie{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.feature-title{
+    font-size: 2rem;
+    color: gold;
+    cursor: default;
+}
+
+.feature-movie img{
+    width: 7vi;
+}
+
+.feature-tv{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.feature-tv img{
+    width: 7vi;
+}
+
+.feature-description{
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.feature-description:hover{
+    color: white;
+}
+
+.feature-img-list{
+    display: flex;
+    gap: 0.5em;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.feature-img-list:hover{
+    opacity: 0.8;
+}
+
+.divider{
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #001f2b,#00415a,#001f2b);    
+}
+
+.list-container{
+    color: white;
+    margin-top: 4vi;
+}
+
+.title-more{
+    cursor: default;
+    transition: all 0.5s ease-in-out;
+}
+
+.title-more::before{
+    content: "| ";
+    color:#009bd6;
+}
+/* 
+.title-more:after{
+    margin-left: 10px;
+    content: ' More >';
+    font-size: large;
+    position: relative;
+    left: -20px;
+    color: rgb(236, 233, 25);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+} */
+/* 
+.title-more:hover:after{
+    opacity: 1;
+    left: 0px;
+} */
+
+.list-btn{
+    background-color: transparent;
+    color: #009bd6;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    font-size: 1em;
+}
+
+
+.list-btn:hover{
+    transform: scale(1.1);
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-bar{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+    font-size: 1.75rem;
+}
+
+.card-list{
+    display: flex;
+    overflow-x: hidden;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1vi;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 10vi;
+    gap: 0.5rem;
+}
+
+.card-img{
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    width: 10vi;
+    cursor: pointer;
+}
+
+.card-img:hover{
+    opacity: 0.8;
+}
+
+.card-title{
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #009bd6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-title:hover{
+    text-decoration: dashed;
+    color: white;
+}
+
+.card-detail{
+    display: flex;
+    color: white;
+    font-size: 1rem;
+    justify-content: space-between;
+    
+}
+
+.card-genre{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-divider{
+    color: 	#00719c;
+}

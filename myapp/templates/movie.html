@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block htmlhead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'movie.css'%}">
+{% endblock htmlhead %}
+{% block js %} <script src="{% static 'movie.js' %}" ></script> {% endblock %}
+{% block title %} Movie {% endblock %}
+
+{% block content%}
+<img id="hero-backdrop" src="" alt="">
+<img id="hero-backdrop-border" src="" alt="">
+<div class="hero-container">
+    <div class="hero-detail-container">
+        <div class="hero-detail-title" id="hero-detail-title"></div>
+        <div class="hero-detail-genre"></div>
+        <div class="hero-detail-list">
+            <div class="hero-detail-rate"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-lang"></div>
+            <span class="hero-detail-list-divider"> | </span>
+            <div class="hero-detail-date"></div>
+        </div>        
+        <div class="hero-detail-description"></div>
+        <span class="hero-detail-btn-container">
+            <button class="hero-detail-btn" id="hero-detail-trailer-btn"><i class="fa fa-play" aria-hidden="true"></i> Trailer</button>
+            <button class="hero-detail-btn" id="hero-detail-info-btn"><i class="fa fa-info" aria-hidden="true"></i> Info</button>
+        </span>
+    </div>
+</div>
+
+<div class="content-container container ">
+    <div class="hero-video-container">
+        <div class="list-bar">
+            <span class="hero-video-title">Related Videos</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="list-btn list-btn-next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <div class="hero-video-list" id="hero-video-list">
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="pop-list-container list-container">
+        <div class="list-bar">
+            <span class="title-more">Top 10 Popluar Movie</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="list-btn list-btn-next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <div class="pop-list card-list" id="pop-list"> 
+        </div>
+    </div>
+    <div class="top-rated-list-container list-container">
+        <div class="list-bar">
+            <span class="title-more">Top Rated Movie Of Year</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="list-btn list-btn-next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <div class="top-rated-list card-list" id="top-rated-list">            
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="find-movie-container">
+        <div class="find-movie-filter-container">
+            <div class="genre-dropdown dropdown">                
+                <button class="btn btn-warning dropdown-toggle" id="genre-filter-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Genre
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </button>            
+                <ul class="dropdown-menu dropdown-menu-genre">     
+                </ul>
+            </div>
+            <div class="find-movie-sort-container">Sort by 
+                <div class="dropdown">                    
+                    <button class="btn btn-warning dropdown-toggle" id="sort-type-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Popularity Desc
+                        <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>                
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-sort">                        
+                        <li><p class="dropdown-item sort-type" id='popularity.desc' >Popularity Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='popularity.asc'>Popularity Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='primary_release_date.desc'>Release Date Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='primary_release_date.asc'>Release Date Asc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.desc'>Rating Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='vote_average.asc'>Rating Asc</p></li>   
+                        <li><p class="dropdown-item sort-type" id='title.desc'>Name Desc</p></li>
+                        <li><p class="dropdown-item sort-type" id='title.asc'>Name Asc</p></li>                
+                    </ul>
+                </div>                                
+            </div>
+        </div>        
+        <div class="find-movie-list"> 
+        </div>
+        <nav>
+            <ul class="pagination justify-content-center" >
+              <li class="page-item">
+                <p class="page-link" id="page-pre" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </p>
+              </li>
+              <li class="page-item" ><p class="page-link" id="page-index">1</p></li>                        
+              <li class="page-item">
+                <p class="page-link" id="page-next" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </p>
+              </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{%endblock%}

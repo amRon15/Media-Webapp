@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="3;url=/home.html">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <h2>Redirecting...</h2>
+
+  <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+
+  <script>
+    document.getElementById("logout-form").submit();
+  </script>
+</body>
+</html>
