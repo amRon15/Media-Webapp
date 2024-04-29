@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block htmlhead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'new.css' %}">
+{% endblock htmlhead %}
+{% block js %} <script src="{% static 'new.js' %}" ></script> {% endblock %}
+{% block title %} What's New {% endblock %}
+
+
+{% block content %}
+<div class="hero-container">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="upcoming-container">
+    <div class="upcoming-container-title">Coming Up</div>
+    <div class="upcoming-list">
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="feature-title">New Trending</div>
+    <div class="feature-container">
+        <div class="feature-movie">
+            <div class="feature-img-list feature-movie-img">
+            </div>
+            <div class="feature-description">Trending Movie Of The Day</div>
+        </div>
+        <div class="feature-tv">
+            <div class="feature-img-list feature-tv-img">
+            </div>
+            <div class="feature-description">Trending TV Series</div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="trend-movie-list-container list-container">
+        <div class="list-bar">
+            <span class="title-more" id="new-movie-list">Weekly Trending New Movie</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="list-btn list-btn-next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <div class="weekly-movie-list card-list" id="weekly-movie-list">
+        </div>
+    </div>
+    <div class="trend-tv-list-container list-container">
+        <div class="list-bar">
+            <span class="title-more" id="new-tv-list">Weekly Trending New TV Series</span>
+            <span class="list-btn-container">
+                <button class="list-btn list-btn-prev">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="list-btn list-btn-next">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <div class="weekly-tv-list card-list" id="weekly-tv-list">    
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,163 @@
+footer {
+    bottom: 0;
+    margin-top: 100px;
+    padding-bottom: 50px;
+    width: 100%;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: smaller;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  
+  .footer-text-container {
+    color: rgba(255, 255, 255, 0.6);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 50%;
+  }
+  
+  .footer-text-container div {
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .footer-text-container div:hover {
+    color: white;
+  }
+  
+  .footer-contact {
+    color: white;
+    font-size: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+  }
+  .snsBtn {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    transition: all 2s;
+  }
+  
+  .snsBtn i:hover,
+  .snsBtn svg:hover {
+    animation: bounceBtn 2s;
+  }
+  
+  @keyframes bounceBtn {
+    13% {
+      transform: translateY(-8px);
+    }
+    26% {
+      transform: translateY(0);
+    }
+    39% {
+      transform: translateY(-4px);
+    }
+    52% {
+      transform: translateY(0);
+    }
+    65% {
+      transform: translateY(-2px);
+    }
+    73% {
+      transform: translateY(0);
+    }
+    86% {
+      transform: translateY(-1px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  #igBtn {
+    margin-right: 32px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+  
+  #fbBtn {
+    margin-right: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+  
+  #ytBtn {
+    margin-right: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+  
+  #xBtn {
+    margin-right: 20px;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+  }
+  
+  .footer-email {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+  }
+  
+  #footer-input {
+    color: white;
+    background-color: transparent;
+    width: 50%;
+    font-size: small;
+    height: 50%;
+    padding: 0;
+    border: none;
+    transition: all 0.3s;
+  }
+  
+  #summitBtn {
+    color: white;
+    font-size: 1vi;
+    background-color: #00709caf;
+    border-color: transparent;
+    border-radius: 5px;
+    height: 1.8vi;
+    width: 2.5vi;
+    margin-left: 3px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  #summitBtn:hover {
+    background-color: #00719c;
+  }
+  
+  #footerTag {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 250px;
+    margin-top: 20px;
+  }
+  
+  #footerTag::before {
+    font-family: "FontAwesome";
+    content: "\f1f9";
+    margin-right: 5px;
+  }
+  
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  

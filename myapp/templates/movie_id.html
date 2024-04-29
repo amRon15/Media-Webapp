@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie ID</title>
+</head>
+<body>
+    {% if movieIDs %}
+    <ul>
+        {% for m in movieIDs %}
+            <li>{{m}}</li>
+        {%  endfor %}
+    </ul>
+    {% endif %}
+</html>
