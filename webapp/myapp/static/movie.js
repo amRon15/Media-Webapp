@@ -299,12 +299,20 @@ function allMovieView(page, sortType, genre) {
           sendDataToDetailTemplate(eId);
         });
       });
+
       $(".movie-list-item-title").each((_, e) => {
         $(e).on("click", () => {
           const eId = $(e).parent().parent().find("img").attr("id");
           sendDataToDetailTemplate(eId);
         });
       });
+
+      $('.movie-list-item-info').each((_,e)=>{
+        $(e).on('click',()=>{
+          const eId = $(e).parent().parent().find("img").attr("id");
+          sendDataToDetailTemplate(eId)
+        })
+      })
 
       $(".movie-list-item-bookmark").each((_, e) => {
         const eId = $(e).parent().parent().find("img").attr("id");

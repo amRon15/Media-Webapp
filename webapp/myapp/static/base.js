@@ -12,12 +12,11 @@ jscript.onload = function () {
 
 function getUser() {
   const user = $("input[name='user']").val();
-  if (user == "") {
-  } else {
+  if (user != "") {
     $("#header-login").css("display", "none");
     $("#header-user").css("display", "inline-block");
     $("#header-bookmark").css("display", "inline-block");
-  }
+  } 
 }
 
 function search() {

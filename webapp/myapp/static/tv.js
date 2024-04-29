@@ -281,6 +281,13 @@ function allTvView(page, sortType, genre) {
         });
       });
 
+      $('.movie-list-item-info').each((_,e)=>{
+        $(e).on('click',()=>{
+          const eId = $(e).parent().parent().find("img").attr("id");
+          sendDataToDetailTemplate(eId)
+        })
+      })
+
       $(".movie-list-item-bookmark").each((_, e) => {
         const eId = $(e).parent().parent().find("img").attr("id");
         //get which one already saved

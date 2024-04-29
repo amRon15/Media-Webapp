@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -91,6 +91,13 @@ def login_signup_view(request):
 
         form = CustomUserCreationForm()
         return render(request, 'login_signup.html', {'form': form})
+    
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')
+    else:
+        return render(request, 'logout.html')    
 
 #using for database test
 def user_detail_view(request):

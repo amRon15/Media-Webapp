@@ -56,13 +56,17 @@
         </section>
         <ul>
           <li id="header-bookmark"><a href="bookmark.html"><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
-            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="header-user">
               <i class="fa fa-user" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" type="button">Logout</a></li>
+              <li><a class="dropdown-item" type="button" href="{% url 'logout' %}">Logout</a>
+                <form method="post" action="{% url 'logout' %}" style="display: none;">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+              </form></li>
             </ul>        
-          <li id="header-login"><a href="login_signup.html">Login</a></li>          
+          <li id="header-login"><a href="login_signup.html">Login / Sign Up</a></li>          
         </ul>
       </div>
     </div>

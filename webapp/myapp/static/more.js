@@ -224,11 +224,25 @@ function listView(data) {
         ${i < data.length - 1 ? '<div class="list-item-divider"></div>' : ""}        
         `);
   });
+  $(".list-item-title").each((_, e) => {
+    $(e).on("click", () => {
+      let eId = $(e).parent().parent().find("img").attr("id");
+      sendDataToDetailTemplate(eId, type);
+    });
+  });
+
   $(".list-item-img").each((_, e) => {
     $(e).on("click", () => {
       sendDataToDetailTemplate(e.id, type);
     });
   });
+
+  $('.movie-list-item-info').each((_,e)=>{
+    $(e).on('click',()=>{
+      const eId = $(e).parent().parent().find("img").attr("id");
+      sendDataToDetailTemplate(eId,type)
+    })
+  })
 
   //bookmark the movie / id
   $(".movie-list-item-bookmark").each((_, e) => {

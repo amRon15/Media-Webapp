@@ -160,7 +160,6 @@ const options = {
   },
 };
 
-
 window.onload = function () {
   $(document).ready(function () {
     inputText = localStorage.getItem("inputText");
@@ -216,6 +215,57 @@ function searchView(data) {
         ${i < data.length - 1 ? '<div class="list-item-divider"></div>' : ""}        
         `);
   });
+
+  //bookmark the movie / id
+  $(".movie-list-item-bookmark").each((_, e) => {
+    const eId = $(e).parent().parent().find("img").attr("id");
+    const eType = $(e).parent().parent().attr('id')
+    //get which one already saved
+    $.ajax({
+      type: "post",
+      url: "/getSpecificID",
+      data: {
+        id: eId,
+        type: eType,
+        csrfmiddlewaretoken: $("input[name='csrf']").val(),
+      },
+      success: function (response) {
+        if (response.saved) {
+          console.log("saved already");
+          $(e).css("color", "#ffe600");
+        } else {
+          console.log("not save yet");
+          $(e).css("color", "white");
+        }
+      },
+    });
+
+    $(e).on("click", () => {
+      $.ajax({
+        type: "post",
+        url: "/saveMovieID",
+        data: {
+          id: eId,
+          type: eType,
+          csrfmiddlewaretoken: $("input[name='csrf']").val(),
+        },
+        success: function (response) {
+          if (response.success) {
+            if (response.action == "saved") {
+              console.log("successful saved");
+              $(e).css("color", "#ffe600");
+            } else if (response.action == "deleted") {
+              console.log("successful deleted");
+              $(e).css("color", "white");
+            } else {
+              console.log("failed");
+            }
+          }
+        },
+      });
+    });
+  });
+
   $(".list-item-img").each((_, e) => {
     $(e).on("click", () => {
       let type = $(e).parent().attr("id");
@@ -229,6 +279,13 @@ function searchView(data) {
       sendDataToDetailTemplate(eId, type);
     });
   });
+  $('.movie-list-item-info').each((_,e)=>{
+    $(e).on('click',()=>{
+      const eId = $(e).parent().parent().find("img").attr("id");
+      const eType = $(e).parent().parent().attr('id')
+      sendDataToDetailTemplate(eId,eType)
+    })
+  })
 }
 
 //handle change page
