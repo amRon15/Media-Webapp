@@ -13,12 +13,13 @@ urlpatterns = [
     path('detail.html', views.renderDetailView, name='detail'),
     path('more.html', views.renderMoreView, name='more'),
     path('search.html', views.renderSearchView, name='search'),
-    path('login_signup.html', login_signup_view, name='login_signup'),
-    path('user_list/', views.user_detail_view, name='user_list'),
     path('login.html', views.renderLoginView, name='login'),
-    path('user_list.html',views.user_detail_view, name='user_list'),
+    path('login_signup.html', login_signup_view, name='login_signup'),
+    path('bookmark.html', views.bookmarkView ,name='bookmark'),
+    path('user_list/', views.user_detail_view, name='user_list'),
     path('movie_id/', views.store_movie, name='movie_id'),
+    path('user_list.html',views.user_detail_view, name='user_list'),
     path('saveMovieID', data.saveMovieID ,name='saveMovieID'),
     path('getUserMovieID', data.getUserMovieID, name='getUserMovieID'),
-    path('bookmark.html', views.bookmarkView ,name='bookmark')
+    path('getSpecificID', data.getSpecificID, name='getSpecificID')
 ]

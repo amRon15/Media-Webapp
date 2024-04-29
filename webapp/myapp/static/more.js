@@ -166,7 +166,7 @@ const options = {
 
 window.onload = function () {
   $(document).ready(function () {
-    url = localStorage.getItem('url');
+    url = localStorage.getItem("url");
     type = localStorage.getItem("type");
     isNextPage = localStorage.getItem("isNextPage");
     listTitle = localStorage.getItem("title");
@@ -230,23 +230,56 @@ function listView(data) {
     });
   });
 
-  $('.movie-list-item-bookmark').each((_,e)=>{
-    $(e).on('click',()=>{
-      const eId = $(e).parent().parent().find('img').attr('id')
+  //bookmark the movie / id
+  $(".movie-list-item-bookmark").each((_, e) => {
+    const eId = $(e).parent().parent().find("img").attr("id");
+
+    //get which one already saved
+    $.ajax({
+      type: "post",
+      url: "/getSpecificID",
+      data: {
+        id: eId,
+        type: type,
+        csrfmiddlewaretoken: $("input[name='csrf']").val(),
+      },
+      success: function (response) {
+        if (response.saved) {
+          console.log("saved already");
+          $(e).css("color", "#ffe600");
+        } else {
+          console.log("not save yet");
+          $(e).css('color', 'white')
+        }
+      },
+    });
+
+
+    $(e).on("click", () => {
       $.ajax({
         type: "post",
         url: "/saveMovieID",
         data: {
-          id :eId,
-          type : type,
-          'csrfmiddlewaretoken':$("input[name='csrf']").val(),
+          id: eId,
+          type: type,
+          csrfmiddlewaretoken: $("input[name='csrf']").val(),
         },
         success: function (response) {
-          console.log('successful!')
-        }
+          if (response.success) {
+            if (response.action == "saved") {
+              console.log("successful saved");
+              $(e).css("color", "#ffe600");
+            } else if (response.action == "deleted") {
+              console.log("successful deleted");
+              $(e).css("color", "white");
+            } else {
+              console.log("failed");
+            }
+          }
+        },
       });
-    })
-  })
+    });
+  });
 }
 
 //handle change page

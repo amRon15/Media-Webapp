@@ -377,12 +377,12 @@ p.page-link{
 }
 
 
-.movie-list-item-like{
+.movie-list-item-bookmark{
     color: #ffe600;
     transition: all 0.2s ease-in-out;
 }
 
-.movie-list-item-like:hover{
+.movie-list-item-bookmark:hover{
     transform: scale(1.1);
 }
 

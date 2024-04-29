@@ -10,16 +10,23 @@ from django.shortcuts import render
 from requests import post
 
 
-##save movie id
+##save or delete movie/tv id
 def saveMovieID(request):
     if request.method == 'POST':
         id = request.POST['id']            
         type = request.POST['type']            
-        movie, created = Movie.objects.get_or_create(movieID=id, type=type)        
-        userMovieId = User.objects.get(username='admin')        
-        userMovieId.movieIDs.add(movie)                                            
-        userMovieId.save()
-        return HttpResponse('Save Successfully')
+        user = User.objects.get(username=request.user)        
+                
+        try:
+            movie = Movie.objects.get(movieID=id, type= type)
+            user.movieIDs.remove(movie)
+            movie.delete()
+            return JsonResponse({'success': True, 'action' : 'deleted'})
+        except Movie.DoesNotExist:            
+            movie, created = Movie.objects.get_or_create(movieID=id, type=type)                    
+            user.movieIDs.add(movie)                                            
+            user.save()
+            return JsonResponse({'success': True, 'action' : 'saved'})
     
 #get user data
 def getUserName(request):
@@ -35,9 +42,25 @@ def getUserMovieID(request):
         all_user_movie = user.movieIDs.all()
         allId = []
         for id in all_user_movie:
-            print(id.type)
             allId.append({
                 'id': id.movieID,
                 'type': id.type
             })
         return JsonResponse(allId,safe=False)
+    
+#check specific movie / tv id
+def getSpecificID(request):
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user)
+        id = request.POST['id']            
+        type = request.POST['type'] 
+        
+        try:
+            movie = Movie.objects.get(movieID=id,type=type)
+            if movie in user.movieIDs.all():
+                return JsonResponse({'saved': True})
+            else:
+                return JsonResponse({'saved': False})
+        except Movie.DoesNotExist:
+            return JsonResponse({'saved': False})
+        

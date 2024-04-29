@@ -58,6 +58,10 @@
     color: #ffe600;
 }
 
+#detail-bookmark-btn i {
+    color: white;
+}
+
 #detail-yt-btn{
     background-color: rgba(224, 0, 0, 0.8);
     color: white;
@@ -66,12 +70,6 @@
 #detail-yt-btn:hover{
     background-color: #FF0000;
 }
-
-#detail-bookmark-btn i {
-    color: white;
-}
-
-
 
 #detail-img{
     width: 12vi;

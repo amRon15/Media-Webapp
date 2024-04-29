@@ -101,6 +101,7 @@ let heroMovie = [];
 let page = 1;
 let sortType = "popularity.desc";
 let genre_id;
+const typeOfMedia = "movie";
 
 window.onload = function () {
   $(document).ready(function () {
@@ -272,7 +273,7 @@ function allMovieView(page, sortType, genre) {
       data.forEach((d, i) => {
         $(".find-movie-list").append(`
       <div class="movie-list-item">
-        <img class="movie-list-item-img" src="https://image.tmdb.org/t/p/original${d.poster_path}">                    
+        <img class="movie-list-item-img" id='${d.id}' src="https://image.tmdb.org/t/p/original${d.poster_path}">                    
         <div class="movie-list-item-detail">
             <div class="movie-list-item-title">${d.title}</div>
             <div class="movie-list-item-date">${d.release_date}</div>
@@ -283,7 +284,7 @@ function allMovieView(page, sortType, genre) {
             </div>
         </div>
         <span>
-            <i class="fa fa-bookmark movie-list-item-like" aria-hidden="true"></i>
+            <i class="fa fa-bookmark movie-list-item-bookmark" aria-hidden="true"></i>
             &nbsp;
             <i class="fa fa-info-circle movie-list-item-info" aria-hidden="true"></i>
         </span>                    
@@ -293,13 +294,62 @@ function allMovieView(page, sortType, genre) {
       });
       $(".movie-list-item-img").each((_, e) => {
         $(e).on("click", () => {
-          sendDataToDetailTemplate(e.id);
+          const eId = $(e).attr("id");
+          console.log(eId);
+          sendDataToDetailTemplate(eId);
         });
       });
       $(".movie-list-item-title").each((_, e) => {
         $(e).on("click", () => {
           const eId = $(e).parent().parent().find("img").attr("id");
           sendDataToDetailTemplate(eId);
+        });
+      });
+
+      $(".movie-list-item-bookmark").each((_, e) => {
+        const eId = $(e).parent().parent().find("img").attr("id");
+        //get which one already saved
+        $.ajax({
+          type: "post",
+          url: "/getSpecificID",
+          data: {
+            id: eId,
+            type: typeOfMedia,
+            csrfmiddlewaretoken: $("input[name='csrf']").val(),
+          },
+          success: function (response) {
+            if (response.saved) {
+              console.log("saved already");
+              $(e).css("color", "#ffe600");
+            } else {
+              console.log("not save yet");
+              $(e).css("color", "white");
+            }
+          },
+        });
+
+        $(e).on("click", () => {
+          //bookmark when click
+          $.ajax({
+            type: "post",
+            url: "/saveMovieID",
+            data: {
+              id: eId,
+              type: typeOfMedia,
+              csrfmiddlewaretoken: $("input[name='csrf']").val(),
+            },
+            success: function (response) {
+              if (response.action == "saved") {
+                console.log("successful saved");
+                $(e).css("color", "#ffe600");
+              } else if (response.action == "deleted") {
+                console.log("successful deleted");
+                $(e).css("color", "white");
+              } else {
+                console.log("failed");
+              }
+            },
+          });
         });
       });
     })
@@ -323,21 +373,27 @@ function handleOnClick() {
   $(".sort-type").each((_, e) => {
     $(e).on("click", () => {
       sortType = e.id;
-      allMovieView(1, sortType, genre_id);
+      page = 1;
+      allMovieView(page, sortType, genre_id);
       $("#sort-type-btn").html($(e).html() + ' <i class="fa fa-sort find-movie-sort-btn" aria-hidden="true"></i>');
+      $("#page-index").html(page);
     });
   });
   $(".genre-type").each((_, e) => {
     $(e).on("click", () => {
       if ($(e).html() == "All") {
         genre_id = null;
-        allMovieView(1, sortType, genre_id);
+        page = 1;
+        allMovieView(page, sortType, genre_id);
         $("#genre-filter-btn").html('Genre <i class="fa fa-caret-down" aria-hidden="true"></i>');
+        $("#page-index").html(page);
       } else {
         genre_id = e.id;
-        allMovieView(1, sortType, genre_id);
+        page = 1;
+        allMovieView(page, sortType, genre_id);
         $("#genre-filter-btn").html($(e).html() + ' <i class="fa fa-caret-down" aria-hidden="true"></i>');
-      }
+        $("#page-index").html(page);
+    }
     });
   });
   //video list

@@ -14,6 +14,7 @@ window.onload = function () {
     fetchCredit();
     fetchSimilar();
     handleOnClick();
+    isBookmark()
   });
 };
 
@@ -504,9 +505,30 @@ function fetchSimilar() {
     .catch((err) => console.error(err));
 }
 
-//handle on click to scroll
+//check if this movie/tv is bookmarked
+function isBookmark(){
+  $.ajax({
+    type: "post",
+    url: "/getSpecificID",
+    data: {
+      id : id,
+      type : type,
+      'csrfmiddlewaretoken':$("input[name='csrf']").val(),
+    },
+    success: function (response) {
+      if(response.saved){
+        console.log('saved already')
+        $('#detail-bookmark-btn i').css('color','#ffe600')
+      }else{
+        console.log('not save yet')
+      }
+    }
+  });
+}
+
+//handle on click
 function handleOnClick() {
-  // bookmark
+  // bookmark  
   $('#detail-bookmark-btn').on('click',()=>[
     $.ajax({
       type: "post",
@@ -517,7 +539,19 @@ function handleOnClick() {
         'csrfmiddlewaretoken':$("input[name='csrf']").val(),
       },
       success: function (response) {
-        console.log('successful!')
+        if(response.success){
+          if(response.action=='saved'){
+            console.log('successful saved')
+            $('#detail-bookmark-btn i').css('color','#ffe600')            
+          }
+          else if(response.action == 'deleted'){
+            console.log('successful deleted')
+            $('#detail-bookmark-btn i').css('color','white')
+          }
+          else{
+            console.log('failed')
+          }
+        }
       }
     })
   ])
