@@ -286,3 +286,94 @@
 .card-divider{
     color: 	#00719c;
 }
+
+@media only screen and (max-width: 767px) {
+    .hero-container{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .carousel.slide{
+        max-width: 100%;
+    }
+
+    .carousel.slide::before{
+        width: 100%;
+    }
+
+    .upcoming-container{
+        width: 100%;
+    }
+
+    .upcoming-list{
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: space-around;
+    }
+
+    .upcoming img{
+        border-radius: 5px;
+        width: 100px;
+    }
+
+    .upcoming-info{
+        display: none;
+    }
+
+    .feature-title{
+        font-size: 1.25rem;
+    }    
+
+    .feature-container{
+        overflow-x: scroll;
+    }
+
+    .feature-container::-webkit-scrollbar{
+        display: none;
+    }
+
+    .feature-movie img{
+        width: 100px;
+    }
+
+    .feature-tv img{
+        width: 100px;
+    }
+
+    .list-bar{
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .title-more:not(#pop-cast-more):after{
+        opacity: 1;
+        margin-left: 20px;
+        font-size: small;
+    }
+
+    .card-list{
+        gap: 1rem;
+        overflow-x: scroll;        
+    }
+
+    .card-list::-webkit-scrollbar{
+        display: none;
+    }
+
+    .card-container{
+        width: 100px;
+    }
+
+    .card-img{
+        width: 100px;
+    }
+
+    .card-title{
+        display: none;
+    }
+
+    .card-detail{
+        display: none;
+    }
+
+}

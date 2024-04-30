@@ -9,19 +9,17 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'footer.css' %}">
   <link rel="stylesheet" href="{% static 'header.css' %}">
+  <link rel="stylesheet" href="{% static 'nav.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitter&family=Teko:wght@600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitter&family=Teko:wght@600&display=swap"
+    rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Playfair+Display&family=Bangers&family=Bitter&family=Cinzel:wght@700&family=Creepster&family=Exo&family=Expletus+Sans&family=Great+Vibes&family=Indie+Flower&family=Lato:wght@700&family=Luckiest+Guy&family=Merriweather:wght@700&family=Metal+Mania&family=Montserrat&family=Nosifer&family=Old+Standard+TT&family=Pacifico&family=Raleway:wght@700&family=Slabo+27px&family=Space+Grotesk:wght@700&family=Special+Elite&family=Teko:wght@600&family=AR+One+Sans:wght@400..700&family=Bebas+Neue&family=Buda:wght@300&family=Cormorant+Unicase:wght@300;400;500;600;700&family=Kaisei+Opti&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Lugrasimo&family=Rampart+One&family=Zen+Dots&display=swap"
-    rel="stylesheet"
-  />
-  <script src="{% static 'base.js' %}" ></script>
-  {% block js %}  {% endblock js%}
+    rel="stylesheet" />
+  <script src="{% static 'base.js' %}"></script>
+  {% block js %} {% endblock js%}
   {% block htmlhead %}
   {% endblock htmlhead %}
   <title>{%block title%}{%endblock%}</title>
@@ -29,15 +27,16 @@
     body {
       background-color: #00070a;
       font-family: 'Bitter', sans-serif;
+      max-width: 100%;
     }
   </style>
 </head>
 
 <body>
-  {% include 'nav.html' %}  
+  {% include 'nav.html' %}
   <input type="hidden" name="user" value="{{user.username}}">
   <input type="hidden" name="csrf" value="{{ csrf_token }}">
-  <header>    
+  <header>
     <div class="header-container">
       <div class="header-l">
         <a href="home.html" id="header-title" style="font-family: 'Teko', sans-serif">LMKRT</a>
@@ -45,7 +44,7 @@
           <li><a href="home.html">Home</a></li>
           <li><a href="new.html">What's New</a></li>
           <li><a href="movie.html">Movie</a></li>
-          <li><a href="tv.html">TV</a></li>          
+          <li><a href="tv.html">TV</a></li>
         </ul>
       </div>
       <div class="header-r">
@@ -56,17 +55,19 @@
         </section>
         <ul>
           <li id="header-bookmark"><a href="bookmark.html"><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
-            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="header-user">
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" type="button" href="{% url 'logout' %}">Logout</a>
-                <form method="post" action="{% url 'logout' %}" style="display: none;">
-                  {% csrf_token %}
-                  <button type="submit">Logout</button>
-              </form></li>
-            </ul>        
-          <li id="header-login"><a href="login_signup.html">Login / Sign Up</a></li>          
+          <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+            id="header-user">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" type="button" href="{% url 'logout' %}">Logout</a>
+              <form method="post" action="{% url 'logout' %}" style="display: none;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+          <li id="header-login"><a href="login_signup.html">Login / Sign Up</a></li>
         </ul>
       </div>
     </div>
@@ -75,6 +76,10 @@
   <footer>
     <div class="footer">
       <div class="footer-container">
+        <div class="footer-company">
+          <div class="footer-logo">LMKRT</div>
+          <div id="footerTag">1999-2024 LMKRT,Inc</div>
+        </div>
         <div class="footer-text-container">
           <div>Audio Description</div>
           <div>Investor Relations</div>
@@ -89,30 +94,12 @@
           <div>Privacy</div>
           <div>Contact Us</div>
         </div>
-        <div class="footer-contact">
-          <div class="snsBtn">
-            <i id="igBtn" class="fa fa-instagram" aria-hidden="true"></i>
-            <i id="fbBtn" class="fa fa-facebook" aria-hidden="true"></i>
-            <i id="ytBtn" class="fa fa-youtube-play" aria-hidden="true"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" height="4" width="4" viewBox="0 0 512 512" id="xBtn">
-              <path fill="#ffffff"
-                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-            </svg>
-          </div>
-          <div class="footer-email">
-            <input id="footer-input" type="text" placeholder="Enter your e-mail address" />
-            <button id="summitBtn">
-              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
       </div>
-      <div id="footerTag">1999-2023 Cmdb,Inc</div>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>  
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

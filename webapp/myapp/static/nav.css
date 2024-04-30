@@ -1,0 +1,41 @@
+.navbar{
+    background-color: transparent;
+    color: white;
+}
+
+.navbar-brand{
+    color: #009bd6;
+    font-family: 'Teko', sans-serif;
+}
+
+
+.offcanvas{
+    background-color: #00070a;
+    opacity: 0.9;
+}
+
+.offcanvas-header{
+    font-family: 'Teko', sans-serif;    
+}
+
+.navbar-nav{
+    background-color: transparent;
+}
+
+.navbar-toggler-icon{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+
+.btn-success{
+    background-color: #00719c;
+    color: white;
+    border: none;
+}
+
+#nav-item-user-container{
+    display: none;
+    gap: 1.25rem;
+}

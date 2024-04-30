@@ -294,3 +294,102 @@
     background: linear-gradient(to bottom, #101010,#202020,#101010);  
     margin: 0 2vi;  
 }
+
+@media only screen and (max-width: 767px) {
+    .list-bar{
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .title-more:not(#pop-cast-more):after{
+        opacity: 1;
+        margin-left: 20px;
+        font-size: small;
+    }
+
+    .card-list{
+        gap: 1rem;
+        overflow-x: scroll;        
+    }
+
+    .card-list::-webkit-scrollbar{
+        display: none;
+    }
+
+    .card-container{
+        width: 100px;
+    }
+
+    .card-img{
+        width: 100px;
+    }
+
+    .card-title{
+        display: none;
+    }
+
+    .card-detail{
+        display: none;
+    }
+
+    .cast-img{
+        width: 70px;
+        height: 70px;
+    }
+
+    .cast-name{
+        font-size: smaller;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .cast-detail{
+        width: 70px;
+    }
+
+    .card-body-container{
+        font-size: smaller;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cast-list {
+        gap: 1rem;
+        overflow-x: scroll;
+    }
+
+    .cast-list::-webkit-scrollbar{
+        display: none;
+    }
+
+    .card-body-known{
+        font-size: small;
+    }
+
+    .card-body-info{
+        font-size: small;
+    }
+
+    .card-body-img{
+        width: 150px;
+    }
+
+    .card-body-genre span{
+        margin: 0 0.3rem !important;
+    }
+
+    .divider-vertical{
+        display: none;
+    }
+
+    .card-body-actor-detail{
+        width: 100%;
+    }
+
+    .card-body-detail{
+        width: 100%;
+    }
+    
+}

@@ -14,19 +14,21 @@ function getUser() {
   const user = $("input[name='user']").val();
   if (user != "") {
     $("#header-login").css("display", "none");
+    $("#nav-item-login").css("display", "none");
+    $("#nav-item-user-container").css("display", "flex");
     $("#header-user").css("display", "inline-block");
     $("#header-bookmark").css("display", "inline-block");
-  } 
+  }
 }
 
 function search() {
-  $("input[name='search']").keypress(function (e){
-    if(e.which===13){
+  $("input[name='search']").keypress(function (e) {
+    if (e.which === 13) {
       e.preventDefault();
       const inputText = $("#searchInput").val();
       navToSearchPage(inputText);
     }
-  })
+  });
 }
 
 //nav to search page

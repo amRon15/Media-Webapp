@@ -401,3 +401,136 @@ p.page-link{
     display: flex;
     background: #454545;    
 }
+
+@media only screen and (max-width: 767px) {
+    #hero-backdrop-border{
+        margin-top: 3vi;
+    }
+
+    .hero-detail-container{
+        gap: .25rem;
+        margin: 60px 0;
+    }
+
+    .hero-detail-genre{
+        font-size: .5rem;
+    }
+
+    .hero-detail-genre span{
+        margin: 0 !important;
+    }
+
+    .hero-detail-list-divider{
+        margin: 0;
+    }
+
+    .hero-detail-list{
+        font-size: .5rem;
+        gap: .5rem
+    }
+
+    .hero-detail-description{
+        display: none;
+    }
+
+    .hero-detail-btn{
+        font-size: 0.5rem;
+        padding: 3px 5px;
+    }
+
+    .hero-video-title{
+        font-size: 1rem;
+    }
+
+    .hero-video-list{
+        overflow-x: scroll;
+    }
+
+    .hero-video-list::-webkit-scrollbar{
+        display: none;
+    }
+
+    .hero-video-list iframe{
+        width: 180px;
+        height:150px;
+    }
+
+    
+    .list-bar{
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .card-list{
+        gap: 1rem;
+        overflow-x: scroll;        
+    }
+
+    .card-list::-webkit-scrollbar{
+        display: none;
+    }
+
+    .card-container{
+        width: 100px;
+    }
+
+    .card-img{
+        width: 100px;
+    }
+
+    .card-title{
+        display: none;
+    }
+
+    .card-detail{
+        display: none;
+    }
+
+    .find-movie-filter-container{
+        font-size: 1rem;
+    }
+
+    .dropdown-toggle{
+        font-size: 1rem;
+    }
+
+    .find-movie-list{
+        font-size: .75rem;
+    }
+    
+    .movie-list-item-img{
+        width: 80px;
+    }
+
+    .movie-list-item span{
+        font-size: 1.25rem;
+    }
+
+    .movie-list-item-img{
+        width: 80px;
+    }
+    
+    .movie-list-item-detail{
+        overflow: hidden;
+        width: 60%;
+    }
+
+    .movie-list-item-title{
+        font-size: 1rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .movie-list-item-genre{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .movie-list-item span{
+        font-size: 1.25rem;
+    }
+
+
+}

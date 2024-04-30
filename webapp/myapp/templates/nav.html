@@ -1,34 +1,53 @@
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">LMKRT</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Page Link</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">What's New</a>
-            </li>           
-            <li class="nav-item">
-                <a class="nav-link" href="#">Movie</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="#">TV</a>
-              </li>  
-          </ul>
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
-        </div>
+<nav class="navbar ">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">LMKRT</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-light" tabindex="-1" id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">LMKRT</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item ">
+            <a class="nav-link active text-light" aria-current="page" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="new.html">What's New</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="movie.html">Movie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="tv.html">TV</a>
+          </li>
+          <li class="nav-item" id="nav-item-user-container">
+            <a class="nav-link text-light" href="bookmark.html"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" type="button" href="{% url 'logout' %}">Logout</a>
+                <form method="post" action="{% url 'logout' %}" style="display: none;">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" id="nav-item-login" href="login_signup.html">Login / Sign Up</a>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
