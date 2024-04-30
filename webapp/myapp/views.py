@@ -72,8 +72,10 @@ def login_signup_view(request):
             form = CustomUserCreationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.set_password(form.cleaned_data['password1'])
+                user.set_password(form.cleaned_data['password1'])                            
                 user.save()
+                
+                form.save_m2m()
 
                 authenticated_user = authenticate(
                     username=user.username, password=form.cleaned_data['password1']

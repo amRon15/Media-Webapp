@@ -15,7 +15,8 @@ def saveMovieID(request):
     if request.method == 'POST':
         id = request.POST['id']            
         type = request.POST['type']            
-        user = User.objects.get(username=request.user)                        
+        user = User.objects.get(username=request.user)        
+                
         try:
             movie = Movie.objects.get(movieID=id, type= type)
             user.movieIDs.remove(movie)
@@ -52,7 +53,8 @@ def getSpecificID(request):
     if request.method == 'POST':
         user = User.objects.get(username=request.user)
         id = request.POST['id']            
-        type = request.POST['type']         
+        type = request.POST['type'] 
+        
         try:
             movie = Movie.objects.get(movieID=id,type=type)
             if movie in user.movieIDs.all():

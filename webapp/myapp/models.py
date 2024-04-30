@@ -8,17 +8,15 @@ class Movie(models.Model):
 
 class User(AbstractUser):
     username = models.CharField(
-        max_length=15,
+        max_length=10,
         unique=True,
         default='guest'
     )
-    email = models.EmailField(unique=True)
-    movieIDs = models.ForeignKey(
+    email = models.EmailField()
+    movieIDs = models.ManyToManyField(
         Movie,
-        on_delete=models.SET_NULL,
         related_name='users',
-        null=True,
-        blank=True
+        blank=True,
     )
     
     groups = models.ManyToManyField(
@@ -43,7 +41,7 @@ class User(AbstractUser):
     
     def clean(self):
         super().clean()
-        if self.movieIDs:
+        if self.id:
             for movie in self.movieIDs.all():
                 if movie.movieID != self.movieID:
                     raise ValidationError("The selected movieID must match the movieID in the Movie model.")
