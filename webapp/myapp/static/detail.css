@@ -23,7 +23,7 @@
 }
 
 .container{
-    margin-top: 33vi;
+    margin-top: 600px;
 }
 
 .detail-container{
@@ -123,6 +123,7 @@
 #detail-content-title{
     font-size: 1.75rem;    
     margin-bottom: 0.5vi;
+    color: #009bd6;
 }
 
 .detail-content-container{
@@ -134,6 +135,7 @@
 #detail-overview-title{
     font-size: 1.75rem;
     margin-bottom: 0.5vi;
+    color: #009bd6;
 }
 
 #detail-overview{
@@ -142,8 +144,12 @@
 
 .hero-video-list{
     display: flex;
-    overflow: hidden;
+    overflow: scroll;
     gap: 1.5rem;
+}
+
+.hero-video-list::-webkit-scrollbar{
+    display: none;
 }
 
 .hero-video-container iframe{
@@ -229,11 +235,15 @@
 
 .cast-list{
     display: flex;    
-    overflow-x: hidden;
+    overflow-x: scroll;
     align-items: start;
     margin-top: 1vi;
     gap: 1.5rem;
     text-align: center;
+}
+
+.cast-list::-webkit-scrollbar{
+    display: none;
 }
 
 .cast-detail{
@@ -353,8 +363,12 @@
 
 .related-list{
     display: flex;
-    overflow-x: hidden;
+    overflow-x: scroll;
     gap: 1.5rem;
+}
+
+.related-list::-webkit-scrollbar{
+    display: none;
 }
 
 .card-container{
@@ -473,7 +487,6 @@
 
     #detail-content-title{
         font-size: 1.25rem;
-        color: #009bd6;
     }
 
     #detail-producer span{
@@ -485,7 +498,6 @@
     }
 
     #detail-overview-title{
-        color: #009bd6;
         font-size: 1.25rem;
     }
 
@@ -536,6 +548,41 @@
         display: none;
     }
 
+    .card-body-container{
+        font-size: smaller;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-body-known{
+        font-size: medium;
+    }
+
+    .card-body-info{
+        font-size: medium;
+    }
+
+    .card-body-img{
+        width: 150px;
+    }
+
+    .card-body-genre span{
+        margin: 0 0.3rem !important;
+    }
+
+    .divider-vertical{
+        display: none;
+    }
+
+    .card-body-actor-detail{
+        width: 100%;
+    }
+
+    .card-body-detail{
+        width: 100%;
+    }
+
     .related-list{
         overflow-x: scroll;
         gap: 1rem;
@@ -555,5 +602,89 @@
 
     .card-detail{
         display: none;
+    }
+
+    
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+    #player{
+        width: 100%;
+    }
+
+    .player-contatiner::before{
+        width: 100%;
+    }
+
+    #detail-img{
+        width: 150px;
+    }
+
+    .detail-img-container button{
+        width: auto;
+        padding: 10px 25px;
+    }
+
+    .detail-basic-info{
+        gap: .25rem;
+    }
+
+    #detail-rating::after{
+        margin-left: .25rem;
+    }
+
+    #detail-runtime::after{
+        margin-left: .25rem;
+    }
+
+    #detail-status::after{
+        margin-left: .25rem;
+    }
+
+    #detail-genre span{
+        margin: .25rem !important;
+    }
+
+    #detail-producer span{
+        margin: 0 .5rem;
+    }
+
+    .hero-video-container iframe {
+        width: 250px;
+        height: 100%;
+    }
+
+    .cast-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card-body-container{
+        font-size: 1rem;
+    }
+
+    .card-body-img{
+        width: 150px
+    }
+
+    .card-body-genre span{
+        margin: 0 .25rem !important;
+    }
+
+    .divider-vertical{
+        display: none;
+    }
+
+    .related-list {
+        gap: 1.25rem;
+    }
+
+    .card-container{
+        width: 150px
+    }
+
+    .card-img{
+        width: 150px;
     }
 }

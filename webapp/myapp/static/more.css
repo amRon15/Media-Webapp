@@ -204,3 +204,39 @@ p.page-link:hover{
         margin: 0 !important;
     }
 }
+
+@media only screen and (min-width:768px) and (max-width: 1280px) {
+    .list-container{
+        font-size: 1rem;
+    }
+
+    .list-item-title{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        font-size: 1.25rem;
+    }
+
+    .list-item-detail{
+        width: 60%;
+        overflow: hidden;
+    }
+
+    .list-item-img{
+        width: 150px;
+    }
+
+    .list-item-genre{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .list-item-genre span{
+        margin: 0 .25rem !important;
+    }
+
+    .list-item-divider{
+        margin: 20px 0;
+    }
+}

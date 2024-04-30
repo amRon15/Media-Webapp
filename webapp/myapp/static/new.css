@@ -133,6 +133,7 @@
 
 .feature-movie img{
     width: 7vi;
+    border-radius: 5px;
 }
 
 .feature-tv{
@@ -228,10 +229,14 @@
 
 .card-list{
     display: flex;
-    overflow-x: hidden;
+    overflow-x: scroll;
     align-items: center;
     gap: 1.5rem;
     margin-top: 1vi;
+}
+
+.card-list::-webkit-scrollbar{
+    display: none;
 }
 
 .card-container{
@@ -353,11 +358,6 @@
 
     .card-list{
         gap: 1rem;
-        overflow-x: scroll;        
-    }
-
-    .card-list::-webkit-scrollbar{
-        display: none;
     }
 
     .card-container{
@@ -376,4 +376,73 @@
         display: none;
     }
 
+}
+
+@media only screen and (min-width:768px) and (max-width: 1280px) {
+
+    .hero-container {
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .carousel.slide{
+        max-width: 100%;
+    }
+
+    .carousel.slide::before{
+        width: 100%;
+    }
+
+    .carousel-item-poster{
+        width: 150px;
+        height: 225px;
+        left: -80px;
+    }
+
+    .upcoming-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .upcoming img{
+        width: 150px;
+    }
+
+    .upcoming-list{
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 1.5rem;
+    }
+
+    .upcoming{
+        flex-direction: column;
+    }
+
+    .feature-container{
+        overflow-x: scroll;
+    }
+
+    .feature-container::-webkit-scrollbar{
+        display: none;
+    }
+
+    .feature-movie img{
+        width: 150px;
+    }
+
+    .feature-tv img{
+        width: 150px;
+    }
+
+    .card-list{
+        gap: 1.25rem;
+    }
+
+    .card-container{
+        width: 150px;
+    }
+
+    .card-img{
+        width: 150px;
+    }
 }
