@@ -39,3 +39,7 @@
     display: none;
     gap: 1.25rem;
 }
+
+input[type="search"]:focus, input[type="search"]:not(:placeholder-shown){
+    color: white;
+}

@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Bitter', sans-serif;
     color: white;
 }
 
@@ -213,4 +213,23 @@
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+
+@media only screen and (max-width:767px) {
+    .container{
+        width: 95%;        
+    }    
+
+    h1{
+        font-size: 1.5rem;
+    }
+
+    span{
+        display: none;
+    }
+
+    .container button{
+        padding: 10px 15px;
+        letter-spacing: 0;
+    }
 }

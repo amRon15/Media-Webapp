@@ -1,6 +1,6 @@
 #title{
     font-size: 2rem;
-    color: #009bd6;
+    color: #ffe600;
     margin: 1vi 0 1vi 1vi;
 }
 
@@ -158,5 +158,49 @@ p.page-link{
 
 
 p.page-link:hover{
-    color: black;
+    color: #ffe600;
+}
+
+@media only screen and (max-width:767px) {
+    #title{
+        font-size: 1.5rem;
+    }
+    .list-item{
+        margin: 10px 0;
+    }
+
+    .list-item-img{
+        width: 80px;
+    }
+
+    .list-item span{
+        font-size: 1.25rem;
+    }
+
+    .list-item-img{
+        width: 80px;
+    }
+    
+    .list-item-detail{
+        overflow: hidden;
+        width: 60%;
+        font-size: .75rem;
+    }
+
+    .list-item-title{
+        font-size: 1rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .list-item-genre{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .list-item-genre span{
+        margin: 0 !important;
+    }
 }

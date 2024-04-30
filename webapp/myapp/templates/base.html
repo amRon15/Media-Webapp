@@ -33,10 +33,11 @@
 </head>
 
 <body>
-  {% include 'nav.html' %}
   <input type="hidden" name="user" value="{{user.username}}">
   <input type="hidden" name="csrf" value="{{ csrf_token }}">
   <header>
+  {% include 'nav.html' %}
+
     <div class="header-container">
       <div class="header-l">
         <a href="home.html" id="header-title" style="font-family: 'Teko', sans-serif">LMKRT</a>

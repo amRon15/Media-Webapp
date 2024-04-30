@@ -103,7 +103,9 @@ def logout_view(request):
 def user_detail_view(request):
     all_users = User.objects.all()
     user = User.objects.get(username=request.user)
-    movieid = user.movieIDs.all()
+    movieid
+    if user.movieIDs:
+        movieid = user.movieIDs.all()
     return render(request, 'user_list.html', {'all_users': all_users,'movie':movieid})
 
 def store_movie(request):

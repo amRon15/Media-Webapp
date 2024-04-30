@@ -25,10 +25,16 @@ function search() {
   $("input[name='search']").keypress(function (e) {
     if (e.which === 13) {
       e.preventDefault();
-      const inputText = $("#searchInput").val();
+      const inputText = $("#searchInput").val();      
       navToSearchPage(inputText);
     }
   });
+
+  $('#nav-search-btn').on('click',()=>{
+    const inputText = $("#searchInput").val();      
+      navToSearchPage(inputText);
+  })
+
 }
 
 //nav to search page

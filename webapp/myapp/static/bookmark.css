@@ -72,3 +72,31 @@
 .card-divider{
     color: 	#00719c;
 }
+
+@media only screen and (max-width: 767px) {
+    .bookmark-title{
+        font-size: 1.5rem;
+    }
+
+    .bookmark-list{
+        gap: 1rem;
+        margin: 0 30px;
+        justify-content: space-between;
+    }
+
+    .card-container{
+        width: 100px;
+    }
+
+    .card-img{
+        width: 100px;
+    }
+
+    .card-detail{
+        display: none;
+    }
+
+    .card-title{
+        display: none;
+    }
+}
