@@ -385,7 +385,7 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1280px) {
 
-    .title-more:not(#pop-cast-more):after{
+    .title-more:not(#pop-cast-more,#recommend-more):after{
         opacity: 1;
         margin-left: 20px;
         font-size: 1.25rem;

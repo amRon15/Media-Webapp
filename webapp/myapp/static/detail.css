@@ -628,6 +628,7 @@
 
     .detail-basic-info{
         gap: .25rem;
+        flex-wrap: wrap;
     }
 
     #detail-rating::after{

@@ -107,11 +107,14 @@
 
 .hero-video-list{
     display: flex;
-    overflow: hidden;
+    overflow: scroll;
     gap: 1.5rem;
     margin-top: 1vi;
 }
 
+.hero-video-list::-webkit-scrollbar{
+    display: none;
+}
 
 .hero-video-container iframe{
     width: 24vi;
@@ -227,10 +230,14 @@
 
 .card-list{
     display: flex;
-    overflow-x: hidden;
+    overflow-x: scroll;
     align-items:end;
     gap: 1.5rem;
     margin-top: 1vi;
+}
+
+.card-list::-webkit-scrollbar{
+    display: none;
 }
 
 .find-movie-container{
@@ -442,14 +449,6 @@ p.page-link{
         font-size: 1rem;
     }
 
-    .hero-video-list{
-        overflow-x: scroll;
-    }
-
-    .hero-video-list::-webkit-scrollbar{
-        display: none;
-    }
-
     .hero-video-list iframe{
         width: 180px;
         height:150px;
@@ -532,5 +531,93 @@ p.page-link{
         font-size: 1.25rem;
     }
 
+}
 
+@media only screen and (min-width:768px) and (max-width:1280px) {
+    
+    #hero-backdrop-border{
+        margin-top: 3vi;
+    }
+
+    .hero-container{
+        margin-top: 130px;
+    }
+    
+    .hero-detail-container{
+        gap: .5rem;
+    }
+
+    .hero-detail-list{
+        font-size: 1rem;
+        gap: .5rem;
+    }
+
+    .hero-detail-list-divider{
+        margin: 0;
+    }
+
+    .hero-detail-genre{
+        font-size: 1rem;
+    }
+
+    .hero-detail-genre span{
+        margin: 0 .5rem !important;
+    }
+
+    .hero-detail-description{
+        width: 60%;
+        line-height: 1.5rem;
+        font-size: .75rem;
+    }
+
+    .hero-detail-btn{
+        font-size: .75rem;
+    }
+
+    .hero-video-container iframe {
+        width: 250px;
+        height: 100%;
+    }
+
+    .card-container{
+        width: 150px
+    }
+
+    .card-img{
+        width: 150px;
+    }
+
+    .find-movie-list{
+        font-size: 1rem;
+    }
+
+    .movie-list-item-title{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        font-size: 1.25rem;
+    }
+
+    .movie-list-item-detail{
+        width: 60%;
+        overflow: hidden;
+    }
+
+    .movie-list-item-img{
+        width: 150px;
+    }
+
+    .movie-list-item-genre{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+
+    .movie-list-item-genre span{
+        margin: 0 .25rem !important;
+    }
+
+    .list-item-divider{
+        margin: 20px 0;
+    }
 }

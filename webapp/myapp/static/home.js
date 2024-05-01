@@ -169,8 +169,61 @@ window.onload = function () {
     peopleListView(popPeopleUrl);
     handleClick();
     carouselView();    
+    loadUserBookmark()
   });
 };
+
+function loadUserBookmark(){  
+  $.ajax({
+    type: "get",
+    url: "/getUserMovieID",
+    success: function (response) {
+      const bookmarks = response
+      const randomNum = Math.floor(Math.random()*bookmarks.length)
+      const randomItem = bookmarks[randomNum]
+      recommendData(randomItem)
+    },
+    error: function(e){
+      $('.recommend-list-container').css('display','none')      
+    }
+  });
+}
+
+function recommendData(data){
+  fetch(`https://api.themoviedb.org/3/${data.type}/${data.id}/recommendations?language=en-US&page=1`, options)
+  .then(response => response.json())
+  .then(response => {
+    const recommend = response.results
+    recommend.forEach((m) => {
+      $('.recommend-list').append(`
+              <div class="card-container" id=${m.title != null ? "movie" : "tv"}>
+                  <img class='card-img' id='${m.id}' src="https://image.tmdb.org/t/p/original${m.poster_path}">
+                  <a class="card-title" id='${m.id}'>${m.title != null ? m.title : m.name}</a>
+                  <div class="card-detail">
+                      <div class='card-genre'>${genre(m.genre_ids)}</div>
+                      <div class='card-divider'>|</div>
+                      <div class='card-year'>${m.release_date != null ? justYear(m.release_date) : justYear(m.first_air_date)}</div>
+                      <div class='card-divider'>|</div>
+                      <div class='card-lang'>${m.original_language.toUpperCase()}</div>
+                  </div>
+              </div>
+          `);
+    });
+    $(".card-img").each((_, e) => {
+      $(e).on("click", () => {
+        let type = $(e).parent().attr("id");
+        sendDataToDetailTemplate(e.id, type);
+      });
+    });
+    $(".card-title").each((_, e) => {
+      $(e).on("click", () => {
+        let type = $(e).parent().attr("id");
+        sendDataToDetailTemplate(e.id, type);
+      });
+    });
+  })
+  .catch(err => console.error(err));
+}
 
 function handleClick() {
   $("#pop-movie-more").on("click", () => {

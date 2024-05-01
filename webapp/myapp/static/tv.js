@@ -394,7 +394,7 @@ function handleOnClick() {
     $(e).on("click", () => {
       $("#hero-video-list").animate(
         {
-          scrollLeft: $("#hero-video-list").scrollLeft() + 1296,
+          scrollLeft: $("#hero-video-list").scrollLeft() - 1296,
         },
         600
       );

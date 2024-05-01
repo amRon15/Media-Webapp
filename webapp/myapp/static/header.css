@@ -7,7 +7,7 @@
   height: 4vi;
   z-index: 100;
   background-color: #00070a;
-  padding: 40px 0;
+  padding: 40px 5vi;
 }
 
 .navbar{
@@ -22,8 +22,6 @@
 
 .header-l{
   display: flex;
-  width: 100%;
-  margin-left: 5vi;
   align-items: center;
 }
 
@@ -44,7 +42,6 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  margin-right: 5vi;  
 }
 
 .header-r li{
@@ -166,7 +163,16 @@ ul{
     font-size: 1rem;
   }
 
+  #header-title{
+    margin-right: 0;
+  }
+
   .header-l li {
     margin-left: 1.5rem;
+  }
+
+  ul{
+    padding-left: 0;
+    font-size: 1rem;
   }
 }
