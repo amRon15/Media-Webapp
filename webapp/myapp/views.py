@@ -64,7 +64,7 @@ def login_signup_view(request):
                 return redirect('home')
             else:
                 error_message = 'Invalid username or password.'
-                return render(request, 'login_signup.html', {'login_invalid': error_message})
+                return render(request, 'login_signup.html', {'login_invalid': error_message, 'show_alert': True, 'form': None})
         elif 'signup' in request.POST:
             if request.user.is_authenticated:
                 return redirect('home')  # change dir to profile.html
@@ -72,9 +72,9 @@ def login_signup_view(request):
             form = CustomUserCreationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.set_password(form.cleaned_data['password1'])                            
+                user.set_password(form.cleaned_data['password1'])
                 user.save()
-                
+
                 form.save_m2m()
 
                 authenticated_user = authenticate(
@@ -86,13 +86,13 @@ def login_signup_view(request):
             else:
                 error_message = "Error occurred during user creation."
                 print(form.errors)
-                return render(request, 'login_signup.html', {'form': form, 'signup_error': error_message})
+                return render(request, 'login_signup.html', {'form': form, 'signup_error': error_message, 'login_invalid': None, 'show_alert': True})
     else:
         if request.user.is_authenticated:
             return redirect('home')  # change dir to profile.html
 
         form = CustomUserCreationForm()
-        return render(request, 'login_signup.html', {'form': form})
+        return render(request, 'login_signup.html', {'form': form, 'signup_error': None, 'login_invalid': None, 'show_alert': False})
     
 def logout_view(request):
     if request.method == 'POST':
@@ -100,17 +100,4 @@ def logout_view(request):
         return redirect('home')
     else:
         return render(request, 'logout.html')    
-
-#using for database test
-def user_detail_view(request):
-    all_users = User.objects.all()
-    user = User.objects.get(username=request.user)
-    movieid
-    if user.movieIDs:
-        movieid = user.movieIDs.all()
-    return render(request, 'user_list.html', {'all_users': all_users,'movie':movieid})
-
-def store_movie(request):
-    all_movies = Movie.objects.all().values_list('movieID')
-    return render(request, 'movie_id.html', {'movieIDs': all_movies})
 

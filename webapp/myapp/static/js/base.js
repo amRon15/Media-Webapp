@@ -278,7 +278,7 @@ function justYear(date) {
   return date.slice(0, 4);
 }
 
-//sort movie list by data
+//sort movie list by date
 function sortByDate(data) {
   data = data.sort((a, b) => {
     if (a.release_date > b.release_date) return -1;
@@ -309,7 +309,7 @@ function sortByRating(data) {
 }
 
 
-//calculate runtime total mins > _h_min
+//calculate runtime from total mins > _h_min
 function calRuntime(runtime) {
   let time = runtime;
   let hour = 0;

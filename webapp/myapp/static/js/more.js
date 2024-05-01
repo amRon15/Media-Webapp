@@ -64,6 +64,8 @@ function listView(data) {
         ${i < data.length - 1 ? '<div class="list-item-divider"></div>' : ""}        
         `);
   });
+
+  //nav to detail page when element on click
   $(".list-item-title").each((_, e) => {
     $(e).on("click", () => {
       let eId = $(e).parent().parent().find("img").attr("id");
@@ -136,7 +138,7 @@ function listView(data) {
   });
 }
 
-//handle change page
+//handle page change
 function handlePageChange() {
   $("#page-pre").on("click", () => {
     let newUrl;

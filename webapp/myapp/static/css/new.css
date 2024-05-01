@@ -306,6 +306,19 @@
         width: 100%;
     }
 
+    .d-none{
+        display: inline !important;
+    }
+
+    .d-none h4{
+        font-size: 1rem !important;
+        height: 0 !important;
+    }
+
+    .carousel-item-poster{
+        display: none;
+    }
+
     .upcoming-container{
         width: 90%;
         margin: 0 auto;

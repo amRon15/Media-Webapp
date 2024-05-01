@@ -14,6 +14,7 @@ window.onload = function () {
   });
 };
 
+//load user's bookmark and return a recommend view
 function loadUserBookmark(){  
   $.ajax({
     type: "get",
@@ -30,6 +31,7 @@ function loadUserBookmark(){
   });
 }
 
+//fetch recommend movie / tv according to user's bookmark
 function recommendData(data){
   fetch(`https://api.themoviedb.org/3/${data.type}/${data.id}/recommendations?language=en-US&page=1`, options)
   .then(response => response.json())
@@ -50,6 +52,8 @@ function recommendData(data){
               </div>
           `);
     });
+
+    //nav to detail page when element on click
     $(".card-img").each((_, e) => {
       $(e).on("click", () => {
         let type = $(e).parent().attr("id");
@@ -67,6 +71,7 @@ function recommendData(data){
 }
 
 function handleClick() {
+  //nav to more page when element on click
   $("#pop-movie-more").on("click", () => {
     navToMorePage(popMovieUrl, "movie", "Popular Movie");
   });
@@ -75,6 +80,7 @@ function handleClick() {
     navToMorePage(trendTvUrl, "tv", "Popular TV Series");
   });
 
+  //handle list view scroll when on click
   //pop list btn
   $(".pop-movie-list-container .list-btn-next").each((_, e) => {
     $(e).on("click", () => {
@@ -178,7 +184,7 @@ function carouselView() {
           <div class="carousel-item ${i == 0 ? "active" : ""}" id="slide${i}">
             <img src="https://image.tmdb.org/t/p/original${d.backdrop_path}" class="d-block w-100 opacity-75" id='${d.id}'>
             <div class="carousel-caption d-none d-md-block">
-              <h4>${d.title != null ? d.title : d.name}</h5>
+              <h1>${d.title != null ? d.title : d.name}</h5>
             </div>
           </div>
         `);

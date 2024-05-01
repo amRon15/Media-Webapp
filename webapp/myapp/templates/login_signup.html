@@ -48,6 +48,16 @@
     </div>
 </div>
 
+{% if show_alert %}
+<script>
+  var alertMessage = "{{ login_invalid|default:'' }}{{ signup_error|default:'' }}";
+  var formErrors = "{% for field in form %}{% if field.errors %}{{ field.label }}: {{ field.errors|join:', ' }}{% endif %}{% endfor %}";
+  if (alertMessage || formErrors) {
+    alert(alertMessage + formErrors);
+  }
+</script>
+{% endif %}
+
 <script>
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');

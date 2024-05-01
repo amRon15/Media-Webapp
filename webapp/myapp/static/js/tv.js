@@ -68,6 +68,7 @@ function heroView(data) {
     sendDataToDetailTemplate(data.id,typeOfMedia);
   });
 
+  //different font family with different genre
   const heroTitle = document.querySelector(".hero-detail-title");
   switch (genre(data.genre_ids)) {
     case "Action & Adventure":
@@ -144,6 +145,7 @@ function movieListView(data, listName) {
             </div>
         `);
   });
+
   //handle element on click
   $(".card-img").each((_, element) => {
     $(element).on("click", () => {
@@ -193,6 +195,8 @@ function allTvView(page, sortType, genre) {
       ${i < data.length - 1 ? '<div class="list-item-divider"></div>' : ""}
     `);
       });
+
+      //element on click nav to detail page
       $(".movie-list-item-img").each((_, e) => {
         $(e).on("click", () => {
           sendDataToDetailTemplate(e.id,typeOfMedia);
@@ -303,6 +307,7 @@ function handleOnClick() {
     });
   });
 
+  //list view scroll with btn on click
   //video list
   $(".hero-video-container .list-btn-next").each((_, e) => {
     $(e).on("click", () => {
@@ -370,7 +375,7 @@ function handleOnClick() {
   });
 }
 
-//handle change page
+//handle page change
 function handlePageChange() {
   const movieList = $(".dropdown");
   $("#page-pre").on("click", () => {

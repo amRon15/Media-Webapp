@@ -108,6 +108,7 @@ function searchView(data) {
     });
   });
 
+  //nav to detail page when element on click
   $(".list-item-img").each((_, e) => {
     $(e).on("click", () => {
       let type = $(e).parent().attr("id");
@@ -130,7 +131,7 @@ function searchView(data) {
   })
 }
 
-//handle change page
+//handle page change
 function handlePageChange() {
   $("#page-pre").on("click", () => {
     if (page != 1) {

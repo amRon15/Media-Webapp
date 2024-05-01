@@ -48,6 +48,7 @@ function movieListView(data,type) {
     </div>
     `);
 
+    //nav to detail page when element on click
     $('.card-img').each((_,e)=>{
         $(e).on('click',()=>{
             const eId = $(e).attr('id')

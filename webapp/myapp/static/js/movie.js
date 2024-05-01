@@ -70,6 +70,7 @@ function heroView(data) {
     sendDataToDetailTemplate(data.id);
   });
 
+  //different font family with different genre
   const heroTitle = document.querySelector(".hero-detail-title");
   switch (genre(data.genre_ids)) {
     case "Action":
@@ -380,7 +381,7 @@ function handleOnClick() {
   });
 }
 
-//handle change page
+//handle page change
 function handlePageChange() {
   const movieList = $(".dropdown");
   $("#page-pre").on("click", () => {

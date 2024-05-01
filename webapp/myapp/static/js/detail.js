@@ -87,6 +87,8 @@ function fetchMovieData() {
       $("#detail-origin_name").html(data.original_title != null ? "Original Title: " + data.original_title : "Original Title: " + data.original_name);
       $("#detail-overview").html(data.overview);
       $("#detail-img").attr("src", "https://image.tmdb.org/t/p/original/" + data.poster_path);
+
+      //change font family of title by genre
       const heroTitle = document.getElementById("detail-title");
       switch (data.genres[0].name) {
         case "Action":
@@ -289,6 +291,8 @@ function castCollapseView(actor,index){
       </div>
     </div>
     `)
+
+    //nav to detail page when element on click
     $('.card-body-img').each((_,e)=>{
       $(e).on('click',()=>{
         const type = $(e).parent().attr('id')
@@ -306,7 +310,7 @@ function castCollapseView(actor,index){
   .catch(err => console.error(err));
 }
 
-//return the similar
+//return the similar list
 function fetchSimilar() {
   fetch(
     type == "movie"
@@ -331,6 +335,8 @@ function fetchSimilar() {
             </div>
         </div>`);
       });
+
+      //nav to detail page when element on click
       $('.card-img').each((_,e)=>{
         $(e).on('click',()=>{
           sendDataToDetailTemplate(e.id,type)
@@ -346,7 +352,7 @@ function fetchSimilar() {
     .catch((err) => console.error(err));
 }
 
-//check if this movie/tv is bookmarked
+//check if this movie/tv is bookmarked and change the bookmark color
 function isBookmark(){
   $.ajax({
     type: "post",
@@ -358,10 +364,7 @@ function isBookmark(){
     },
     success: function (response) {
       if(response.saved){
-        console.log('saved already')
         $('#detail-bookmark-btn i').css('color','#ffe600')
-      }else{
-        console.log('not save yet')
       }
     }
   });
@@ -369,7 +372,7 @@ function isBookmark(){
 
 //handle on click
 function handleOnClick() {
-  // bookmark  
+  // bookmark movie / tv when click bookmark btn
   $('#detail-bookmark-btn').on('click',()=>[
     $.ajax({
       type: "post",
@@ -382,20 +385,17 @@ function handleOnClick() {
       success: function (response) {
         if(response.success){
           if(response.action=='saved'){
-            console.log('successful saved')
             $('#detail-bookmark-btn i').css('color','#ffe600')            
           }
           else if(response.action == 'deleted'){
-            console.log('successful deleted')
             $('#detail-bookmark-btn i').css('color','white')
-          }
-          else{
-            console.log('failed')
           }
         }
       }
     })
   ])
+
+  //handle list view scroll when btn on click
   //video list
   $(".hero-video-container .list-btn-next").each((_, e) => {
     $(e).on("click", () => {
