@@ -327,7 +327,7 @@ function fetchSimilar() {
             <img class='card-img' id='${data.id}' src="https://image.tmdb.org/t/p/original${data.poster_path}">
             <a class="card-title">${data.title != null ? data.title : data.name}</a>
             <div class="card-detail">
-                <div class='card-genre'>${movieListGenre(data.genre_ids)}</div>
+                <div class='card-genre'>${genre(data.genre_ids)}</div>
                 <div class='card-divider'>|</div>
                 <div class='card-year'>${justYear(data.release_date != null ? data.release_date : data.first_air_date)}</div>
                 <div class='card-divider'>|</div>

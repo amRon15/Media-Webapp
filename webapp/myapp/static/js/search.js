@@ -16,8 +16,8 @@ function searchData(text) {
     .then((response) => {
       const data = response;
       totalPages = data.total_pages;
-      searchView(data.results);
       $("#title").html(`Search Results: ${data.total_results}`);
+      searchView(data.results);
       handlePageChange();
     })
     .catch((err) => console.error(err));
@@ -33,7 +33,7 @@ function searchView(data) {
                 <div class="list-item-title">${e.title != null ? e.title : e.name}</div>
                 <div class="list-item-date">${e.release_date != null ? e.release_date : e.first_air_date}</div>                
                 <div class='list-item-genre'>   
-                ${genreList(e.genre_ids, e.media_type)
+                ${genreList(e.genre_ids)
                   .map((g, i) => {
                     if (i < e.genre_ids.length - 1) {
                       return `${g} <span style="margin: 0 1rem; color: #00719c;"> | </span>`;

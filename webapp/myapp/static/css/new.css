@@ -220,6 +220,7 @@
     transition: all 0.2s ease-in-out;
 }
 
+
 .list-bar{
     display: flex;
     justify-content: space-between;
@@ -359,6 +360,10 @@
         width: 100px;
     }
 
+    .list-btn-container{
+        display: inline !important;
+    }
+
     .list-bar{
         font-size: 1rem;
         margin: 0;
@@ -446,6 +451,10 @@
 
     .feature-tv img{
         width: 150px;
+    }
+
+    .list-btn-container{
+        display: inline !important;
     }
 
     .card-list{
