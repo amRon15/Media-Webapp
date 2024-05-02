@@ -44,9 +44,13 @@
     opacity: 0;
 }
 
-.title-more:not(#pop-cast-more):hover:after{
+.title-more:not(#pop-cast-more, #recommend-more):hover:after{
     opacity: 1;
     left: 0px;
+}
+
+#recommend-more{
+    cursor: default;
 }
 
 .list-btn{

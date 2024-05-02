@@ -73,11 +73,11 @@ function recommendData(data){
 function handleClick() {
   //nav to more page when element on click
   $("#pop-movie-more").on("click", () => {
-    navToMorePage(popMovieUrl, "movie", "Popular Movie");
+    navToMorePage(popMovieUrl, "movie", "Popular Movie");    
   });
 
   $("#pop-tv-more").on("click", () => {
-    navToMorePage(trendTvUrl, "tv", "Popular TV Series");
+    navToMorePage(trendTvUrl, "tv", "Popular TV Series");    
   });
 
   //handle list view scroll when on click
@@ -292,6 +292,6 @@ function listView(data, name) {
 function navToMorePage(url, type, title) {
   localStorage.setItem("url", url);
   localStorage.setItem("type", type);
-  localStorage.setItem("title", title);
+  localStorage.setItem("title", title);  
   location.href = "more.html";
 }

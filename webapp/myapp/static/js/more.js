@@ -11,10 +11,8 @@ window.onload = function () {
     type = localStorage.getItem("type");
     isNextPage = localStorage.getItem("isNextPage");
     listTitle = localStorage.getItem("title");
-    fetchData(url, type);
-    if (isNextPage == true) {
-      handlePageChange();
-    }
+    fetchData(url, type);        
+    handlePageChange();
   });
 };
 
@@ -139,7 +137,7 @@ function listView(data) {
 }
 
 //handle page change
-function handlePageChange() {
+function handlePageChange() {  
   $("#page-pre").on("click", () => {
     let newUrl;
     if (page != 1) {

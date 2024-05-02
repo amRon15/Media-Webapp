@@ -180,6 +180,10 @@
     color:	#00719c ;
 }
 
+#video-more{
+    cursor: default;
+}
+
 .title-more:after{
     margin-left: 10px;
     content: ' More >';
@@ -191,9 +195,13 @@
     opacity: 0;
 }
 
-.title-more:hover:after{
+.title-more:not(#video-more,#recommend-more):hover:after{
     opacity: 1;
     left: 0px;
+}
+
+#recommend-more{
+    cursor: default;
 }
 
 .list-btn{
