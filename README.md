@@ -22,6 +22,7 @@ The primary goal of this project is to provide users with a centralized hub to d
 <img width="480" alt="螢幕截圖 2024-05-03 12 41 44" src="https://github.com/amRon15/Media-Webapp/assets/109853249/49e771c7-9ab7-4c3a-b4c7-a5fe446fd775">
 <img width="480" alt="螢幕截圖 2024-05-03 12 43 34" src="https://github.com/amRon15/Media-Webapp/assets/109853249/02700c70-78d3-481c-a270-c90178d29f41">
 <img width="480" alt="螢幕截圖 2024-05-03 12 43 05" src="https://github.com/amRon15/Media-Webapp/assets/109853249/0d0d0a56-4a24-46db-9792-546510a904f0">
+<img width="480" alt="螢幕截圖 2024-05-03 12 48 07" src="https://github.com/amRon15/Media-Webapp/assets/109853249/31aafaa5-67b6-48f2-9dfe-5d0cf7fb2675">
 
 
 ## License
