@@ -18,6 +18,10 @@ The primary goal of this project is to provide users with a centralized hub to d
 - Frontend: HTML, CSS, JavaScript, JQuery, Bootstrap, AJAX
 - API Integration: The Movie Database (TMDb) API, Youtube Player API
 
+## Screenshot
+<img width="480" alt="螢幕截圖 2024-05-03 12 41 44" src="https://github.com/amRon15/Media-Webapp/assets/109853249/49e771c7-9ab7-4c3a-b4c7-a5fe446fd775">
+
+
 ## License
 This project is licensed under the MIT License.
 
