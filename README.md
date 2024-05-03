@@ -29,5 +29,5 @@ The primary goal of this project is to provide users with a centralized hub to d
 This project is licensed under the MIT License.
 
 ## Author
-Ron Yau
+Ron Yau, 
 Matthew Fung (mattfung1025)
