@@ -26,8 +26,8 @@ The primary goal of this project is to provide users with a centralized hub to d
 ![WhatsNewpage](https://github.com/amRon15/Media-Webapp/assets/109853249/9a9de53b-bf05-4fbe-a792-6a0370528ce9)
 
 ### Movie
-![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/99da468c-9842-4fc6-ac64-6f7e74d34eb3)
-![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/57a6c935-7dd6-455f-af1e-21625d6aa16b)
+![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/99da468c-9842-4fc6-ac64-6f7e74d34eb3) ![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/57a6c935-7dd6-455f-af1e-21625d6aa16b)
+
 ### Tv
 ![TV page](https://github.com/amRon15/Media-Webapp/assets/109853249/d3db6592-7743-40ce-88c1-0832c49c7645)
 
@@ -38,7 +38,7 @@ The primary goal of this project is to provide users with a centralized hub to d
 ![Search](https://github.com/amRon15/Media-Webapp/assets/109853249/7da3371c-6ff8-48dc-93a4-570146fbe8fc)
 
 ### Bookmark
-![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/4d00c4ae-aa80-4932-a83e-ea51f77bf8e4)
+![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/80844921-2604-42f3-8737-324f501fbe02)
 ![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/bfc453cc-68dd-4cd4-b5be-ca9699524c89)
 ### Logout
 ![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/149062ee-ad5e-4f60-8f53-ec2a1ec7dd01)
