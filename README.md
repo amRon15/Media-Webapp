@@ -19,15 +19,23 @@ The primary goal of this project is to provide users with a centralized hub to d
 - API Integration: The Movie Database (TMDb) API, Youtube Player API
 
 ## Website Showcase
+### Home
 ![Homepage](https://github.com/amRon15/Media-Webapp/assets/109853249/e29b8031-e6d9-4f96-8ad1-5cac1d116416)
+### What's New
 ![WhatsNewpage](https://github.com/amRon15/Media-Webapp/assets/109853249/bddc9b59-9799-4ca8-bd99-c75b650fce45)
+### Movie
 ![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/0c4fba3d-40f2-4cef-9f6c-06f423d670be)
 ![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/37932bec-2960-42c5-8588-a8c7bb0d1a43)
+### Tv
 ![TV page](https://github.com/amRon15/Media-Webapp/assets/109853249/ab0de505-fb08-4603-84b0-e1764b140466)
+### Detail
 ![Detailpage](https://github.com/amRon15/Media-Webapp/assets/109853249/90521833-d237-4be7-bf31-5666bd2352e0)
+### Search
 ![Search](https://github.com/amRon15/Media-Webapp/assets/109853249/ea096b91-5fd5-405a-8af8-13c8415e891c)
+### Bookmark
 ![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/a2611310-49a0-4daa-a86b-30ae9d25af69)
 ![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/7c3e34ca-dc0a-41d2-a676-6b78e698e3a3)
+### Logout
 ![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/e1d3a3ed-baee-4a1c-8d3a-53cc66b42ddb)
 
 
