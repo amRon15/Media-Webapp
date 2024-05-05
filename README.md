@@ -18,11 +18,18 @@ The primary goal of this project is to provide users with a centralized hub to d
 - Frontend: HTML, CSS, JavaScript, JQuery, Bootstrap, AJAX
 - API Integration: The Movie Database (TMDb) API, Youtube Player API
 
-## Screenshot
-<img width="480" alt="螢幕截圖 2024-05-03 12 41 44" src="https://github.com/amRon15/Media-Webapp/assets/109853249/49e771c7-9ab7-4c3a-b4c7-a5fe446fd775">
-<img width="480" alt="螢幕截圖 2024-05-03 12 43 34" src="https://github.com/amRon15/Media-Webapp/assets/109853249/02700c70-78d3-481c-a270-c90178d29f41">
-<img width="480" alt="螢幕截圖 2024-05-03 12 43 05" src="https://github.com/amRon15/Media-Webapp/assets/109853249/0d0d0a56-4a24-46db-9792-546510a904f0">
-<img width="480" alt="螢幕截圖 2024-05-03 12 48 07" src="https://github.com/amRon15/Media-Webapp/assets/109853249/31aafaa5-67b6-48f2-9dfe-5d0cf7fb2675">
+## Website Showcase
+![Homepage](https://github.com/amRon15/Media-Webapp/assets/109853249/e29b8031-e6d9-4f96-8ad1-5cac1d116416)
+![WhatsNewpage](https://github.com/amRon15/Media-Webapp/assets/109853249/bddc9b59-9799-4ca8-bd99-c75b650fce45)
+![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/0c4fba3d-40f2-4cef-9f6c-06f423d670be)
+![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/37932bec-2960-42c5-8588-a8c7bb0d1a43)
+![TV page](https://github.com/amRon15/Media-Webapp/assets/109853249/ab0de505-fb08-4603-84b0-e1764b140466)
+![Detailpage](https://github.com/amRon15/Media-Webapp/assets/109853249/90521833-d237-4be7-bf31-5666bd2352e0)
+![Search](https://github.com/amRon15/Media-Webapp/assets/109853249/ea096b91-5fd5-405a-8af8-13c8415e891c)
+![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/a2611310-49a0-4daa-a86b-30ae9d25af69)
+![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/7c3e34ca-dc0a-41d2-a676-6b78e698e3a3)
+![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/e1d3a3ed-baee-4a1c-8d3a-53cc66b42ddb)
+
 
 
 ## License
