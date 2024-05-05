@@ -20,25 +20,28 @@ The primary goal of this project is to provide users with a centralized hub to d
 
 ## Website Showcase
 ### Home
-![Homepage](https://github.com/amRon15/Media-Webapp/assets/109853249/e29b8031-e6d9-4f96-8ad1-5cac1d116416)
+![Homepage](https://github.com/amRon15/Media-Webapp/assets/109853249/cc4c9fc8-c978-4c3e-bfb4-615d0bf79569)
+
 ### What's New
-![WhatsNewpage](https://github.com/amRon15/Media-Webapp/assets/109853249/bddc9b59-9799-4ca8-bd99-c75b650fce45)
+![WhatsNewpage](https://github.com/amRon15/Media-Webapp/assets/109853249/9a9de53b-bf05-4fbe-a792-6a0370528ce9)
+
 ### Movie
-![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/0c4fba3d-40f2-4cef-9f6c-06f423d670be)
-![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/37932bec-2960-42c5-8588-a8c7bb0d1a43)
+![Movie page](https://github.com/amRon15/Media-Webapp/assets/109853249/99da468c-9842-4fc6-ac64-6f7e74d34eb3)
+![Allmovie](https://github.com/amRon15/Media-Webapp/assets/109853249/57a6c935-7dd6-455f-af1e-21625d6aa16b)
 ### Tv
-![TV page](https://github.com/amRon15/Media-Webapp/assets/109853249/ab0de505-fb08-4603-84b0-e1764b140466)
+![TV page](https://github.com/amRon15/Media-Webapp/assets/109853249/d3db6592-7743-40ce-88c1-0832c49c7645)
+
 ### Detail
-![Detailpage](https://github.com/amRon15/Media-Webapp/assets/109853249/90521833-d237-4be7-bf31-5666bd2352e0)
+![Detailpage](https://github.com/amRon15/Media-Webapp/assets/109853249/39bb7cf1-b9a2-43e8-a447-89a4080a8467)
+
 ### Search
-![Search](https://github.com/amRon15/Media-Webapp/assets/109853249/ea096b91-5fd5-405a-8af8-13c8415e891c)
+![Search](https://github.com/amRon15/Media-Webapp/assets/109853249/7da3371c-6ff8-48dc-93a4-570146fbe8fc)
+
 ### Bookmark
-![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/a2611310-49a0-4daa-a86b-30ae9d25af69)
-![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/7c3e34ca-dc0a-41d2-a676-6b78e698e3a3)
+![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/4d00c4ae-aa80-4932-a83e-ea51f77bf8e4)
+![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/bfc453cc-68dd-4cd4-b5be-ca9699524c89)
 ### Logout
-![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/e1d3a3ed-baee-4a1c-8d3a-53cc66b42ddb)
-
-
+![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/149062ee-ad5e-4f60-8f53-ec2a1ec7dd01)
 
 ## License
 This project is licensed under the MIT License.
