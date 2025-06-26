@@ -49,6 +49,10 @@ The primary goal of this project is to provide users with a centralized hub to d
 <img width="303" alt="螢幕截圖 2025-06-27 00 04 02" src="https://github.com/user-attachments/assets/1dba3ef0-e0c9-40f5-b054-22275c8cbad3" />
 <img width="304" alt="螢幕截圖 2025-06-27 00 04 09" src="https://github.com/user-attachments/assets/4d7e5606-26ca-4b2f-9180-c629ef0440f0" />
 
+<img width="306" alt="螢幕截圖 2025-06-27 00 07 48" src="https://github.com/user-attachments/assets/928d774d-f7c3-49cf-b412-aaa237e4e0ff" />
+<img width="303" alt="螢幕截圖 2025-06-27 00 08 02" src="https://github.com/user-attachments/assets/95c9e049-a842-4edd-aacf-5fcb6b805aeb" />
+
+
 
 ## License
 This project is licensed under the MIT License.
