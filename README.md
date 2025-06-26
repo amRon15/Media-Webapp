@@ -40,8 +40,15 @@ The primary goal of this project is to provide users with a centralized hub to d
 ### Bookmark
 ![Bookmark function](https://github.com/amRon15/Media-Webapp/assets/109853249/80844921-2604-42f3-8737-324f501fbe02)
 ![Bookmark page](https://github.com/amRon15/Media-Webapp/assets/109853249/bfc453cc-68dd-4cd4-b5be-ca9699524c89)
+
 ### Logout
 ![Logout function](https://github.com/amRon15/Media-Webapp/assets/109853249/149062ee-ad5e-4f60-8f53-ec2a1ec7dd01)
+
+### Mobile Layout
+<img width="302" alt="螢幕截圖 2025-06-27 00 03 18" src="https://github.com/user-attachments/assets/593f10e7-1d27-4599-a5e6-76a60c812aeb" />
+<img width="303" alt="螢幕截圖 2025-06-27 00 04 02" src="https://github.com/user-attachments/assets/1dba3ef0-e0c9-40f5-b054-22275c8cbad3" />
+<img width="304" alt="螢幕截圖 2025-06-27 00 04 09" src="https://github.com/user-attachments/assets/4d7e5606-26ca-4b2f-9180-c629ef0440f0" />
+
 
 ## License
 This project is licensed under the MIT License.
